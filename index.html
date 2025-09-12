@@ -3,666 +3,1885 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Life Skills 4 Youth - Support de présentation</title>
+    <title>Guidelines LS4YOU - Formation des professionnels</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            overflow-x: hidden;
-            color: #333;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .page {
-            min-height: 100vh;
-            padding: 40px 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease;
-        }
-
-        .page.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .page-1 {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            margin: 20px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .page-2 {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            margin: 20px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-            position: relative;
-        }
-
-        .header::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-            border-radius: 2px;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-
-        .subtitle {
-            font-size: 1.2rem;
-            color: #666;
-            font-weight: 300;
-        }
-
-        .methodology-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
-        }
-
-        .method-card {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .method-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .method-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .method-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .method-number {
-            display: inline-block;
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        .method-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 15px;
-        }
-
-        .method-desc {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin: 40px 0;
-        }
-
-        .skill-card {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .skill-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: -100px;
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, #667eea20, #764ba220);
-            border-radius: 50%;
-            transition: all 0.3s ease;
-        }
-
-        .skill-card:hover::after {
-            right: -20px;
-            width: 120px;
-            height: 120px;
-        }
-
-        .skill-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-        }
-
-        .skill-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .skill-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .skill-desc {
-            color: #666;
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-
-        .stats-section {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 15px;
-            padding: 30px;
-            color: white;
-            text-align: center;
-            margin: 40px 0;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease;
-        }
-
-        .stat-number.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .stat-label {
-            font-size: 0.95rem;
-            opacity: 0.9;
-        }
-
-        .navigation {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 15px;
-            z-index: 1000;
-        }
-
-        .nav-btn {
-            padding: 15px 25px;
-            background: rgba(255, 255, 255, 0.9);
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: 600;
-            color: #333;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-btn:hover {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        }
-
-        .nav-btn.active {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-        }
-
-        .tools-section {
-            margin: 40px 0;
-        }
-
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .tool-item {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .tool-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        .tool-emoji {
-            font-size: 2rem;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .tool-name {
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 8px;
-        }
-
-        .tool-desc {
-            font-size: 0.85rem;
-            color: #666;
-            line-height: 1.4;
-        }
-
-        .integration-examples {
-            background: #f8f9fa;
-            border-radius: 15px;
-            padding: 30px;
-            margin: 30px 0;
-        }
-
-        .example-item {
-            margin-bottom: 25px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #e9ecef;
-        }
-
-        .example-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-        }
-
-        .example-title {
-            font-weight: 600;
-            color: #495057;
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-        }
-
-        .example-desc {
-            color: #6c757d;
-            line-height: 1.5;
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .methodology-section {
-                grid-template-columns: 1fr;
-            }
-            
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .page {
-                padding: 20px 15px;
-            }
-        }
+        body { font-family: 'Inter', sans-serif; }
+        .slide { display: none; }
+        .slide.active { display: block; }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+        .popup { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; }
+        .popup.active { display: flex; align-items: center; justify-content: center; }
+        .timeline-step { position: relative; }
+        .timeline-step::after { content: ''; position: absolute; top: 50%; right: -20px; width: 0; height: 0; border-left: 10px solid #06b6d4; border-top: 8px solid transparent; border-bottom: 8px solid transparent; }
+        .timeline-step:last-child::after { display: none; }
+        .competence-circle { position: absolute; cursor: pointer; transition: all 0.3s ease; }
+        .competence-circle:hover { transform: scale(1.1); }
     </style>
 </head>
-<body>
-    <div class="container">
-        <!-- PAGE 1 -->
-        <div class="page page-1 active" id="page1">
-            <div class="header">
-                <h1>Life Skills 4 Youth</h1>
-                <p class="subtitle">Révolutionner l'accompagnement des jeunes par les compétences de vie</p>
+<body class="bg-gray-50">
+
+<!-- Navigation -->
+<nav class="fixed top-0 left-0 right-0 bg-white shadow-md z-50 px-6 py-3">
+    <div class="flex justify-between items-center max-w-6xl mx-auto">
+        <div class="flex items-center space-x-4">
+            <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
+                <span class="text-white font-bold text-sm">LS</span>
             </div>
+            <span class="font-semibold text-gray-800">Guidelines LS4YOU</span>
+        </div>
+        <div class="flex space-x-2">
+            <button onclick="previousSlide()" class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition-colors">←</button>
+            <span id="slideCounter" class="px-3 py-1 text-sm text-gray-600">1/10</span>
+            <button onclick="nextSlide()" class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition-colors">→</button>
+        </div>
+    </div>
+</nav>
 
-            <div class="methodology-section">
-                <div class="method-card" onclick="animateCard(this)">
-                    <div class="method-number">1</div>
-                    <div class="method-title">IDENTIFIER</div>
-                    <div class="method-desc">
-                        Découvrir les aspirations profondes du jeune et les compétences de vie nécessaires à son projet. 
-                        Utilisation d'outils ludiques : questionnaires d'intérêts, jeux de rôle, photolangage...
-                    </div>
-                </div>
-
-                <div class="method-card" onclick="animateCard(this)">
-                    <div class="method-number">2</div>
-                    <div class="method-title">MESURER</div>
-                    <div class="method-desc">
-                        Évaluer le niveau actuel sur chaque domaine avec des grilles spécifiques et des quiz personnalisés. 
-                        Diagnostic individuel pour personnaliser le parcours du jeune.
-                    </div>
-                </div>
-
-                <div class="method-card" onclick="animateCard(this)">
-                    <div class="method-number">3</div>
-                    <div class="method-title">METTRE EN ŒUVRE</div>
-                    <div class="method-desc">
-                        Plan d'action concret avec ateliers pratiques, modules e-learning, mises en situation. 
-                        Suivi régulier avec carnet de bord pour ancrer les apprentissages.
-                    </div>
+<!-- Slide 1: Couverture -->
+<div class="slide active min-h-screen pt-20" id="slide1">
+    <div class="max-w-4xl mx-auto px-6 py-12 text-center">
+        <div class="bg-gradient-to-br from-red-50 to-cyan-50 rounded-3xl p-12 shadow-lg">
+            <div class="flex justify-center mb-8">
+                <div class="w-24 h-24 bg-red-500 rounded-full flex items-center justify-center">
+                    <span class="text-white font-bold text-3xl">LS</span>
                 </div>
             </div>
-
-            <div class="skills-grid">
-                <div class="skill-card" onclick="pulseCard(this)">
-                    <span class="skill-icon">🧠</span>
-                    <div class="skill-title">Personnalité</div>
-                    <div class="skill-desc">Connaissance de soi, valeurs, forces personnelles. Renforcer la confiance pour des choix alignés.</div>
+            <h1 class="text-4xl font-bold text-red-600 mb-4" id="mainTitle">Guidelines LS4YOU</h1>
+            <h2 class="text-2xl text-gray-700 mb-6" id="mainSubtitle">Formation des professionnels</h2>
+            
+            <!-- Language Selector -->
+            <div class="flex justify-center mb-8">
+                <div class="relative">
+                    <select id="languageSelector" onchange="changeLanguage()" class="bg-white border border-gray-300 rounded-lg px-4 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-red-500 cursor-pointer">
+                        <option value="fr">🇫🇷 Français</option>
+                        <option value="en">🇬🇧 English</option>
+                        <option value="de">🇩🇪 Deutsch</option>
+                        <option value="es">🇪🇸 Español</option>
+                    </select>
                 </div>
+            </div>
+            
+            <div class="flex justify-center space-x-4 mb-8">
+                <div class="w-4 h-4 bg-red-500 rounded-full"></div>
+                <div class="w-4 h-4 bg-cyan-500 rounded-full"></div>
+                <div class="w-4 h-4 bg-yellow-400 rounded-full"></div>
+            </div>
+            <button onclick="goToSlide(2)" class="bg-red-500 hover:bg-red-600 text-white px-8 py-3 rounded-full text-lg font-semibold transition-colors shadow-lg" id="enterButton">
+                Entrer dans le guide
+            </button>
+        </div>
+    </div>
+</div>
 
-                <div class="skill-card" onclick="pulseCard(this)">
-                    <span class="skill-icon">🎯</span>
-                    <div class="skill-title">Auto-promotion</div>
-                    <div class="skill-desc">Savoir se présenter, valoriser ses atouts, maîtriser l'entretien d'embauche et le CV.</div>
-                </div>
+<!-- Slide 2: Sommaire -->
+<div class="slide min-h-screen pt-20" id="slide2">
+    <div class="max-w-6xl mx-auto px-6 py-8">
+        <h1 class="text-3xl font-bold text-red-600 text-center mb-8" id="summaryTitle">Sommaire interactif</h1>
+        <div class="grid grid-cols-3 gap-6">
+            <div onclick="goToSlide(3)" class="card-hover bg-white p-6 rounded-xl shadow-md cursor-pointer border-l-4 border-red-500">
+                <div class="text-2xl mb-3">🎯</div>
+                <h3 class="font-semibold text-gray-800 mb-2" id="card1Title">Objet & périmètre</h3>
+                <p class="text-sm text-gray-600" id="card1Desc">Objectifs, public cible et impact</p>
+            </div>
+            <div onclick="goToSlide(4)" class="card-hover bg-white p-6 rounded-xl shadow-md cursor-pointer border-l-4 border-cyan-500">
+                <div class="text-2xl mb-3">📚</div>
+                <h3 class="font-semibold text-gray-800 mb-2" id="card2Title">Principes pédagogiques</h3>
+                <p class="text-sm text-gray-600" id="card2Desc">Approches et méthodes</p>
+            </div>
+            <div onclick="goToSlide(5)" class="card-hover bg-white p-6 rounded-xl shadow-md cursor-pointer border-l-4 border-yellow-400">
+                <div class="text-2xl mb-3">📋</div>
+                <h3 class="font-semibold text-gray-800 mb-2" id="card3Title">Organisation step-to-step</h3>
+                <p class="text-sm text-gray-600" id="card3Desc">Timeline et étapes</p>
+            </div>
+            <div onclick="goToSlide(6)" class="card-hover bg-white p-6 rounded-xl shadow-md cursor-pointer border-l-4 border-red-500">
+                <div class="text-2xl mb-3">🎭</div>
+                <h3 class="font-semibold text-gray-800 mb-2" id="card4Title">Modules pédagogiques</h3>
+                <p class="text-sm text-gray-600" id="card4Desc">Domaines et activités</p>
+            </div>
+            <div onclick="goToSlide(7)" class="card-hover bg-white p-6 rounded-xl shadow-md cursor-pointer border-l-4 border-cyan-500">
+                <div class="text-2xl mb-3">🎯</div>
+                <h3 class="font-semibold text-gray-800 mb-2" id="card5Title">Compétences visées pros</h3>
+                <p class="text-sm text-gray-600" id="card5Desc">Référentiel compétences</p>
+            </div>
+            <div onclick="goToSlide(8)" class="card-hover bg-white p-6 rounded-xl shadow-md cursor-pointer border-l-4 border-yellow-400">
+                <div class="text-2xl mb-3">📊</div>
+                <h3 class="font-semibold text-gray-800 mb-2" id="card6Title">Suivi & évaluation</h3>
+                <p class="text-sm text-gray-600" id="card6Desc">Outils d'évaluation</p>
+            </div>
+            <div onclick="goToSlide(9)" class="card-hover bg-white p-6 rounded-xl shadow-md cursor-pointer border-l-4 border-red-500">
+                <div class="text-2xl mb-3">🌍</div>
+                <h3 class="font-semibold text-gray-800 mb-2" id="card7Title">Pérennisation</h3>
+                <p class="text-sm text-gray-600" id="card7Desc">Transférabilité</p>
+            </div>
+            <div onclick="goToSlide(9)" class="card-hover bg-white p-6 rounded-xl shadow-md cursor-pointer border-l-4 border-cyan-500">
+                <div class="text-2xl mb-3">📅</div>
+                <h3 class="font-semibold text-gray-800 mb-2" id="card8Title">Formats possibles</h3>
+                <p class="text-sm text-gray-600" id="card8Desc">3 options de formation</p>
+            </div>
+            <div onclick="goToSlide(10)" class="card-hover bg-white p-6 rounded-xl shadow-md cursor-pointer border-l-4 border-yellow-400">
+                <div class="text-2xl mb-3">📄</div>
+                <h3 class="font-semibold text-gray-800 mb-2" id="card9Title">Ressources</h3>
+                <p class="text-sm text-gray-600" id="card9Desc">Annexes téléchargeables</p>
+            </div>
+        </div>
+    </div>
+</div>
 
-                <div class="skill-card" onclick="pulseCard(this)">
-                    <span class="skill-icon">💚</span>
-                    <div class="skill-title">Bien-être</div>
-                    <div class="skill-desc">Gestion du stress, hygiène de vie, résilience face aux difficultés, équilibre personnel.</div>
-                </div>
+<!-- Slide 3: Objet & périmètre -->
+<div class="slide min-h-screen pt-20" id="slide3">
+    <div class="max-w-4xl mx-auto px-6 py-8">
+        <h1 class="text-3xl font-bold text-red-600 text-center mb-8">Objet & périmètre</h1>
+        <div class="grid grid-cols-3 gap-8">
+            <div class="bg-white p-8 rounded-xl shadow-lg text-center">
+                <div class="text-4xl mb-4">🎯</div>
+                <h3 class="text-xl font-semibold text-red-600 mb-4">Objectif</h3>
+                <p class="text-gray-700">Former les professionnels aux outils et méthodes LS4YOU pour accompagner les jeunes dans leur développement personnel et professionnel</p>
+            </div>
+            <div class="bg-white p-8 rounded-xl shadow-lg text-center">
+                <div class="text-4xl mb-4">👥</div>
+                <h3 class="text-xl font-semibold text-cyan-600 mb-4">Public cible</h3>
+                <p class="text-gray-700">Professionnels de l'accompagnement, formateurs, conseillers, animateurs jeunesse et travailleurs sociaux</p>
+            </div>
+            <div class="bg-white p-8 rounded-xl shadow-lg text-center">
+                <div class="text-4xl mb-4">🌍</div>
+                <h3 class="text-xl font-semibold text-yellow-600 mb-4">Impact attendu</h3>
+                <p class="text-gray-700">Amélioration des compétences d'accompagnement et déploiement des outils LS4YOU dans les structures partenaires</p>
+            </div>
+        </div>
+        <div class="text-center mt-8">
+            <button onclick="goToSlide(2)" class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded-lg">Retour au sommaire</button>
+        </div>
+    </div>
+</div>
 
-                <div class="skill-card" onclick="pulseCard(this)">
-                    <span class="skill-icon">💰</span>
-                    <div class="skill-title">Finances</div>
-                    <div class="skill-desc">Budget, épargne, littératie financière, autonomie matérielle et ressources.</div>
+<!-- Slide 4: Principes pédagogiques -->
+<div class="slide min-h-screen pt-20" id="slide4">
+    <div class="max-w-4xl mx-auto px-6 py-8">
+        <h1 class="text-3xl font-bold text-red-600 text-center mb-8">Principes pédagogiques</h1>
+        <div class="grid grid-cols-2 gap-6">
+            <div onclick="showPopup('popup1')" class="card-hover bg-white p-6 rounded-xl shadow-lg cursor-pointer border-l-4 border-red-500">
+                <h3 class="text-xl font-semibold text-red-600 mb-3">🎯 Expérientiel</h3>
+                <p class="text-gray-700">Apprentissage par l'expérience et la pratique</p>
+            </div>
+            <div onclick="showPopup('popup2')" class="card-hover bg-white p-6 rounded-xl shadow-lg cursor-pointer border-l-4 border-cyan-500">
+                <h3 class="text-xl font-semibold text-cyan-600 mb-3">👥 Collectif</h3>
+                <p class="text-gray-700">Dynamique de groupe et intelligence collective</p>
+            </div>
+            <div onclick="showPopup('popup3')" class="card-hover bg-white p-6 rounded-xl shadow-lg cursor-pointer border-l-4 border-yellow-400">
+                <h3 class="text-xl font-semibold text-yellow-600 mb-3">💻 Hybride</h3>
+                <p class="text-gray-700">Combinaison présentiel et digital</p>
+            </div>
+            <div onclick="showPopup('popup4')" class="card-hover bg-white p-6 rounded-xl shadow-lg cursor-pointer border-l-4 border-gray-500">
+                <h3 class="text-xl font-semibold text-gray-600 mb-3">🔄 Flexible & basé sur preuves</h3>
+                <p class="text-gray-700">Adaptation aux besoins et méthodes validées</p>
+            </div>
+        </div>
+        <div class="text-center mt-8">
+            <button onclick="goToSlide(2)" class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded-lg">Retour au sommaire</button>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 5: Organisation step-to-step -->
+<div class="slide min-h-screen pt-20" id="slide5">
+    <div class="max-w-6xl mx-auto px-6 py-8">
+        <h1 class="text-3xl font-bold text-red-600 text-center mb-8">Organisation step-to-step</h1>
+        <div class="flex justify-center items-center space-x-8 mb-8">
+            <div onclick="showStepPopup('step1')" class="timeline-step card-hover bg-red-100 p-6 rounded-xl cursor-pointer text-center">
+                <div class="text-3xl mb-2">📋</div>
+                <h3 class="font-semibold text-red-600">Préparation</h3>
+                <p class="text-sm text-gray-600">Diagnostic & planification</p>
+            </div>
+            <div onclick="showStepPopup('step2')" class="timeline-step card-hover bg-cyan-100 p-6 rounded-xl cursor-pointer text-center">
+                <div class="text-3xl mb-2">💻</div>
+                <h3 class="font-semibold text-cyan-600">E-learning</h3>
+                <p class="text-sm text-gray-600">Formation à distance</p>
+            </div>
+            <div onclick="showStepPopup('step3')" class="timeline-step card-hover bg-yellow-100 p-6 rounded-xl cursor-pointer text-center">
+                <div class="text-3xl mb-2">👥</div>
+                <h3 class="font-semibold text-yellow-600">Présentiel</h3>
+                <p class="text-sm text-gray-600">Formation en groupe</p>
+            </div>
+            <div onclick="showStepPopup('step4')" class="timeline-step card-hover bg-gray-100 p-6 rounded-xl cursor-pointer text-center">
+                <div class="text-3xl mb-2">🚀</div>
+                <h3 class="font-semibold text-gray-600">Intégration</h3>
+                <p class="text-sm text-gray-600">Mise en pratique</p>
+            </div>
+        </div>
+        <div class="text-center">
+            <button onclick="goToSlide(2)" class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded-lg">Retour au sommaire</button>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 6: Modules & Activités -->
+<div class="slide min-h-screen pt-20" id="slide6">
+    <div class="max-w-6xl mx-auto px-6 py-8">
+        <h1 class="text-3xl font-bold text-red-600 text-center mb-8">Modules & Activités</h1>
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+            <table class="w-full">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-4 text-left font-semibold text-gray-800" id="domainHeader">Domaine LS4YOU</th>
+                        <th class="px-6 py-4 text-left font-semibold text-gray-800" id="activitiesHeader">Activités proposées (Guidebook)</th>
+                        <th class="px-6 py-4 text-left font-semibold text-gray-800" id="choiceHeader">Choix du partenaire (2 max)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-t border-gray-200">
+                        <td class="px-6 py-4">
+                            <div class="flex items-center">
+                                <span class="text-2xl mr-3">🎭</span>
+                                <div>
+                                    <span class="font-semibold text-red-600" id="personalityTitle">Personnalité</span>
+                                    <p class="text-xs text-gray-500" id="personalitySubtitle">(Renforcer identité & confiance)</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="text-sm space-y-1">
+                                <button onclick="showActivityPopup('test16')" class="text-cyan-600 hover:underline text-left block">• <span id="activity1">Fiche Outil 1 : Test des 16 Personnalités</span></button>
+                                <button onclick="showActivityPopup('cartographie')" class="text-cyan-600 hover:underline text-left block">• <span id="activity2">Fiche Outil 2 : Faire valoir un point (cartographie personnelle)</span></button>
+                                <button onclick="showActivityPopup('imagePublique')" class="text-cyan-600 hover:underline text-left block">• <span id="activity3">Fiche Outil 3 : Image de soi vs image publique</span></button>
+                                <button onclick="showActivityPopup('matching')" class="text-cyan-600 hover:underline text-left block">• <span id="activity4">Fiche Outil 4 : Matching</span></button>
+                                <button onclick="showActivityPopup('feedback')" class="text-cyan-600 hover:underline text-left block">• <span id="activity5">Fiche Outil 5 : Recevoir du Feedback</span></button>
+                                <button onclick="showActivityPopup('objectifs')" class="text-cyan-600 hover:underline text-left block">• <span id="activity6">Fiche Outil 6 : Définition d'objectifs personnels (méthode ABC)</span></button>
+                                <button onclick="showActivityPopup('valeurs')" class="text-cyan-600 hover:underline text-left block">• <span id="activity7">Fiche Outil 7 : Liste des valeurs</span></button>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="space-y-2 text-sm">
+                                <label class="flex items-center"><input type="checkbox" class="mr-2 scale-75"> <span id="choice1">Activité 1</span></label>
+                                <label class="flex items-center"><input type="checkbox" class="mr-2 scale-75"> <span id="choice2">Activité 2</span></label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="border-t border-gray-200 bg-gray-50">
+                        <td class="px-6 py-4">
+                            <div class="flex items-center">
+                                <span class="text-2xl mr-3">🔗</span>
+                                <div>
+                                    <span class="font-semibold text-cyan-600" id="promotionTitle">Auto-promotion</span>
+                                    <p class="text-xs text-gray-500" id="promotionSubtitle">(Se valoriser & communiquer)</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="text-sm space-y-1">
+                                <button onclick="showActivityPopup('sommet')" class="text-cyan-600 hover:underline text-left block">• <span id="activity8">Fiche Outil 8 : Moi au sommet de mon art</span></button>
+                                <button onclick="showActivityPopup('pitchVideo')" class="text-cyan-600 hover:underline text-left block">• <span id="activity9">Fiche Outil 9 : Montrez-vous sous votre meilleur jour (pitch vidéo)</span></button>
+                                <button onclick="showActivityPopup('parcours')" class="text-cyan-600 hover:underline text-left block">• <span id="activity10">Fiche Outil 10 : Parcours ressources et compétences</span></button>
+                                <button onclick="showActivityPopup('marque')" class="text-cyan-600 hover:underline text-left block">• <span id="activity11">Fiche Outil 11 : Image de marque personnelle</span></button>
+                                <button onclick="showActivityPopup('zine')" class="text-cyan-600 hover:underline text-left block">• <span id="activity12">Fiche Outil 12 : Concevez votre zine</span></button>
+                                <button onclick="showActivityPopup('negociation')" class="text-cyan-600 hover:underline text-left block">• <span id="activity13">Fiche Outil 13 : Jeu de simulation (Négociation)</span></button>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="space-y-2 text-sm">
+                                <label class="flex items-center"><input type="checkbox" class="mr-2 scale-75"> <span id="choice3">Activité 1</span></label>
+                                <label class="flex items-center"><input type="checkbox" class="mr-2 scale-75"> <span id="choice4">Activité 2</span></label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="border-t border-gray-200">
+                        <td class="px-6 py-4">
+                            <div class="flex items-center">
+                                <span class="text-2xl mr-3">😌</span>
+                                <div>
+                                    <span class="font-semibold text-yellow-600" id="wellbeingTitle">Bien-être</span>
+                                    <p class="text-xs text-gray-500" id="wellbeingSubtitle">(Santé physique & mentale)</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="text-sm space-y-1">
+                                <button onclick="showActivityPopup('roueEmotions')" class="text-cyan-600 hover:underline text-left block">• <span id="activity14">Fiche Outil 14 : La roue des émotions</span></button>
+                                <button onclick="showActivityPopup('bonnesChoses')" class="text-cyan-600 hover:underline text-left block">• <span id="activity15">Fiche Outil 15 : 3 bonnes choses</span></button>
+                                <button onclick="showActivityPopup('reseauSoutien')" class="text-cyan-600 hover:underline text-left block">• <span id="activity16">Fiche Outil 16 : Réseau de soutien social</span></button>
+                                <button onclick="showActivityPopup('evaluationBesoins')" class="text-cyan-600 hover:underline text-left block">• <span id="activity17">Fiche Outil 17 : Évaluation des besoins</span></button>
+                                <button onclick="showActivityPopup('stressometre')" class="text-cyan-600 hover:underline text-left block">• <span id="activity18">Fiche Outil 18 : Stressomètre</span></button>
+                                <button onclick="showActivityPopup('routines')" class="text-cyan-600 hover:underline text-left block">• <span id="activity19">Fiche Outil 19 : Prioriser ses routines</span></button>
+                                <button onclick="showActivityPopup('arbreResilience')" class="text-cyan-600 hover:underline text-left block">• <span id="activity20">Fiche Outil 20 : Arbre de la Résilience</span></button>
+                                <button onclick="showActivityPopup('limites')" class="text-cyan-600 hover:underline text-left block">• <span id="activity21">Fiche Outil 21 : Portfolio de démarcation (poser ses limites)</span></button>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="space-y-2 text-sm">
+                                <label class="flex items-center"><input type="checkbox" class="mr-2 scale-75"> <span id="choice5">Activité 1</span></label>
+                                <label class="flex items-center"><input type="checkbox" class="mr-2 scale-75"> <span id="choice6">Activité 2</span></label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="border-t border-gray-200 bg-gray-50">
+                        <td class="px-6 py-4">
+                            <div class="flex items-center">
+                                <span class="text-2xl mr-3">💰</span>
+                                <div>
+                                    <span class="font-semibold text-gray-600" id="financeTitle">Finances & Ressources</span>
+                                    <p class="text-xs text-gray-500" id="financeSubtitle">(Autonomie quotidienne)</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="text-sm space-y-1">
+                                <button onclick="showActivityPopup('defisVieReelle')" class="text-cyan-600 hover:underline text-left block">• <span id="activity22">Fiche Outil 22 : Défis de la vie réelle (jeu de rôle budget)</span></button>
+                                <button onclick="showActivityPopup('salairePoche')" class="text-cyan-600 hover:underline text-left block">• <span id="activity23">Fiche Outil 23 : Du salaire à la poche (brut/net)</span></button>
+                                <button onclick="showActivityPopup('smart')" class="text-cyan-600 hover:underline text-left block">• <span id="activity24">Fiche Outil 24 : Arrêtez de souhaiter, commencez à réaliser (SMART)</span></button>
+                                <button onclick="showActivityPopup('etudesCas')" class="text-cyan-600 hover:underline text-left block">• <span id="activity25">Fiche Outil 25 : Études de cas (littératie financière)</span></button>
+                                <button onclick="showActivityPopup('ikigai')" class="text-cyan-600 hover:underline text-left block">• <span id="activityBonus">Supplémentaire : Ikigai – Concevez-vous</span></button>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="space-y-2 text-sm">
+                                <label class="flex items-center"><input type="checkbox" class="mr-2 scale-75"> <span id="choice7">Activité 1</span></label>
+                                <label class="flex items-center"><input type="checkbox" class="mr-2 scale-75"> <span id="choice8">Activité 2</span></label>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="text-center mt-8">
+            <button onclick="goToSlide(2)" class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded-lg">Retour au sommaire</button>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 7: Compétences pros -->
+<div class="slide min-h-screen pt-20" id="slide7">
+    <div class="max-w-4xl mx-auto px-6 py-8">
+        <h1 class="text-3xl font-bold text-red-600 text-center mb-8">Compétences visées pros</h1>
+        <div class="relative w-96 h-96 mx-auto">
+            <svg width="384" height="384" class="absolute inset-0">
+                <circle cx="192" cy="192" r="150" fill="none" stroke="#e5e7eb" stroke-width="2"/>
+                <circle cx="192" cy="192" r="100" fill="none" stroke="#e5e7eb" stroke-width="2"/>
+                <circle cx="192" cy="192" r="50" fill="none" stroke="#e5e7eb" stroke-width="2"/>
+            </svg>
+            
+            <!-- Référentiel LS4YOU - Top -->
+            <div onclick="showCompetencePopup('referentiel')" class="competence-circle w-20 h-20 bg-red-500 rounded-full flex items-center justify-center text-white font-semibold text-xs text-center leading-tight" style="top: 30px; left: 152px;">
+                Référentiel<br>LS4YOU
+            </div>
+            
+            <!-- Outils pédagogiques - Top Right -->
+            <div onclick="showCompetencePopup('outils')" class="competence-circle w-20 h-20 bg-cyan-500 rounded-full flex items-center justify-center text-white font-semibold text-xs text-center leading-tight" style="top: 90px; right: 50px;">
+                Outils<br>pédago
+            </div>
+            
+            <!-- Animation - Bottom Right -->
+            <div onclick="showCompetencePopup('animation')" class="competence-circle w-20 h-20 bg-yellow-500 rounded-full flex items-center justify-center text-white font-semibold text-xs text-center leading-tight" style="bottom: 90px; right: 50px;">
+                Animation &<br>facilitation
+            </div>
+            
+            <!-- Écoute active - Bottom -->
+            <div onclick="showCompetencePopup('ecoute')" class="competence-circle w-20 h-20 bg-green-500 rounded-full flex items-center justify-center text-white font-semibold text-xs text-center leading-tight" style="bottom: 30px; left: 152px;">
+                Écoute<br>active
+            </div>
+            
+            <!-- Évaluation - Bottom Left -->
+            <div onclick="showCompetencePopup('evaluation')" class="competence-circle w-20 h-20 bg-purple-500 rounded-full flex items-center justify-center text-white font-semibold text-xs text-center leading-tight" style="bottom: 90px; left: 50px;">
+                Évaluation &<br>innovation
+            </div>
+            
+            <!-- Centre - Logo LS4YOU -->
+            <div class="absolute w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center text-red-600 font-bold text-lg border-4 border-white shadow-lg" style="top: 152px; left: 152px;">
+                LS4U
+            </div>
+        </div>
+        <div class="text-center mt-8">
+            <button onclick="goToSlide(2)" class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded-lg">Retour au sommaire</button>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 8: Suivi & évaluation -->
+<div class="slide min-h-screen pt-20" id="slide8">
+    <div class="max-w-6xl mx-auto px-6 py-8">
+        <h1 class="text-3xl font-bold text-red-600 text-center mb-8">Suivi & évaluation</h1>
+        
+        <!-- Indicateurs à observer -->
+        <div class="grid grid-cols-2 gap-8 mb-8">
+            <div class="bg-white p-6 rounded-xl shadow-lg">
+                <h3 class="text-xl font-semibold text-red-600 mb-4 flex items-center">
+                    <span class="text-2xl mr-3">📊</span>
+                    Indicateurs à observer
+                </h3>
+                <div class="space-y-4">
+                    <div onclick="showIndicatorPopup('engagement')" class="card-hover p-4 bg-red-50 rounded-lg cursor-pointer border-l-4 border-red-400">
+                        <h4 class="font-semibold text-red-600 mb-2">🎯 Engagement</h4>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li>• Participation active aux activités</li>
+                            <li>• Ponctualité et assiduité</li>
+                            <li>• Qualité des interactions</li>
+                        </ul>
+                    </div>
+                    <div onclick="showIndicatorPopup('progression')" class="card-hover p-4 bg-cyan-50 rounded-lg cursor-pointer border-l-4 border-cyan-400">
+                        <h4 class="font-semibold text-cyan-600 mb-2">📈 Progression</h4>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li>• Acquisition des compétences</li>
+                            <li>• Évolution des pratiques</li>
+                            <li>• Autonomie croissante</li>
+                        </ul>
+                    </div>
+                    <div onclick="showIndicatorPopup('satisfaction')" class="card-hover p-4 bg-yellow-50 rounded-lg cursor-pointer border-l-4 border-yellow-400">
+                        <h4 class="font-semibold text-yellow-600 mb-2">😊 Satisfaction</h4>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li>• Pertinence du contenu</li>
+                            <li>• Qualité de l'animation</li>
+                            <li>• Utilité perçue</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
-            <div class="stats-section">
-                <h2>Impact LS4YOU</h2>
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <div class="stat-number" data-target="50">0</div>
-                        <div class="stat-label">Conseillers formés</div>
+            <!-- Outils de retour d'expérience -->
+            <div class="bg-white p-6 rounded-xl shadow-lg">
+                <h3 class="text-xl font-semibold text-cyan-600 mb-4 flex items-center">
+                    <span class="text-2xl mr-3">🔄</span>
+                    Outils de retour d'expérience
+                </h3>
+                <div class="space-y-4">
+                    <div onclick="showRetourPopup('quiz')" class="card-hover p-4 bg-red-50 rounded-lg cursor-pointer">
+                        <div class="flex items-center mb-2">
+                            <span class="text-xl mr-3">📝</span>
+                            <h4 class="font-semibold text-red-600">Quiz pré/post formation</h4>
+                        </div>
+                        <p class="text-sm text-gray-600">Mesure quantitative des acquis</p>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number" data-target="4">0</div>
-                        <div class="stat-label">Domaines de compétences</div>
+                    
+                    <div onclick="showRetourPopup('journal')" class="card-hover p-4 bg-cyan-50 rounded-lg cursor-pointer">
+                        <div class="flex items-center mb-2">
+                            <span class="text-xl mr-3">📖</span>
+                            <h4 class="font-semibold text-cyan-600">Journal réflexif</h4>
+                        </div>
+                        <p class="text-sm text-gray-600">Suivi qualitatif de l'implémentation</p>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number" data-target="5">0</div>
-                        <div class="stat-label">Pays partenaires</div>
+                    
+                    <div onclick="showRetourPopup('entretien')" class="card-hover p-4 bg-yellow-50 rounded-lg cursor-pointer">
+                        <div class="flex items-center mb-2">
+                            <span class="text-xl mr-3">🎤</span>
+                            <h4 class="font-semibold text-yellow-600">Entretiens individuels</h4>
+                        </div>
+                        <p class="text-sm text-gray-600">Retours approfondis personnalisés</p>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number" data-target="100">0</div>
-                        <div class="stat-label">% d'engagement jeunes</div>
+                    
+                    <div onclick="showRetourPopup('focus')" class="card-hover p-4 bg-green-50 rounded-lg cursor-pointer">
+                        <div class="flex items-center mb-2">
+                            <span class="text-xl mr-3">👥</span>
+                            <h4 class="font-semibold text-green-600">Focus groups</h4>
+                        </div>
+                        <p class="text-sm text-gray-600">Échanges collectifs structurés</p>
+                    </div>
+                    
+                    <div onclick="showRetourPopup('observation')" class="card-hover p-4 bg-purple-50 rounded-lg cursor-pointer">
+                        <div class="flex items-center mb-2">
+                            <span class="text-xl mr-3">👁️</span>
+                            <h4 class="font-semibold text-purple-600">Grilles d'observation</h4>
+                        </div>
+                        <p class="text-sm text-gray-600">Évaluation comportementale en situation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Timeline d'évaluation -->
+        <div class="bg-white p-6 rounded-xl shadow-lg mb-8">
+            <h3 class="text-xl font-semibold text-gray-800 mb-4 text-center">📅 Timeline d'évaluation</h3>
+            <div class="flex justify-between items-center">
+                <div class="text-center">
+                    <div class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center text-white font-bold mb-2">J0</div>
+                    <p class="text-sm font-semibold">Pré-évaluation</p>
+                    <p class="text-xs text-gray-600">Quiz initial</p>
+                </div>
+                <div class="flex-1 h-1 bg-gray-300 mx-4"></div>
+                <div class="text-center">
+                    <div class="w-12 h-12 bg-cyan-500 rounded-full flex items-center justify-center text-white font-bold mb-2">J+</div>
+                    <p class="text-sm font-semibold">Pendant</p>
+                    <p class="text-xs text-gray-600">Observation</p>
+                </div>
+                <div class="flex-1 h-1 bg-gray-300 mx-4"></div>
+                <div class="text-center">
+                    <div class="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center text-white font-bold mb-2">Jf</div>
+                    <p class="text-sm font-semibold">Post-formation</p>
+                    <p class="text-xs text-gray-600">Quiz final</p>
+                </div>
+                <div class="flex-1 h-1 bg-gray-300 mx-4"></div>
+                <div class="text-center">
+                    <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold mb-2">3M</div>
+                    <p class="text-sm font-semibold">Suivi</p>
+                    <p class="text-xs text-gray-600">Impact terrain</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center">
+            <button onclick="goToSlide(2)" class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded-lg">Retour au sommaire</button>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 9: Pérennisation & formats -->
+<div class="slide min-h-screen pt-20" id="slide9">
+    <div class="max-w-6xl mx-auto px-6 py-8">
+        <h1 class="text-3xl font-bold text-red-600 text-center mb-8">Formats possibles</h1>
+        <div class="max-w-4xl mx-auto">
+            <h3 class="text-2xl font-semibold text-red-600 mb-6 text-center">📅 3 Formats de formation</h3>
+            <div class="space-y-6">
+                <div onclick="showFormatPopup('intensif')" class="card-hover bg-white p-6 rounded-xl shadow-lg cursor-pointer border-l-4 border-red-500">
+                    <div class="flex items-center mb-3">
+                        <span class="text-2xl mr-3">⚡</span>
+                        <h4 class="text-xl font-semibold text-red-600">Format 1 – Intensif</h4>
+                    </div>
+                    <p class="text-gray-700 mb-2"><strong>Présentiel condensé en 2 jours</strong></p>
+                    <p class="text-sm text-gray-600">4 demi-journées structurées + tutorat optionnel</p>
+                </div>
+                
+                <div onclick="showFormatPopup('hybride')" class="card-hover bg-white p-6 rounded-xl shadow-lg cursor-pointer border-l-4 border-cyan-500">
+                    <div class="flex items-center mb-3">
+                        <span class="text-2xl mr-3">🔄</span>
+                        <h4 class="text-xl font-semibold text-cyan-600">Format 2 – Hybride</h4>
+                    </div>
+                    <p class="text-gray-700 mb-2"><strong>Parcours réparti sur 3 semaines</strong></p>
+                    <p class="text-sm text-gray-600">E-learning → Présentiel → Atelier collectif</p>
+                </div>
+                
+                <div onclick="showFormatPopup('progressif')" class="card-hover bg-white p-6 rounded-xl shadow-lg cursor-pointer border-l-4 border-yellow-500">
+                    <div class="flex items-center mb-3">
+                        <span class="text-2xl mr-3">📈</span>
+                        <h4 class="text-xl font-semibold text-yellow-600">Format 3 – Progressif tutoré</h4>
+                    </div>
+                    <p class="text-gray-700 mb-2"><strong>Deux demi-journées collectives + tutorat</strong></p>
+                    <p class="text-sm text-gray-600">Accompagnement individualisé par formateurs WP3</p>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-8">
+            <button onclick="goToSlide(2)" class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded-lg">Retour au sommaire</button>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 10: Conclusion & Ressources -->
+<div class="slide min-h-screen pt-20" id="slide10">
+    <div class="max-w-4xl mx-auto px-6 py-8">
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-red-600 mb-4">Prêt à déployer LS4YOU dans votre pays ?</h1>
+            <p class="text-lg text-gray-700">Téléchargez les ressources nécessaires et contactez-nous</p>
+        </div>
+        
+        <div class="bg-white p-8 rounded-xl shadow-lg mb-8">
+            <h3 class="text-xl font-semibold text-gray-800 mb-6 text-center" id="downloadableAnnexes">📄 Annexes téléchargeables</h3>
+            <div class="grid grid-cols-3 gap-4">
+                <button onclick="downloadResource('emargement')" class="card-hover p-4 bg-red-50 rounded-lg border border-red-200 hover:bg-red-100">
+                    <div class="text-2xl mb-2">📄</div>
+                    <h4 class="font-semibold text-red-600 text-sm" id="attendanceSheet">Fiche d'émargement</h4>
+                </button>
+                <button onclick="downloadResource('image')" class="card-hover p-4 bg-cyan-50 rounded-lg border border-cyan-200 hover:bg-cyan-100">
+                    <div class="text-2xl mb-2">🖼️</div>
+                    <h4 class="font-semibold text-cyan-600 text-sm" id="imageRights">Formulaire droit à l'image</h4>
+                </button>
+                <button onclick="downloadResource('reporting')" class="card-hover p-4 bg-yellow-50 rounded-lg border border-yellow-200 hover:bg-yellow-100">
+                    <div class="text-2xl mb-2">📝</div>
+                    <h4 class="font-semibold text-yellow-600 text-sm" id="workshopReporting">Fiche reporting atelier</h4>
+                </button>
+            </div>
+        </div>
+
+        <!-- Document Templates -->
+        <div id="documentTemplates" style="display: none;">
+            <!-- Fiche d'émargement -->
+            <div id="emargementTemplate" class="document-template">
+                <div class="document-page" style="width: 210mm; min-height: 297mm; background: white; margin: 0 auto; padding: 20mm; font-family: 'Lato', sans-serif; color: #333; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+                    <!-- En-tête -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 3px solid #dc2626; padding-bottom: 15px;">
+                        <div style="display: flex; align-items: center;">
+                            <div style="width: 60px; height: 60px; background: #dc2626; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 24px; margin-right: 15px;">LS</div>
+                            <div>
+                                <div style="font-size: 18px; font-weight: bold; color: #dc2626;">LS4YOU</div>
+                                <div style="font-size: 12px; color: #666;">Life Skills for You</div>
+                            </div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="background: #1e40af; color: white; padding: 8px 16px; border-radius: 20px; font-size: 12px; font-weight: bold;">ERASMUS+</div>
+                            <div style="font-size: 10px; color: #666; margin-top: 5px;">Programme européen</div>
+                        </div>
+                    </div>
+
+                    <!-- Titre -->
+                    <div style="text-align: center; margin-bottom: 30px;">
+                        <h1 style="color: #dc2626; font-size: 24px; font-weight: bold; margin: 0 0 10px 0;" class="doc-title-attendance">Formation LS4YOU – Fiche d'émargement</h1>
+                        <div style="background: #f3f4f6; padding: 15px; border-radius: 8px; border-left: 4px solid #06b6d4;">
+                            <div style="display: flex; justify-content: space-between; font-size: 14px;">
+                                <span><strong class="doc-date">Date :</strong> _______________</span>
+                                <span><strong class="doc-location">Lieu :</strong> _______________</span>
+                                <span><strong class="doc-trainer">Formateur :</strong> _______________</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tableau -->
+                    <table style="width: 100%; border-collapse: collapse; margin-bottom: 30px; font-size: 12px;">
+                        <thead>
+                            <tr style="background: #dc2626; color: white;">
+                                <th style="border: 1px solid #ccc; padding: 12px; text-align: left; width: 25%;" class="doc-name">Nom & Prénom</th>
+                                <th style="border: 1px solid #ccc; padding: 12px; text-align: left; width: 20%;" class="doc-structure">Structure</th>
+                                <th style="border: 1px solid #ccc; padding: 12px; text-align: center; width: 15%;" class="doc-morning">Signature Matin</th>
+                                <th style="border: 1px solid #ccc; padding: 12px; text-align: center; width: 15%;" class="doc-afternoon">Signature Après-midi</th>
+                                <th style="border: 1px solid #ccc; padding: 12px; text-align: left; width: 25%;" class="doc-observations">Observations</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- 15 lignes pour les participants -->
+                            <tr><td style="border: 1px solid #ccc; padding: 15px; height: 40px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td></tr>
+                            <tr><td style="border: 1px solid #ccc; padding: 15px; height: 40px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td></tr>
+                            <tr><td style="border: 1px solid #ccc; padding: 15px; height: 40px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td></tr>
+                            <tr><td style="border: 1px solid #ccc; padding: 15px; height: 40px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td></tr>
+                            <tr><td style="border: 1px solid #ccc; padding: 15px; height: 40px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td></tr>
+                            <tr><td style="border: 1px solid #ccc; padding: 15px; height: 40px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td></tr>
+                            <tr><td style="border: 1px solid #ccc; padding: 15px; height: 40px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td></tr>
+                            <tr><td style="border: 1px solid #ccc; padding: 15px; height: 40px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td></tr>
+                            <tr><td style="border: 1px solid #ccc; padding: 15px; height: 40px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td></tr>
+                            <tr><td style="border: 1px solid #ccc; padding: 15px; height: 40px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td></tr>
+                            <tr><td style="border: 1px solid #ccc; padding: 15px; height: 40px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td></tr>
+                            <tr><td style="border: 1px solid #ccc; padding: 15px; height: 40px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td><td style="border: 1px solid #ccc; padding: 15px;"></td></tr>
+                        </tbody>
+                    </table>
+
+                    <!-- Pied de page -->
+                    <div style="position: absolute; bottom: 20mm; left: 20mm; right: 20mm; text-align: center; font-size: 10px; color: #666; background: #f9fafb; padding: 10px; border-radius: 5px;">
+                        <span class="doc-footer">Projet LS4YOU – Erasmus+ | Document interne – ne pas diffuser hors projet</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formulaire droit à l'image -->
+            <div id="imageTemplate" class="document-template">
+                <div class="document-page" style="width: 210mm; min-height: 297mm; background: white; margin: 0 auto; padding: 20mm; font-family: 'Lato', sans-serif; color: #333; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+                    <!-- En-tête -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 3px solid #06b6d4; padding-bottom: 15px;">
+                        <div style="display: flex; align-items: center;">
+                            <div style="width: 60px; height: 60px; background: #dc2626; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 24px; margin-right: 15px;">LS</div>
+                            <div>
+                                <div style="font-size: 18px; font-weight: bold; color: #dc2626;">LS4YOU</div>
+                                <div style="font-size: 12px; color: #666;">Life Skills for You</div>
+                            </div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="background: #1e40af; color: white; padding: 8px 16px; border-radius: 20px; font-size: 12px; font-weight: bold;">ERASMUS+</div>
+                            <div style="font-size: 10px; color: #666; margin-top: 5px;">Programme européen</div>
+                        </div>
+                    </div>
+
+                    <!-- Titre -->
+                    <div style="text-align: center; margin-bottom: 40px;">
+                        <h1 style="color: #06b6d4; font-size: 24px; font-weight: bold; margin: 0;" class="doc-title-image">Autorisation de droit à l'image et à la voix</h1>
+                    </div>
+
+                    <!-- Contenu principal -->
+                    <div style="background: #f0f9ff; padding: 25px; border-radius: 10px; border-left: 5px solid #06b6d4; margin-bottom: 30px;">
+                        <p style="font-size: 14px; line-height: 1.6; margin-bottom: 20px;" class="doc-consent-text">
+                            Je soussigné(e) <strong style="border-bottom: 2px solid #06b6d4; padding-bottom: 2px;">______________________________</strong> autorise l'équipe du projet LS4YOU à utiliser mon image et/ou ma voix (photos, vidéos, enregistrements) captées lors des formations, ateliers ou événements liés au projet.
+                        </p>
+                        
+                        <p style="font-size: 14px; line-height: 1.6; margin-bottom: 25px;" class="doc-usage-text">
+                            Ces images/sons pourront être diffusés dans le cadre exclusif de la valorisation pédagogique et de la communication du projet, sur supports papier ou numériques.
+                        </p>
+
+                        <!-- Cases à cocher -->
+                        <div style="display: flex; gap: 40px; margin-bottom: 30px;">
+                            <label style="display: flex; align-items: center; font-size: 16px; font-weight: bold; color: #059669;">
+                                <div style="width: 20px; height: 20px; border: 2px solid #059669; margin-right: 10px; border-radius: 3px;"></div>
+                                <span class="doc-yes">Oui, j'autorise</span>
+                            </label>
+                            <label style="display: flex; align-items: center; font-size: 16px; font-weight: bold; color: #dc2626;">
+                                <div style="width: 20px; height: 20px; border: 2px solid #dc2626; margin-right: 10px; border-radius: 3px;"></div>
+                                <span class="doc-no">Non, je n'autorise pas</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Signature -->
+                    <div style="background: #fef3c7; padding: 20px; border-radius: 8px; border-left: 4px solid #f59e0b;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <strong class="doc-name-label">Nom & Prénom :</strong><br>
+                                <div style="border-bottom: 2px solid #f59e0b; width: 200px; height: 30px; margin-top: 5px;"></div>
+                            </div>
+                            <div>
+                                <strong class="doc-signature-label">Signature :</strong><br>
+                                <div style="border-bottom: 2px solid #f59e0b; width: 150px; height: 30px; margin-top: 5px;"></div>
+                            </div>
+                            <div>
+                                <strong class="doc-date-label">Date :</strong><br>
+                                <div style="border-bottom: 2px solid #f59e0b; width: 100px; height: 30px; margin-top: 5px; text-align: center; padding-top: 5px;">___/___/2025</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Note légale -->
+                    <div style="margin-top: 30px; padding: 15px; background: #f3f4f6; border-radius: 5px; font-size: 11px; color: #666; text-align: justify;">
+                        <strong class="doc-legal-note">Note :</strong> <span class="doc-legal-text">Cette autorisation est révocable à tout moment par simple demande écrite. Les données personnelles sont traitées conformément au RGPD. Pour toute question, contactez l'équipe LS4YOU.</span>
+                    </div>
+
+                    <!-- Pied de page -->
+                    <div style="position: absolute; bottom: 20mm; left: 20mm; right: 20mm; text-align: center; font-size: 10px; color: #666; background: #f9fafb; padding: 10px; border-radius: 5px;">
+                        <span class="doc-footer">Projet LS4YOU – Erasmus+ | Document interne – ne pas diffuser hors projet</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fiche de reporting -->
+            <div id="reportingTemplate" class="document-template">
+                <div class="document-page" style="width: 210mm; min-height: 297mm; background: white; margin: 0 auto; padding: 20mm; font-family: 'Lato', sans-serif; color: #333; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+                    <!-- En-tête -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 3px solid #f59e0b; padding-bottom: 15px;">
+                        <div style="display: flex; align-items: center;">
+                            <div style="width: 60px; height: 60px; background: #dc2626; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 24px; margin-right: 15px;">LS</div>
+                            <div>
+                                <div style="font-size: 18px; font-weight: bold; color: #dc2626;">LS4YOU</div>
+                                <div style="font-size: 12px; color: #666;">Life Skills for You</div>
+                            </div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="background: #1e40af; color: white; padding: 8px 16px; border-radius: 20px; font-size: 12px; font-weight: bold;">ERASMUS+</div>
+                            <div style="font-size: 10px; color: #666; margin-top: 5px;">Programme européen</div>
+                        </div>
+                    </div>
+
+                    <!-- Titre -->
+                    <div style="text-align: center; margin-bottom: 30px;">
+                        <h1 style="color: #f59e0b; font-size: 24px; font-weight: bold; margin: 0;" class="doc-title-reporting">Fiche de reporting – Mise en place atelier LS4YOU</h1>
+                    </div>
+
+                    <!-- Formulaire -->
+                    <div style="display: grid; gap: 20px;">
+                        <!-- Section 1: Informations générales -->
+                        <div style="background: #fef3c7; padding: 20px; border-radius: 8px; border-left: 4px solid #f59e0b;">
+                            <h3 style="color: #92400e; margin: 0 0 15px 0; font-size: 16px;" class="doc-general-info">📋 Informations générales</h3>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                                <div>
+                                    <label style="font-weight: bold; color: #92400e;" class="doc-professional-name">Nom du professionnel :</label><br>
+                                    <div style="border-bottom: 2px solid #f59e0b; height: 25px; margin-top: 5px;"></div>
+                                </div>
+                                <div>
+                                    <label style="font-weight: bold; color: #92400e;" class="doc-structure-label">Structure :</label><br>
+                                    <div style="border-bottom: 2px solid #f59e0b; height: 25px; margin-top: 5px;"></div>
+                                </div>
+                            </div>
+                            <div style="margin-top: 15px;">
+                                <label style="font-weight: bold; color: #92400e;" class="doc-date-location">Date & lieu :</label><br>
+                                <div style="border-bottom: 2px solid #f59e0b; height: 25px; margin-top: 5px; width: 100%;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Section 2: Activité -->
+                        <div style="background: #ecfdf5; padding: 20px; border-radius: 8px; border-left: 4px solid #059669;">
+                            <h3 style="color: #065f46; margin: 0 0 15px 0; font-size: 16px;" class="doc-activity-details">🎯 Détails de l'activité</h3>
+                            <div style="margin-bottom: 15px;">
+                                <label style="font-weight: bold; color: #065f46;" class="doc-activities-used">Activité(s) utilisée(s) :</label><br>
+                                <div style="border-bottom: 2px solid #059669; height: 25px; margin-top: 5px;"></div>
+                            </div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                                <div>
+                                    <label style="font-weight: bold; color: #065f46;" class="doc-participants">Nombre de participants :</label><br>
+                                    <div style="border-bottom: 2px solid #059669; height: 25px; margin-top: 5px;"></div>
+                                </div>
+                                <div>
+                                    <label style="font-weight: bold; color: #065f46;" class="doc-duration">Durée (minutes) :</label><br>
+                                    <div style="border-bottom: 2px solid #059669; height: 25px; margin-top: 5px;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 3: Objectifs -->
+                        <div style="background: #f0f9ff; padding: 20px; border-radius: 8px; border-left: 4px solid #0284c7;">
+                            <h3 style="color: #0c4a6e; margin: 0 0 15px 0; font-size: 16px;" class="doc-objectives">🎯 Objectifs visés</h3>
+                            <div style="border: 2px solid #0284c7; border-radius: 5px; height: 60px; padding: 10px; background: white;"></div>
+                        </div>
+
+                        <!-- Section 4: Observations -->
+                        <div style="background: #fdf2f8; padding: 20px; border-radius: 8px; border-left: 4px solid #be185d;">
+                            <h3 style="color: #831843; margin: 0 0 15px 0; font-size: 16px;" class="doc-professional-observations">👁️ Observations du professionnel</h3>
+                            <div style="border: 2px solid #be185d; border-radius: 5px; height: 80px; padding: 10px; background: white;"></div>
+                        </div>
+
+                        <!-- Section 5: Feedback jeunes -->
+                        <div style="background: #f0fdf4; padding: 20px; border-radius: 8px; border-left: 4px solid #16a34a;">
+                            <h3 style="color: #15803d; margin: 0 0 15px 0; font-size: 16px;" class="doc-youth-feedback">💬 Feedback des jeunes (mots clés ou phrases)</h3>
+                            <div style="border: 2px solid #16a34a; border-radius: 5px; height: 80px; padding: 10px; background: white;"></div>
+                        </div>
+
+                        <!-- Section 6: Suites -->
+                        <div style="background: #fefce8; padding: 20px; border-radius: 8px; border-left: 4px solid #ca8a04;">
+                            <h3 style="color: #a16207; margin: 0 0 15px 0; font-size: 16px;" class="doc-next-steps">🚀 Suites envisagées</h3>
+                            <div style="border: 2px solid #ca8a04; border-radius: 5px; height: 60px; padding: 10px; background: white;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Pied de page -->
+                    <div style="position: absolute; bottom: 20mm; left: 20mm; right: 20mm; text-align: center; font-size: 10px; color: #666; background: #f9fafb; padding: 10px; border-radius: 5px;">
+                        <span class="doc-footer">Projet LS4YOU – Erasmus+ | Document interne – ne pas diffuser hors projet</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- PAGE 2 -->
-        <div class="page page-2" id="page2">
-            <div class="header">
-                <h1>Outils & Intégration</h1>
-                <p class="subtitle">Une boîte à outils complète pour transformer l'accompagnement</p>
-            </div>
-
-            <div class="tools-section">
-                <h2 style="text-align: center; margin-bottom: 20px; color: #333;">Boîte à outils LS4YOU</h2>
-                <div class="tools-grid">
-                    <div class="tool-item" onclick="bounceAnimation(this)">
-                        <span class="tool-emoji">📋</span>
-                        <div class="tool-name">Quiz d'auto-évaluation</div>
-                        <div class="tool-desc">Questionnaires interactifs pour mesurer les progrès</div>
-                    </div>
-                    
-                    <div class="tool-item" onclick="bounceAnimation(this)">
-                        <span class="tool-emoji">🎲</span>
-                        <div class="tool-name">Jeux pédagogiques</div>
-                        <div class="tool-desc">Serious games et mises en situation ludiques</div>
-                    </div>
-                    
-                    <div class="tool-item" onclick="bounceAnimation(this)">
-                        <span class="tool-emoji">📊</span>
-                        <div class="tool-name">Grilles d'évaluation</div>
-                        <div class="tool-desc">Référentiels pour objectiver les compétences</div>
-                    </div>
-                    
-                    <div class="tool-item" onclick="bounceAnimation(this)">
-                        <span class="tool-emoji">📖</span>
-                        <div class="tool-name">Carnet de bord</div>
-                        <div class="tool-desc">Journal personnel de progression du jeune</div>
-                    </div>
-                    
-                    <div class="tool-item" onclick="bounceAnimation(this)">
-                        <span class="tool-emoji">💻</span>
-                        <div class="tool-name">Plateforme numérique</div>
-                        <div class="tool-desc">Modules e-learning et suivi à distance</div>
-                    </div>
-                    
-                    <div class="tool-item" onclick="bounceAnimation(this)">
-                        <span class="tool-emoji">👥</span>
-                        <div class="tool-name">Formation hybride</div>
-                        <div class="tool-desc">Formation conseillers : e-learning + présentiel</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="integration-examples">
-                <h3 style="text-align: center; margin-bottom: 25px; color: #495057;">Intégration dans les dispositifs existants</h3>
-                
-                <div class="example-item">
-                    <div class="example-title">🎯 Contrat d'Engagement Jeune (CEJ)</div>
-                    <div class="example-desc">
-                        LS4YOU comme fil conducteur du volet compétences transversales : diagnostic initial, ateliers collectifs mensuels, carnet de bord parallèle, évaluation finale des progrès.
-                    </div>
-                </div>
-                
-                <div class="example-item">
-                    <div class="example-title">🛤️ PACEA</div>
-                    <div class="example-desc">
-                        Intégration modulable selon les objectifs : séances individuelles d'orientation, modules e-learning entre rendez-vous, soutien en cas de difficultés spécifiques.
-                    </div>
-                </div>
-                
-                <div class="example-item">
-                    <div class="example-title">🔨 Chantiers-écoles</div>
-                    <div class="example-desc">
-                        Ateliers LS4YOU bimensuels pour faire le lien entre activité technique et soft skills développées. Valorisation des savoir-être acquis sur le terrain.
-                    </div>
-                </div>
-                
-                <div class="example-item">
-                    <div class="example-title">✈️ Projets de mobilité</div>
-                    <div class="example-desc">
-                        Préparation en amont avec objectifs personnels, carnet de bord spécial mobilité, bilan post-retour pour capitaliser sur l'expérience internationale.
-                    </div>
-                </div>
-            </div>
-
-            <div class="stats-section">
-                <h2>Bénéfices constatés</h2>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px;">
-                    <div style="text-align: center;">
-                        <div style="font-size: 1.5rem; font-weight: bold; margin-bottom: 8px;">✅ Engagement renforcé</div>
-                        <div style="opacity: 0.9; font-size: 0.9rem;">Approche participative et personnalisée</div>
-                    </div>
-                    <div style="text-align: center;">
-                        <div style="font-size: 1.5rem; font-weight: bold; margin-bottom: 8px;">🚀 Accélération de maturité</div>
-                        <div style="opacity: 0.9; font-size: 0.9rem;">Développement de l'autonomie</div>
-                    </div>
-                    <div style="text-align: center;">
-                        <div style="font-size: 1.5rem; font-weight: bold; margin-bottom: 8px;">💪 Freins levés</div>
-                        <div style="opacity: 0.9; font-size: 0.9rem;">Confiance et motivation boostées</div>
-                    </div>
-                </div>
-            </div>
+        <div class="flex justify-center space-x-6">
+            <button onclick="accessPlatform()" class="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg font-semibold flex items-center">
+                <span class="mr-2">🌐</span>
+                Accéder à la plateforme LS4YOU
+            </button>
+            <button onclick="contactCoordinator()" class="bg-cyan-500 hover:bg-cyan-600 text-white px-6 py-3 rounded-lg font-semibold flex items-center">
+                <span class="mr-2">📧</span>
+                Contacter le coordinateur
+            </button>
+        </div>
+        
+        <div class="text-center mt-8">
+            <button onclick="goToSlide(2)" class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded-lg">Retour au sommaire</button>
         </div>
     </div>
+</div>
 
-    <div class="navigation">
-        <button class="nav-btn active" onclick="showPage(1)">Page 1 - Méthodologie</button>
-        <button class="nav-btn" onclick="showPage(2)">Page 2 - Outils & Intégration</button>
+<!-- Popups -->
+<div id="popup1" class="popup">
+    <div class="bg-white p-8 rounded-xl shadow-xl max-w-md mx-4">
+        <h3 class="text-xl font-bold text-red-600 mb-4">🎯 Expérientiel</h3>
+        <p class="text-gray-700 mb-6">L'apprentissage se fait par la pratique, l'expérimentation et la mise en situation réelle. Les participants vivent les outils avant de les animer.</p>
+        <button onclick="hidePopup('popup1')" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">Fermer</button>
     </div>
+</div>
 
-    <script>
-        function showPage(pageNumber) {
-            // Masquer toutes les pages
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
+<div id="popup2" class="popup">
+    <div class="bg-white p-8 rounded-xl shadow-xl max-w-md mx-4">
+        <h3 class="text-xl font-bold text-cyan-600 mb-4">👥 Collectif</h3>
+        <p class="text-gray-700 mb-6">La formation privilégie les dynamiques de groupe, l'intelligence collective et l'apprentissage par les pairs pour enrichir l'expérience.</p>
+        <button onclick="hidePopup('popup2')" class="bg-cyan-500 hover:bg-cyan-600 text-white px-4 py-2 rounded">Fermer</button>
+    </div>
+</div>
+
+<div id="popup3" class="popup">
+    <div class="bg-white p-8 rounded-xl shadow-xl max-w-md mx-4">
+        <h3 class="text-xl font-bold text-yellow-600 mb-4">💻 Hybride</h3>
+        <p class="text-gray-700 mb-6">Combinaison optimale entre formation en présentiel et ressources digitales pour s'adapter aux contraintes et préférences d'apprentissage.</p>
+        <button onclick="hidePopup('popup3')" class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded">Fermer</button>
+    </div>
+</div>
+
+<div id="popup4" class="popup">
+    <div class="bg-white p-8 rounded-xl shadow-xl max-w-md mx-4">
+        <h3 class="text-xl font-bold text-gray-600 mb-4">🔄 Flexible & basé sur preuves</h3>
+        <p class="text-gray-700 mb-6">Adaptation aux besoins spécifiques des participants et utilisation de méthodes validées scientifiquement pour garantir l'efficacité.</p>
+        <button onclick="hidePopup('popup4')" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded">Fermer</button>
+    </div>
+</div>
+
+<!-- Generic popup for dynamic content -->
+<div id="genericPopup" class="popup">
+    <div class="bg-white p-8 rounded-xl shadow-xl max-w-lg mx-4">
+        <div id="popupContent"></div>
+        <button onclick="hideGenericPopup()" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded mt-4">Fermer</button>
+    </div>
+</div>
+
+<script>
+let currentSlide = 1;
+const totalSlides = 10;
+let currentLanguage = 'fr';
+
+// Translations object
+const translations = {
+    fr: {
+        mainTitle: "Guidelines LS4YOU",
+        mainSubtitle: "Formation des professionnels",
+        enterButton: "Entrer dans le guide",
+        interactiveSummary: "Sommaire interactif",
+        objectScope: "Objet & périmètre",
+        objectScopeDesc: "Objectifs, public cible et impact",
+        pedagogicalPrinciples: "Principes pédagogiques",
+        pedagogicalPrinciplesDesc: "Approches et méthodes",
+        stepByStep: "Organisation step-to-step",
+        stepByStepDesc: "Timeline et étapes",
+        pedagogicalModules: "Modules pédagogiques",
+        pedagogicalModulesDesc: "Domaines et activités",
+        targetedSkills: "Compétences visées pros",
+        targetedSkillsDesc: "Référentiel compétences",
+        followupEvaluation: "Suivi & évaluation",
+        followupEvaluationDesc: "Outils d'évaluation",
+        sustainability: "Pérennisation",
+        sustainabilityDesc: "Transférabilité",
+        possibleFormats: "Formats possibles",
+        possibleFormatsDesc: "3 options de formation",
+        resources: "Ressources",
+        resourcesDesc: "Annexes téléchargeables",
+        backToSummary: "Retour au sommaire",
+        // Module headers
+        domainHeader: "Domaine LS4YOU",
+        activitiesHeader: "Activités proposées (Guidebook)",
+        choiceHeader: "Choix du partenaire (2 max)",
+        // Domain titles and subtitles
+        personalityTitle: "Personnalité",
+        personalitySubtitle: "(Renforcer identité & confiance)",
+        promotionTitle: "Auto-promotion",
+        promotionSubtitle: "(Se valoriser & communiquer)",
+        wellbeingTitle: "Bien-être",
+        wellbeingSubtitle: "(Santé physique & mentale)",
+        financeTitle: "Finances & Ressources",
+        financeSubtitle: "(Autonomie quotidienne)",
+        // Activities
+        activity1: "Fiche Outil 1 : Test des 16 Personnalités",
+        activity2: "Fiche Outil 2 : Faire valoir un point (cartographie personnelle)",
+        activity3: "Fiche Outil 3 : Image de soi vs image publique",
+        activity4: "Fiche Outil 4 : Matching",
+        activity5: "Fiche Outil 5 : Recevoir du Feedback",
+        activity6: "Fiche Outil 6 : Définition d'objectifs personnels (méthode ABC)",
+        activity7: "Fiche Outil 7 : Liste des valeurs",
+        activity8: "Fiche Outil 8 : Moi au sommet de mon art",
+        activity9: "Fiche Outil 9 : Montrez-vous sous votre meilleur jour (pitch vidéo)",
+        activity10: "Fiche Outil 10 : Parcours ressources et compétences",
+        activity11: "Fiche Outil 11 : Image de marque personnelle",
+        activity12: "Fiche Outil 12 : Concevez votre zine",
+        activity13: "Fiche Outil 13 : Jeu de simulation (Négociation)",
+        activity14: "Fiche Outil 14 : La roue des émotions",
+        activity15: "Fiche Outil 15 : 3 bonnes choses",
+        activity16: "Fiche Outil 16 : Réseau de soutien social",
+        activity17: "Fiche Outil 17 : Évaluation des besoins",
+        activity18: "Fiche Outil 18 : Stressomètre",
+        activity19: "Fiche Outil 19 : Prioriser ses routines",
+        activity20: "Fiche Outil 20 : Arbre de la Résilience",
+        activity21: "Fiche Outil 21 : Portfolio de démarcation (poser ses limites)",
+        activity22: "Fiche Outil 22 : Défis de la vie réelle (jeu de rôle budget)",
+        activity23: "Fiche Outil 23 : Du salaire à la poche (brut/net)",
+        activity24: "Fiche Outil 24 : Arrêtez de souhaiter, commencez à réaliser (SMART)",
+        activity25: "Fiche Outil 25 : Études de cas (littératie financière)",
+        activityBonus: "Supplémentaire : Ikigai – Concevez-vous",
+        // Choices
+        choice1: "Activité 1", choice2: "Activité 2", choice3: "Activité 1", choice4: "Activité 2",
+        choice5: "Activité 1", choice6: "Activité 2", choice7: "Activité 1", choice8: "Activité 2",
+        // Documents
+        downloadableAnnexes: "📄 Annexes téléchargeables",
+        attendanceSheet: "Fiche d'émargement",
+        imageRights: "Formulaire droit à l'image",
+        workshopReporting: "Fiche reporting atelier"
+    },
+    en: {
+        mainTitle: "LS4YOU Guidelines",
+        mainSubtitle: "Professional Training",
+        enterButton: "Enter the guide",
+        interactiveSummary: "Interactive Summary",
+        objectScope: "Object & Scope",
+        objectScopeDesc: "Objectives, target audience and impact",
+        pedagogicalPrinciples: "Pedagogical Principles",
+        pedagogicalPrinciplesDesc: "Approaches and methods",
+        stepByStep: "Step-by-step Organization",
+        stepByStepDesc: "Timeline and stages",
+        pedagogicalModules: "Pedagogical Modules",
+        pedagogicalModulesDesc: "Domains and activities",
+        targetedSkills: "Targeted Professional Skills",
+        targetedSkillsDesc: "Skills framework",
+        followupEvaluation: "Monitoring & Evaluation",
+        followupEvaluationDesc: "Assessment tools",
+        sustainability: "Sustainability",
+        sustainabilityDesc: "Transferability",
+        possibleFormats: "Possible Formats",
+        possibleFormatsDesc: "3 training options",
+        resources: "Resources",
+        resourcesDesc: "Downloadable annexes",
+        backToSummary: "Back to summary",
+        // Module headers
+        domainHeader: "LS4YOU Domain",
+        activitiesHeader: "Proposed Activities (Guidebook)",
+        choiceHeader: "Partner Choice (2 max)",
+        // Domain titles and subtitles
+        personalityTitle: "Personality",
+        personalitySubtitle: "(Strengthen identity & confidence)",
+        promotionTitle: "Self-promotion",
+        promotionSubtitle: "(Value yourself & communicate)",
+        wellbeingTitle: "Well-being",
+        wellbeingSubtitle: "(Physical & mental health)",
+        financeTitle: "Finance & Resources",
+        financeSubtitle: "(Daily autonomy)",
+        // Activities
+        activity1: "Tool Sheet 1: 16 Personalities Test",
+        activity2: "Tool Sheet 2: Make a point (personal mapping)",
+        activity3: "Tool Sheet 3: Self-image vs public image",
+        activity4: "Tool Sheet 4: Matching",
+        activity5: "Tool Sheet 5: Receiving Feedback",
+        activity6: "Tool Sheet 6: Personal goal setting (ABC method)",
+        activity7: "Tool Sheet 7: Values list",
+        activity8: "Tool Sheet 8: Me at the top of my game",
+        activity9: "Tool Sheet 9: Show yourself at your best (video pitch)",
+        activity10: "Tool Sheet 10: Resources and skills journey",
+        activity11: "Tool Sheet 11: Personal branding",
+        activity12: "Tool Sheet 12: Design your zine",
+        activity13: "Tool Sheet 13: Simulation game (Negotiation)",
+        activity14: "Tool Sheet 14: The wheel of emotions",
+        activity15: "Tool Sheet 15: 3 good things",
+        activity16: "Tool Sheet 16: Social support network",
+        activity17: "Tool Sheet 17: Needs assessment",
+        activity18: "Tool Sheet 18: Stress meter",
+        activity19: "Tool Sheet 19: Prioritize your routines",
+        activity20: "Tool Sheet 20: Resilience tree",
+        activity21: "Tool Sheet 21: Boundary portfolio (setting limits)",
+        activity22: "Tool Sheet 22: Real life challenges (budget role play)",
+        activity23: "Tool Sheet 23: From salary to pocket (gross/net)",
+        activity24: "Tool Sheet 24: Stop wishing, start achieving (SMART)",
+        activity25: "Tool Sheet 25: Case studies (financial literacy)",
+        activityBonus: "Additional: Ikigai – Design yourself",
+        // Choices
+        choice1: "Activity 1", choice2: "Activity 2", choice3: "Activity 1", choice4: "Activity 2",
+        choice5: "Activity 1", choice6: "Activity 2", choice7: "Activity 1", choice8: "Activity 2",
+        // Documents
+        downloadableAnnexes: "📄 Downloadable Annexes",
+        attendanceSheet: "Attendance Sheet",
+        imageRights: "Image Rights Form",
+        workshopReporting: "Workshop Reporting Sheet"
+    },
+    de: {
+        mainTitle: "LS4YOU Richtlinien",
+        mainSubtitle: "Professionelle Ausbildung",
+        enterButton: "Leitfaden öffnen",
+        interactiveSummary: "Interaktive Zusammenfassung",
+        objectScope: "Gegenstand & Umfang",
+        objectScopeDesc: "Ziele, Zielgruppe und Wirkung",
+        pedagogicalPrinciples: "Pädagogische Prinzipien",
+        pedagogicalPrinciplesDesc: "Ansätze und Methoden",
+        stepByStep: "Schritt-für-Schritt Organisation",
+        stepByStepDesc: "Zeitplan und Phasen",
+        pedagogicalModules: "Pädagogische Module",
+        pedagogicalModulesDesc: "Bereiche und Aktivitäten",
+        targetedSkills: "Angestrebte Fachkompetenzen",
+        targetedSkillsDesc: "Kompetenzrahmen",
+        followupEvaluation: "Überwachung & Bewertung",
+        followupEvaluationDesc: "Bewertungstools",
+        sustainability: "Nachhaltigkeit",
+        sustainabilityDesc: "Übertragbarkeit",
+        possibleFormats: "Mögliche Formate",
+        possibleFormatsDesc: "3 Ausbildungsoptionen",
+        resources: "Ressourcen",
+        resourcesDesc: "Herunterladbare Anhänge",
+        backToSummary: "Zurück zur Zusammenfassung",
+        // Module headers
+        domainHeader: "LS4YOU Bereich",
+        activitiesHeader: "Vorgeschlagene Aktivitäten (Leitfaden)",
+        choiceHeader: "Partnerwahl (max. 2)",
+        // Domain titles and subtitles
+        personalityTitle: "Persönlichkeit",
+        personalitySubtitle: "(Identität & Selbstvertrauen stärken)",
+        promotionTitle: "Selbstvermarktung",
+        promotionSubtitle: "(Sich wertschätzen & kommunizieren)",
+        wellbeingTitle: "Wohlbefinden",
+        wellbeingSubtitle: "(Körperliche & geistige Gesundheit)",
+        financeTitle: "Finanzen & Ressourcen",
+        financeSubtitle: "(Tägliche Autonomie)",
+        // Activities
+        activity1: "Werkzeugblatt 1: 16-Persönlichkeiten-Test",
+        activity2: "Werkzeugblatt 2: Einen Punkt machen (persönliche Kartierung)",
+        activity3: "Werkzeugblatt 3: Selbstbild vs öffentliches Bild",
+        activity4: "Werkzeugblatt 4: Matching",
+        activity5: "Werkzeugblatt 5: Feedback erhalten",
+        activity6: "Werkzeugblatt 6: Persönliche Zielsetzung (ABC-Methode)",
+        activity7: "Werkzeugblatt 7: Werteliste",
+        activity8: "Werkzeugblatt 8: Ich auf dem Höhepunkt meiner Kunst",
+        activity9: "Werkzeugblatt 9: Zeigen Sie sich von Ihrer besten Seite (Video-Pitch)",
+        activity10: "Werkzeugblatt 10: Ressourcen- und Kompetenzreise",
+        activity11: "Werkzeugblatt 11: Persönliche Markenbildung",
+        activity12: "Werkzeugblatt 12: Gestalten Sie Ihr Zine",
+        activity13: "Werkzeugblatt 13: Simulationsspiel (Verhandlung)",
+        activity14: "Werkzeugblatt 14: Das Rad der Emotionen",
+        activity15: "Werkzeugblatt 15: 3 gute Dinge",
+        activity16: "Werkzeugblatt 16: Soziales Unterstützungsnetzwerk",
+        activity17: "Werkzeugblatt 17: Bedarfsbewertung",
+        activity18: "Werkzeugblatt 18: Stressmesser",
+        activity19: "Werkzeugblatt 19: Routinen priorisieren",
+        activity20: "Werkzeugblatt 20: Resilienzbaum",
+        activity21: "Werkzeugblatt 21: Grenzportfolio (Grenzen setzen)",
+        activity22: "Werkzeugblatt 22: Herausforderungen des echten Lebens (Budget-Rollenspiel)",
+        activity23: "Werkzeugblatt 23: Vom Gehalt zur Tasche (brutto/netto)",
+        activity24: "Werkzeugblatt 24: Hören Sie auf zu wünschen, fangen Sie an zu erreichen (SMART)",
+        activity25: "Werkzeugblatt 25: Fallstudien (Finanzbildung)",
+        activityBonus: "Zusätzlich: Ikigai – Entwerfen Sie sich selbst",
+        // Choices
+        choice1: "Aktivität 1", choice2: "Aktivität 2", choice3: "Aktivität 1", choice4: "Aktivität 2",
+        choice5: "Aktivität 1", choice6: "Aktivität 2", choice7: "Aktivität 1", choice8: "Aktivität 2",
+        // Documents
+        downloadableAnnexes: "📄 Herunterladbare Anhänge",
+        attendanceSheet: "Anwesenheitsliste",
+        imageRights: "Bildrechte-Formular",
+        workshopReporting: "Workshop-Berichtsbogen"
+    },
+    es: {
+        mainTitle: "Directrices LS4YOU",
+        mainSubtitle: "Formación Profesional",
+        enterButton: "Entrar en la guía",
+        interactiveSummary: "Resumen Interactivo",
+        objectScope: "Objeto y Alcance",
+        objectScopeDesc: "Objetivos, público objetivo e impacto",
+        pedagogicalPrinciples: "Principios Pedagógicos",
+        pedagogicalPrinciplesDesc: "Enfoques y métodos",
+        stepByStep: "Organización Paso a Paso",
+        stepByStepDesc: "Cronograma y etapas",
+        pedagogicalModules: "Módulos Pedagógicos",
+        pedagogicalModulesDesc: "Dominios y actividades",
+        targetedSkills: "Competencias Profesionales Objetivo",
+        targetedSkillsDesc: "Marco de competencias",
+        followupEvaluation: "Seguimiento y Evaluación",
+        followupEvaluationDesc: "Herramientas de evaluación",
+        sustainability: "Sostenibilidad",
+        sustainabilityDesc: "Transferibilidad",
+        possibleFormats: "Formatos Posibles",
+        possibleFormatsDesc: "3 opciones de formación",
+        resources: "Recursos",
+        resourcesDesc: "Anexos descargables",
+        backToSummary: "Volver al resumen",
+        // Module headers
+        domainHeader: "Dominio LS4YOU",
+        activitiesHeader: "Actividades Propuestas (Guía)",
+        choiceHeader: "Elección del Socio (máx. 2)",
+        // Domain titles and subtitles
+        personalityTitle: "Personalidad",
+        personalitySubtitle: "(Reforzar identidad y confianza)",
+        promotionTitle: "Autopromoción",
+        promotionSubtitle: "(Valorarse y comunicar)",
+        wellbeingTitle: "Bienestar",
+        wellbeingSubtitle: "(Salud física y mental)",
+        financeTitle: "Finanzas y Recursos",
+        financeSubtitle: "(Autonomía diaria)",
+        // Activities
+        activity1: "Hoja de Herramienta 1: Test de las 16 Personalidades",
+        activity2: "Hoja de Herramienta 2: Hacer valer un punto (mapeo personal)",
+        activity3: "Hoja de Herramienta 3: Imagen de uno mismo vs imagen pública",
+        activity4: "Hoja de Herramienta 4: Matching",
+        activity5: "Hoja de Herramienta 5: Recibir Feedback",
+        activity6: "Hoja de Herramienta 6: Definición de objetivos personales (método ABC)",
+        activity7: "Hoja de Herramienta 7: Lista de valores",
+        activity8: "Hoja de Herramienta 8: Yo en la cima de mi arte",
+        activity9: "Hoja de Herramienta 9: Muéstrate en tu mejor momento (pitch en video)",
+        activity10: "Hoja de Herramienta 10: Recorrido de recursos y competencias",
+        activity11: "Hoja de Herramienta 11: Imagen de marca personal",
+        activity12: "Hoja de Herramienta 12: Diseña tu zine",
+        activity13: "Hoja de Herramienta 13: Juego de simulación (Negociación)",
+        activity14: "Hoja de Herramienta 14: La rueda de las emociones",
+        activity15: "Hoja de Herramienta 15: 3 cosas buenas",
+        activity16: "Hoja de Herramienta 16: Red de apoyo social",
+        activity17: "Hoja de Herramienta 17: Evaluación de necesidades",
+        activity18: "Hoja de Herramienta 18: Medidor de estrés",
+        activity19: "Hoja de Herramienta 19: Priorizar rutinas",
+        activity20: "Hoja de Herramienta 20: Árbol de la Resiliencia",
+        activity21: "Hoja de Herramienta 21: Portfolio de demarcación (establecer límites)",
+        activity22: "Hoja de Herramienta 22: Desafíos de la vida real (juego de rol presupuesto)",
+        activity23: "Hoja de Herramienta 23: Del salario al bolsillo (bruto/neto)",
+        activity24: "Hoja de Herramienta 24: Deja de desear, empieza a lograr (SMART)",
+        activity25: "Hoja de Herramienta 25: Estudios de caso (alfabetización financiera)",
+        activityBonus: "Adicional: Ikigai – Diseñate a ti mismo",
+        // Choices
+        choice1: "Actividad 1", choice2: "Actividad 2", choice3: "Actividad 1", choice4: "Actividad 2",
+        choice5: "Actividad 1", choice6: "Actividad 2", choice7: "Actividad 1", choice8: "Actividad 2",
+        // Documents
+        downloadableAnnexes: "📄 Anexos Descargables",
+        attendanceSheet: "Hoja de Asistencia",
+        imageRights: "Formulario de Derechos de Imagen",
+        workshopReporting: "Hoja de Reporte de Taller"
+    }
+};
+
+function updateSlideCounter() {
+    document.getElementById('slideCounter').textContent = `${currentSlide}/${totalSlides}`;
+}
+
+function changeLanguage() {
+    const selector = document.getElementById('languageSelector');
+    currentLanguage = selector.value;
+    updateTexts();
+}
+
+function updateTexts() {
+    const texts = translations[currentLanguage];
+    
+    // Update main page elements
+    const mainTitle = document.getElementById('mainTitle');
+    const mainSubtitle = document.getElementById('mainSubtitle');
+    const enterButton = document.getElementById('enterButton');
+    
+    if (mainTitle) mainTitle.textContent = texts.mainTitle;
+    if (mainSubtitle) mainSubtitle.textContent = texts.mainSubtitle;
+    if (enterButton) enterButton.textContent = texts.enterButton;
+    
+    // Update slide 2 (summary) elements
+    updateSummaryTexts(texts);
+    
+    // Update document templates
+    updateDocumentLanguage();
+}
+
+function updateSummaryTexts(texts) {
+    const summaryTitle = document.getElementById('summaryTitle');
+    if (summaryTitle) summaryTitle.textContent = texts.interactiveSummary;
+    
+    // Update all summary cards
+    const cardMappings = [
+        { titleId: 'card1Title', descId: 'card1Desc', titleKey: 'objectScope', descKey: 'objectScopeDesc' },
+        { titleId: 'card2Title', descId: 'card2Desc', titleKey: 'pedagogicalPrinciples', descKey: 'pedagogicalPrinciplesDesc' },
+        { titleId: 'card3Title', descId: 'card3Desc', titleKey: 'stepByStep', descKey: 'stepByStepDesc' },
+        { titleId: 'card4Title', descId: 'card4Desc', titleKey: 'pedagogicalModules', descKey: 'pedagogicalModulesDesc' },
+        { titleId: 'card5Title', descId: 'card5Desc', titleKey: 'targetedSkills', descKey: 'targetedSkillsDesc' },
+        { titleId: 'card6Title', descId: 'card6Desc', titleKey: 'followupEvaluation', descKey: 'followupEvaluationDesc' },
+        { titleId: 'card7Title', descId: 'card7Desc', titleKey: 'sustainability', descKey: 'sustainabilityDesc' },
+        { titleId: 'card8Title', descId: 'card8Desc', titleKey: 'possibleFormats', descKey: 'possibleFormatsDesc' },
+        { titleId: 'card9Title', descId: 'card9Desc', titleKey: 'resources', descKey: 'resourcesDesc' }
+    ];
+    
+    cardMappings.forEach(mapping => {
+        const titleElement = document.getElementById(mapping.titleId);
+        const descElement = document.getElementById(mapping.descId);
+        
+        if (titleElement) titleElement.textContent = texts[mapping.titleKey];
+        if (descElement) descElement.textContent = texts[mapping.descKey];
+    });
+    
+    // Update module page headers and content
+    updateModuleTexts(texts);
+}
+
+function updateDocumentLanguage() {
+    const texts = translations[currentLanguage];
+    
+    // Document translations
+    const documentTranslations = {
+        fr: {
+            // Attendance sheet
+            'doc-title-attendance': 'Formation LS4YOU – Fiche d\'émargement',
+            'doc-date': 'Date :',
+            'doc-location': 'Lieu :',
+            'doc-trainer': 'Formateur :',
+            'doc-name': 'Nom & Prénom',
+            'doc-structure': 'Structure',
+            'doc-morning': 'Signature Matin',
+            'doc-afternoon': 'Signature Après-midi',
+            'doc-observations': 'Observations',
+            'doc-footer': 'Projet LS4YOU – Erasmus+ | Document interne – ne pas diffuser hors projet',
             
-            // Désactiver tous les boutons
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
+            // Image rights
+            'doc-title-image': 'Autorisation de droit à l\'image et à la voix',
+            'doc-consent-text': 'Je soussigné(e) ______________________________ autorise l\'équipe du projet LS4YOU à utiliser mon image et/ou ma voix (photos, vidéos, enregistrements) captées lors des formations, ateliers ou événements liés au projet.',
+            'doc-usage-text': 'Ces images/sons pourront être diffusés dans le cadre exclusif de la valorisation pédagogique et de la communication du projet, sur supports papier ou numériques.',
+            'doc-yes': 'Oui, j\'autorise',
+            'doc-no': 'Non, je n\'autorise pas',
+            'doc-name-label': 'Nom & Prénom :',
+            'doc-signature-label': 'Signature :',
+            'doc-date-label': 'Date :',
+            'doc-legal-note': 'Note :',
+            'doc-legal-text': 'Cette autorisation est révocable à tout moment par simple demande écrite. Les données personnelles sont traitées conformément au RGPD. Pour toute question, contactez l\'équipe LS4YOU.',
             
-            // Activer la page et le bouton sélectionnés
-            document.getElementById(`page${pageNumber}`).classList.add('active');
-            event.target.classList.add('active');
+            // Reporting sheet
+            'doc-title-reporting': 'Fiche de reporting – Mise en place atelier LS4YOU',
+            'doc-general-info': '📋 Informations générales',
+            'doc-professional-name': 'Nom du professionnel :',
+            'doc-structure-label': 'Structure :',
+            'doc-date-location': 'Date & lieu :',
+            'doc-activity-details': '🎯 Détails de l\'activité',
+            'doc-activities-used': 'Activité(s) utilisée(s) :',
+            'doc-participants': 'Nombre de participants :',
+            'doc-duration': 'Durée (minutes) :',
+            'doc-objectives': '🎯 Objectifs visés',
+            'doc-professional-observations': '👁️ Observations du professionnel',
+            'doc-youth-feedback': '💬 Feedback des jeunes (mots clés ou phrases)',
+            'doc-next-steps': '🚀 Suites envisagées'
+        },
+        en: {
+            // Attendance sheet
+            'doc-title-attendance': 'LS4YOU Training – Attendance Sheet',
+            'doc-date': 'Date:',
+            'doc-location': 'Location:',
+            'doc-trainer': 'Trainer:',
+            'doc-name': 'Name & Surname',
+            'doc-structure': 'Organization',
+            'doc-morning': 'Morning Signature',
+            'doc-afternoon': 'Afternoon Signature',
+            'doc-observations': 'Observations',
+            'doc-footer': 'LS4YOU Project – Erasmus+ | Internal document – not to be distributed outside the project',
             
-            // Animer les statistiques si on va à la page 1
-            if (pageNumber === 1) {
-                setTimeout(() => animateStats(), 500);
-            }
+            // Image rights
+            'doc-title-image': 'Image and Voice Rights Authorization',
+            'doc-consent-text': 'I, the undersigned ______________________________ authorize the LS4YOU project team to use my image and/or voice (photos, videos, recordings) captured during training, workshops or events related to the project.',
+            'doc-usage-text': 'These images/sounds may be distributed exclusively for educational promotion and project communication, on paper or digital media.',
+            'doc-yes': 'Yes, I authorize',
+            'doc-no': 'No, I do not authorize',
+            'doc-name-label': 'Name & Surname:',
+            'doc-signature-label': 'Signature:',
+            'doc-date-label': 'Date:',
+            'doc-legal-note': 'Note:',
+            'doc-legal-text': 'This authorization is revocable at any time by simple written request. Personal data is processed in accordance with GDPR. For any questions, contact the LS4YOU team.',
+            
+            // Reporting sheet
+            'doc-title-reporting': 'Reporting Sheet – LS4YOU Workshop Implementation',
+            'doc-general-info': '📋 General Information',
+            'doc-professional-name': 'Professional\'s name:',
+            'doc-structure-label': 'Organization:',
+            'doc-date-location': 'Date & location:',
+            'doc-activity-details': '🎯 Activity Details',
+            'doc-activities-used': 'Activity(ies) used:',
+            'doc-participants': 'Number of participants:',
+            'doc-duration': 'Duration (minutes):',
+            'doc-objectives': '🎯 Targeted Objectives',
+            'doc-professional-observations': '👁️ Professional\'s Observations',
+            'doc-youth-feedback': '💬 Youth Feedback (keywords or phrases)',
+            'doc-next-steps': '🚀 Next Steps Planned'
+        },
+        de: {
+            // Attendance sheet
+            'doc-title-attendance': 'LS4YOU Schulung – Anwesenheitsliste',
+            'doc-date': 'Datum:',
+            'doc-location': 'Ort:',
+            'doc-trainer': 'Trainer:',
+            'doc-name': 'Name & Vorname',
+            'doc-structure': 'Organisation',
+            'doc-morning': 'Unterschrift Vormittag',
+            'doc-afternoon': 'Unterschrift Nachmittag',
+            'doc-observations': 'Beobachtungen',
+            'doc-footer': 'LS4YOU Projekt – Erasmus+ | Internes Dokument – nicht außerhalb des Projekts verbreiten',
+            
+            // Image rights
+            'doc-title-image': 'Einverständniserklärung für Bild- und Tonrechte',
+            'doc-consent-text': 'Ich, der/die Unterzeichnete ______________________________ erlaube dem LS4YOU-Projektteam, mein Bild und/oder meine Stimme (Fotos, Videos, Aufnahmen) zu verwenden, die während Schulungen, Workshops oder projektbezogenen Veranstaltungen aufgenommen wurden.',
+            'doc-usage-text': 'Diese Bilder/Töne können ausschließlich für pädagogische Förderung und Projektkommunikation auf Papier oder digitalen Medien verbreitet werden.',
+            'doc-yes': 'Ja, ich erlaube',
+            'doc-no': 'Nein, ich erlaube nicht',
+            'doc-name-label': 'Name & Vorname:',
+            'doc-signature-label': 'Unterschrift:',
+            'doc-date-label': 'Datum:',
+            'doc-legal-note': 'Hinweis:',
+            'doc-legal-text': 'Diese Genehmigung ist jederzeit durch einfache schriftliche Anfrage widerrufbar. Personenbezogene Daten werden gemäß DSGVO verarbeitet. Bei Fragen wenden Sie sich an das LS4YOU-Team.',
+            
+            // Reporting sheet
+            'doc-title-reporting': 'Berichtsbogen – LS4YOU Workshop-Umsetzung',
+            'doc-general-info': '📋 Allgemeine Informationen',
+            'doc-professional-name': 'Name des Fachmanns:',
+            'doc-structure-label': 'Organisation:',
+            'doc-date-location': 'Datum & Ort:',
+            'doc-activity-details': '🎯 Aktivitätsdetails',
+            'doc-activities-used': 'Verwendete Aktivität(en):',
+            'doc-participants': 'Anzahl der Teilnehmer:',
+            'doc-duration': 'Dauer (Minuten):',
+            'doc-objectives': '🎯 Angestrebte Ziele',
+            'doc-professional-observations': '👁️ Beobachtungen des Fachmanns',
+            'doc-youth-feedback': '💬 Jugend-Feedback (Schlüsselwörter oder Phrasen)',
+            'doc-next-steps': '🚀 Geplante nächste Schritte'
+        },
+        es: {
+            // Attendance sheet
+            'doc-title-attendance': 'Formación LS4YOU – Hoja de Asistencia',
+            'doc-date': 'Fecha:',
+            'doc-location': 'Lugar:',
+            'doc-trainer': 'Formador:',
+            'doc-name': 'Nombre y Apellido',
+            'doc-structure': 'Organización',
+            'doc-morning': 'Firma Mañana',
+            'doc-afternoon': 'Firma Tarde',
+            'doc-observations': 'Observaciones',
+            'doc-footer': 'Proyecto LS4YOU – Erasmus+ | Documento interno – no distribuir fuera del proyecto',
+            
+            // Image rights
+            'doc-title-image': 'Autorización de Derechos de Imagen y Voz',
+            'doc-consent-text': 'Yo, el/la abajo firmante ______________________________ autorizo al equipo del proyecto LS4YOU a utilizar mi imagen y/o voz (fotos, videos, grabaciones) capturadas durante formaciones, talleres o eventos relacionados con el proyecto.',
+            'doc-usage-text': 'Estas imágenes/sonidos podrán ser difundidos exclusivamente para la promoción educativa y comunicación del proyecto, en medios impresos o digitales.',
+            'doc-yes': 'Sí, autorizo',
+            'doc-no': 'No, no autorizo',
+            'doc-name-label': 'Nombre y Apellido:',
+            'doc-signature-label': 'Firma:',
+            'doc-date-label': 'Fecha:',
+            'doc-legal-note': 'Nota:',
+            'doc-legal-text': 'Esta autorización es revocable en cualquier momento mediante simple solicitud escrita. Los datos personales se procesan de acuerdo con el RGPD. Para cualquier pregunta, contacte al equipo LS4YOU.',
+            
+            // Reporting sheet
+            'doc-title-reporting': 'Hoja de Reporte – Implementación de Taller LS4YOU',
+            'doc-general-info': '📋 Información General',
+            'doc-professional-name': 'Nombre del profesional:',
+            'doc-structure-label': 'Organización:',
+            'doc-date-location': 'Fecha y lugar:',
+            'doc-activity-details': '🎯 Detalles de la Actividad',
+            'doc-activities-used': 'Actividad(es) utilizada(s):',
+            'doc-participants': 'Número de participantes:',
+            'doc-duration': 'Duración (minutos):',
+            'doc-objectives': '🎯 Objetivos Dirigidos',
+            'doc-professional-observations': '👁️ Observaciones del Profesional',
+            'doc-youth-feedback': '💬 Retroalimentación de los Jóvenes (palabras clave o frases)',
+            'doc-next-steps': '🚀 Próximos Pasos Planificados'
         }
-
-        function animateStats() {
-            const statNumbers = document.querySelectorAll('.stat-number');
-            statNumbers.forEach(stat => {
-                const target = parseInt(stat.getAttribute('data-target'));
-                let current = 0;
-                const increment = target / 50;
-                
-                stat.classList.add('animate');
-                
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        current = target;
-                        clearInterval(timer);
-                    }
-                    stat.textContent = Math.floor(current);
-                }, 40);
+    };
+    
+    const currentTranslations = documentTranslations[currentLanguage];
+    if (currentTranslations) {
+        Object.keys(currentTranslations).forEach(key => {
+            const elements = document.querySelectorAll(`.${key}`);
+            elements.forEach(element => {
+                element.textContent = currentTranslations[key];
             });
-        }
-
-        function animateCard(card) {
-            card.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                card.style.transform = 'scale(1.02)';
-                setTimeout(() => {
-                    card.style.transform = 'scale(1)';
-                }, 150);
-            }, 100);
-        }
-
-        function pulseCard(card) {
-            card.style.transform = 'scale(1.1)';
-            card.style.boxShadow = '0 15px 35px rgba(102, 126, 234, 0.3)';
-            setTimeout(() => {
-                card.style.transform = 'scale(1.05)';
-                card.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.15)';
-            }, 200);
-        }
-
-        function bounceAnimation(element) {
-            element.style.animation = 'none';
-            element.offsetHeight; // Trigger reflow
-            element.style.animation = 'bounce 0.6s ease';
-        }
-
-        // Initialisation
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(() => animateStats(), 1000);
         });
+    }
+}
 
-        // Ajouter l'animation bounce CSS
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes bounce {
-                0%, 20%, 60%, 100% {
-                    transform: translateY(0);
-                }
-                40% {
-                    transform: translateY(-10px);
-                }
-                80% {
-                    transform: translateY(-5px);
-                }
-            }
-        `;
-        document.head.appendChild(style);
-    </script>
-</body>
+function updateModuleTexts(texts) {
+    // Update table headers
+    const domainHeader = document.getElementById('domainHeader');
+    const activitiesHeader = document.getElementById('activitiesHeader');
+    const choiceHeader = document.getElementById('choiceHeader');
+    
+    if (domainHeader) domainHeader.textContent = texts.domainHeader;
+    if (activitiesHeader) activitiesHeader.textContent = texts.activitiesHeader;
+    if (choiceHeader) choiceHeader.textContent = texts.choiceHeader;
+    
+    // Update domain titles and subtitles
+    const personalityTitle = document.getElementById('personalityTitle');
+    const personalitySubtitle = document.getElementById('personalitySubtitle');
+    const promotionTitle = document.getElementById('promotionTitle');
+    const promotionSubtitle = document.getElementById('promotionSubtitle');
+    const wellbeingTitle = document.getElementById('wellbeingTitle');
+    const wellbeingSubtitle = document.getElementById('wellbeingSubtitle');
+    const financeTitle = document.getElementById('financeTitle');
+    const financeSubtitle = document.getElementById('financeSubtitle');
+    
+    if (personalityTitle) personalityTitle.textContent = texts.personalityTitle;
+    if (personalitySubtitle) personalitySubtitle.textContent = texts.personalitySubtitle;
+    if (promotionTitle) promotionTitle.textContent = texts.promotionTitle;
+    if (promotionSubtitle) promotionSubtitle.textContent = texts.promotionSubtitle;
+    if (wellbeingTitle) wellbeingTitle.textContent = texts.wellbeingTitle;
+    if (wellbeingSubtitle) wellbeingSubtitle.textContent = texts.wellbeingSubtitle;
+    if (financeTitle) financeTitle.textContent = texts.financeTitle;
+    if (financeSubtitle) financeSubtitle.textContent = texts.financeSubtitle;
+    
+    // Update all activities
+    for (let i = 1; i <= 25; i++) {
+        const activityElement = document.getElementById(`activity${i}`);
+        if (activityElement && texts[`activity${i}`]) {
+            activityElement.textContent = texts[`activity${i}`];
+        }
+    }
+    
+    // Update bonus activity
+    const activityBonus = document.getElementById('activityBonus');
+    if (activityBonus) activityBonus.textContent = texts.activityBonus;
+    
+    // Update choices
+    for (let i = 1; i <= 8; i++) {
+        const choiceElement = document.getElementById(`choice${i}`);
+        if (choiceElement && texts[`choice${i}`]) {
+            choiceElement.textContent = texts[`choice${i}`];
+        }
+    }
+}
+
+function goToSlide(slideNumber) {
+    document.querySelector('.slide.active').classList.remove('active');
+    document.getElementById(`slide${slideNumber}`).classList.add('active');
+    currentSlide = slideNumber;
+    updateSlideCounter();
+}
+
+function nextSlide() {
+    if (currentSlide < totalSlides) {
+        goToSlide(currentSlide + 1);
+    }
+}
+
+function previousSlide() {
+    if (currentSlide > 1) {
+        goToSlide(currentSlide - 1);
+    }
+}
+
+function showPopup(popupId) {
+    document.getElementById(popupId).classList.add('active');
+}
+
+function hidePopup(popupId) {
+    document.getElementById(popupId).classList.remove('active');
+}
+
+function showGenericPopup(title, content) {
+    document.getElementById('popupContent').innerHTML = `<h3 class="text-xl font-bold text-red-600 mb-4">${title}</h3><div class="text-gray-700">${content}</div>`;
+    document.getElementById('genericPopup').classList.add('active');
+}
+
+function hideGenericPopup() {
+    document.getElementById('genericPopup').classList.remove('active');
+}
+
+function showActivityPopup(activity) {
+    const activities = {
+        // Personnalité
+        'test16': {
+            title: '🎭 Test des 16 Personnalités',
+            content: '<p><strong>Objectif:</strong> Découvrir son type de personnalité selon le modèle MBTI</p><p><strong>Durée:</strong> 60 minutes</p><p><strong>Matériel:</strong> Questionnaire MBTI, fiches descriptives</p><p><strong>Déroulé:</strong> Passation du test, analyse des résultats, partage en groupe</p>'
+        },
+        'cartographie': {
+            title: '🗺️ Faire valoir un point (cartographie personnelle)',
+            content: '<p><strong>Objectif:</strong> Cartographier ses forces et points d\'amélioration</p><p><strong>Durée:</strong> 75 minutes</p><p><strong>Matériel:</strong> Grilles d\'auto-évaluation, supports visuels</p><p><strong>Déroulé:</strong> Auto-diagnostic, visualisation graphique, plan de développement</p>'
+        },
+        'imagePublique': {
+            title: '🪞 Image de soi vs image publique',
+            content: '<p><strong>Objectif:</strong> Comprendre l\'écart entre perception de soi et image renvoyée</p><p><strong>Durée:</strong> 90 minutes</p><p><strong>Matériel:</strong> Questionnaires croisés, miroirs</p><p><strong>Déroulé:</strong> Auto-évaluation, feedback des pairs, ajustements</p>'
+        },
+        'matching': {
+            title: '🤝 Matching',
+            content: '<p><strong>Objectif:</strong> Mettre en relation compétences et opportunités</p><p><strong>Durée:</strong> 75 minutes</p><p><strong>Matériel:</strong> Fiches métiers, grilles de correspondance</p><p><strong>Déroulé:</strong> Analyse des correspondances, jeu de rôle, validation</p>'
+        },
+        'feedback': {
+            title: '🎯 Recevoir du Feedback',
+            content: '<p><strong>Objectif:</strong> Développer la capacité à recevoir et utiliser les retours constructifs</p><p><strong>Durée:</strong> 45 minutes</p><p><strong>Matériel:</strong> Fiches feedback, stylos</p><p><strong>Déroulé:</strong> Exercices en binômes, mise en situation, débriefing collectif</p>'
+        },
+        'objectifs': {
+            title: '🎯 Définition d\'objectifs personnels (méthode ABC)',
+            content: '<p><strong>Objectif:</strong> Apprendre à formuler des objectifs SMART avec la méthode ABC</p><p><strong>Durée:</strong> 60 minutes</p><p><strong>Matériel:</strong> Grilles ABC, exemples d\'objectifs</p><p><strong>Déroulé:</strong> Théorie ABC, application pratique, validation croisée</p>'
+        },
+        'valeurs': {
+            title: '🎯 Liste des valeurs',
+            content: '<p><strong>Objectif:</strong> Identifier ses valeurs fondamentales et leur impact</p><p><strong>Durée:</strong> 60 minutes</p><p><strong>Matériel:</strong> Cartes valeurs, grilles de priorisation</p><p><strong>Déroulé:</strong> Tri des valeurs, hiérarchisation, mise en cohérence avec les choix</p>'
+        },
+        
+        // Auto-promotion
+        'sommet': {
+            title: '🏆 Moi au sommet de mon art',
+            content: '<p><strong>Objectif:</strong> Identifier et valoriser ses moments de réussite</p><p><strong>Durée:</strong> 75 minutes</p><p><strong>Matériel:</strong> Fiches de réflexion, supports créatifs</p><p><strong>Déroulé:</strong> Rétrospective des succès, analyse des facteurs clés, présentation</p>'
+        },
+        'pitchVideo': {
+            title: '🎬 Montrez-vous sous votre meilleur jour (pitch vidéo)',
+            content: '<p><strong>Objectif:</strong> Créer un pitch vidéo personnel impactant</p><p><strong>Durée:</strong> 120 minutes</p><p><strong>Matériel:</strong> Caméras/smartphones, logiciel de montage simple</p><p><strong>Déroulé:</strong> Préparation du script, tournage, montage, présentation</p>'
+        },
+        'parcours': {
+            title: '🛤️ Parcours ressources et compétences',
+            content: '<p><strong>Objectif:</strong> Cartographier son parcours et identifier ses ressources</p><p><strong>Durée:</strong> 90 minutes</p><p><strong>Matériel:</strong> Timeline vierge, post-it colorés</p><p><strong>Déroulé:</strong> Construction de la timeline, identification des compétences acquises, valorisation</p>'
+        },
+        'marque': {
+            title: '🏷️ Image de marque personnelle',
+            content: '<p><strong>Objectif:</strong> Développer son personal branding</p><p><strong>Durée:</strong> 105 minutes</p><p><strong>Matériel:</strong> Outils de création graphique, exemples de marques</p><p><strong>Déroulé:</strong> Définition de l\'identité, création visuelle, stratégie de communication</p>'
+        },
+        'zine': {
+            title: '📖 Concevez votre zine',
+            content: '<p><strong>Objectif:</strong> Créer un magazine personnel pour se présenter</p><p><strong>Durée:</strong> 150 minutes</p><p><strong>Matériel:</strong> Papier, ciseaux, colle, magazines, outils créatifs</p><p><strong>Déroulé:</strong> Conception éditoriale, création artistique, assemblage, présentation</p>'
+        },
+        'negociation': {
+            title: '🤝 Jeu de simulation (Négociation)',
+            content: '<p><strong>Objectif:</strong> Développer ses compétences de négociation</p><p><strong>Durée:</strong> 90 minutes</p><p><strong>Matériel:</strong> Scénarios de négociation, fiches de rôle</p><p><strong>Déroulé:</strong> Briefing des rôles, simulations, débriefing et techniques</p>'
+        },
+        
+        // Bien-être
+        'roueEmotions': {
+            title: '🎭 La roue des émotions',
+            content: '<p><strong>Objectif:</strong> Identifier et nommer ses émotions avec précision</p><p><strong>Durée:</strong> 45 minutes</p><p><strong>Matériel:</strong> Roue des émotions, journal émotionnel</p><p><strong>Déroulé:</strong> Découverte de la roue, exercices d\'identification, tenue d\'un journal</p>'
+        },
+        'bonnesChoses': {
+            title: '✨ 3 bonnes choses',
+            content: '<p><strong>Objectif:</strong> Développer la gratitude et la pensée positive</p><p><strong>Durée:</strong> 30 minutes</p><p><strong>Matériel:</strong> Carnets, stylos</p><p><strong>Déroulé:</strong> Explication de la technique, pratique guidée, engagement sur 21 jours</p>'
+        },
+        'reseauSoutien': {
+            title: '🤝 Réseau de soutien social',
+            content: '<p><strong>Objectif:</strong> Cartographier et renforcer son réseau de soutien</p><p><strong>Durée:</strong> 60 minutes</p><p><strong>Matériel:</strong> Schémas de réseau, post-it</p><p><strong>Déroulé:</strong> Mapping du réseau actuel, identification des manques, plan d\'action</p>'
+        },
+        'evaluationBesoins': {
+            title: '📋 Évaluation des besoins',
+            content: '<p><strong>Objectif:</strong> Identifier ses besoins fondamentaux et priorités</p><p><strong>Durée:</strong> 75 minutes</p><p><strong>Matériel:</strong> Pyramide de Maslow, questionnaires</p><p><strong>Déroulé:</strong> Auto-évaluation des besoins, priorisation, plan de satisfaction</p>'
+        },
+        'stressometre': {
+            title: '📈 Stressomètre',
+            content: '<p><strong>Objectif:</strong> Identifier et gérer son niveau de stress</p><p><strong>Durée:</strong> 30 minutes</p><p><strong>Matériel:</strong> Échelle de stress, techniques de relaxation</p><p><strong>Déroulé:</strong> Auto-évaluation, techniques de gestion, pratique</p>'
+        },
+        'routines': {
+            title: '⏰ Prioriser ses routines',
+            content: '<p><strong>Objectif:</strong> Optimiser ses habitudes quotidiennes pour le bien-être</p><p><strong>Durée:</strong> 60 minutes</p><p><strong>Matériel:</strong> Plannings, matrices de priorité</p><p><strong>Déroulé:</strong> Audit des routines actuelles, priorisation, nouveau planning</p>'
+        },
+        'arbreResilience': {
+            title: '🌳 Arbre de la Résilience',
+            content: '<p><strong>Objectif:</strong> Visualiser et renforcer ses ressources de résilience</p><p><strong>Durée:</strong> 90 minutes</p><p><strong>Matériel:</strong> Supports créatifs, modèle d\'arbre</p><p><strong>Déroulé:</strong> Construction métaphorique de l\'arbre, identification des ressources, plan de renforcement</p>'
+        },
+        'limites': {
+            title: '🚧 Portfolio de démarcation (poser ses limites)',
+            content: '<p><strong>Objectif:</strong> Apprendre à identifier et poser ses limites personnelles</p><p><strong>Durée:</strong> 75 minutes</p><p><strong>Matériel:</strong> Fiches de situations, jeux de rôle</p><p><strong>Déroulé:</strong> Identification des limites, techniques d\'affirmation, mise en pratique</p>'
+        },
+        
+        // Finances & Ressources
+        'defisVieReelle': {
+            title: '🎮 Défis de la vie réelle (jeu de rôle budget)',
+            content: '<p><strong>Objectif:</strong> Simuler la gestion budgétaire face aux imprévus</p><p><strong>Durée:</strong> 120 minutes</p><p><strong>Matériel:</strong> Cartes défis, budgets fictifs, calculatrices</p><p><strong>Déroulé:</strong> Jeu de simulation, gestion des crises, débriefing stratégique</p>'
+        },
+        'salairePoche': {
+            title: '💰 Du salaire à la poche (brut/net)',
+            content: '<p><strong>Objectif:</strong> Comprendre la différence entre salaire brut et net</p><p><strong>Durée:</strong> 45 minutes</p><p><strong>Matériel:</strong> Fiches de paie exemples, calculateurs</p><p><strong>Déroulé:</strong> Décryptage d\'une fiche de paie, calculs pratiques, optimisation</p>'
+        },
+        'smart': {
+            title: '🎯 Arrêtez de souhaiter, commencez à réaliser (SMART)',
+            content: '<p><strong>Objectif:</strong> Transformer ses souhaits en objectifs SMART réalisables</p><p><strong>Durée:</strong> 75 minutes</p><p><strong>Matériel:</strong> Grilles SMART, exemples de projets</p><p><strong>Déroulé:</strong> Méthode SMART, application à un projet personnel, plan d\'action</p>'
+        },
+        'etudesCas': {
+            title: '📚 Études de cas (littératie financière)',
+            content: '<p><strong>Objectif:</strong> Développer ses compétences en gestion financière</p><p><strong>Durée:</strong> 90 minutes</p><p><strong>Matériel:</strong> Cas pratiques, calculatrices, guides financiers</p><p><strong>Déroulé:</strong> Analyse de cas réels, résolution de problèmes, bonnes pratiques</p>'
+        },
+        'ikigai': {
+            title: '🌟 Ikigai – Concevez-vous',
+            content: '<p><strong>Objectif:</strong> Identifier sa raison d\'être et ses motivations profondes</p><p><strong>Durée:</strong> 90 minutes</p><p><strong>Matériel:</strong> Schéma Ikigai, feuilles A3, crayons de couleur</p><p><strong>Déroulé:</strong> Réflexion individuelle sur les 4 cercles, synthèse créative, partage en groupe</p>'
+        }
+    };
+    
+    if (activities[activity]) {
+        showGenericPopup(activities[activity].title, activities[activity].content);
+    }
+}
+
+function showCompetencePopup(competence) {
+    const competences = {
+        'referentiel': {
+            title: '📋 Compréhension du référentiel LS4YOU',
+            content: '<p>Maîtriser les 4 domaines LS4YOU et leurs objectifs spécifiques. Comprendre la philosophie et les valeurs du programme pour un accompagnement cohérent.</p>'
+        },
+        'outils': {
+            title: '🛠️ Maîtrise des outils pédagogiques',
+            content: '<p>Savoir utiliser et adapter les différents outils et activités LS4YOU selon les besoins des participants et les contextes d\'intervention.</p>'
+        },
+        'animation': {
+            title: '🎭 Animation & facilitation',
+            content: '<p>Développer ses compétences d\'animation de groupe, de facilitation des échanges et de gestion des dynamiques collectives.</p>'
+        },
+        'ecoute': {
+            title: '👂 Écoute active & adaptation',
+            content: '<p>Pratiquer l\'écoute active, s\'adapter aux besoins individuels et ajuster son accompagnement en fonction des profils des jeunes.</p>'
+        },
+        'evaluation': {
+            title: '📊 Évaluation & innovation',
+            content: '<p>Mettre en place des outils d\'évaluation pertinents et développer une démarche d\'amélioration continue et d\'innovation pédagogique.</p>'
+        }
+    };
+    
+    if (competences[competence]) {
+        showGenericPopup(competences[competence].title, competences[competence].content);
+    }
+}
+
+function showEvalPopup(tool) {
+    const tools = {
+        'quiz': {
+            title: '📝 Quiz pré/post formation',
+            content: '<p>Questionnaire d\'évaluation des connaissances administré avant et après la formation pour mesurer la progression des participants.</p><p><strong>Utilisation:</strong> Début et fin de formation</p><p><strong>Durée:</strong> 15 minutes</p>'
+        },
+        'journal': {
+            title: '📖 Journal d\'implémentation',
+            content: '<p>Outil de suivi permettant aux participants de documenter leur mise en pratique des acquis dans leur contexte professionnel.</p><p><strong>Utilisation:</strong> 3 mois post-formation</p><p><strong>Format:</strong> Carnet de bord structuré</p>'
+        },
+        'fiche': {
+            title: '📋 Fiche d\'évaluation atelier',
+            content: '<p>Grille d\'évaluation de chaque session de formation portant sur le contenu, l\'animation et la satisfaction des participants.</p><p><strong>Utilisation:</strong> Fin de chaque session</p><p><strong>Critères:</strong> Contenu, méthodes, animation</p>'
+        },
+        'feedback': {
+            title: '💬 Feedback des jeunes bénéficiaires',
+            content: '<p>Recueil des retours des jeunes accompagnés par les professionnels formés pour évaluer l\'impact réel sur le terrain.</p><p><strong>Utilisation:</strong> 6 mois post-formation</p><p><strong>Méthode:</strong> Questionnaire et entretiens</p>'
+        }
+    };
+    
+    if (tools[tool]) {
+        showGenericPopup(tools[tool].title, tools[tool].content);
+    }
+}
+
+function showFormatPopup(format) {
+    const formats = {
+        'intensif': {
+            title: '⚡ Format 1 – Intensif',
+            content: '<p><strong>Présentiel condensé en 2 jours</strong></p><div class="mt-4"><p><strong>Programme détaillé :</strong></p><ul class="list-disc ml-6 mt-2 space-y-1"><li><strong>Demi-journée 1 :</strong> Introduction, référentiel, découverte des outils</li><li><strong>Demi-journée 2 :</strong> Jeux de rôle et mises en situation</li><li><strong>Demi-journée 3 :</strong> Pratique des 4 domaines (activités en sous-groupes)</li><li><strong>Demi-journée 4 :</strong> Restitution collective et plan d\'action</li></ul></div><div class="mt-4 p-3 bg-blue-50 rounded"><p><strong>🎯 Tutorat optionnel :</strong> Accompagnement individuel ou en petits groupes par les formateurs WP3</p></div><div class="mt-4"><p><strong>Points forts :</strong> Intensif, immédiatement opérationnel</p><p><strong>Limites :</strong> Rythme soutenu, moins d\'approfondissement</p></div>'
+        },
+        'hybride': {
+            title: '🔄 Format 2 – Hybride',
+            content: '<p><strong>Parcours réparti sur 3 semaines</strong></p><div class="mt-4"><p><strong>Programme détaillé :</strong></p><ul class="list-disc ml-6 mt-2 space-y-1"><li><strong>Étape 1 – E-learning :</strong> Découverte des bases, auto-évaluation, prise en main des outils</li><li><strong>Étape 2 – Présentiel :</strong> Pratique des outils, jeux de rôle, co-construction d\'une séance type</li><li><strong>Étape 3 – Atelier collectif :</strong> Restitution des activités testées, plan d\'action final</li></ul></div><div class="mt-4 p-3 bg-blue-50 rounded"><p><strong>🎯 Tutorat optionnel :</strong> Soutien complémentaire pour affiner l\'intégration dans les dispositifs locaux</p></div><div class="mt-4"><p><strong>Points forts :</strong> Flexible, progressif, temps d\'assimilation</p><p><strong>Limites :</strong> Étalement dans le temps, nécessite autonomie</p></div>'
+        },
+        'progressif': {
+            title: '📈 Format 3 – Progressif tutoré',
+            content: '<p><strong>Deux demi-journées collectives + tutorat</strong></p><div class="mt-4"><p><strong>Programme détaillé :</strong></p><ul class="list-disc ml-6 mt-2 space-y-1"><li><strong>Demi-journée 1 :</strong> Introduction, découverte du référentiel, prise en main des outils</li><li><strong>Demi-journée 2 :</strong> Mise en pratique des 4 domaines, test d\'activités et échanges collectifs</li></ul></div><div class="mt-4 p-3 bg-blue-50 rounded"><p><strong>🎯 Tutorat intégré :</strong> Individuel ou petits groupes, animé par les formateurs WP3 (Malaga), centré sur le plan d\'action et l\'adaptation locale</p></div><div class="mt-4"><p><strong>Points forts :</strong> Accompagnement personnalisé, adaptation locale, sécurisant</p><p><strong>Limites :</strong> Nécessite disponibilité pour le tutorat</p></div>'
+        }
+    };
+    
+    if (formats[format]) {
+        showGenericPopup(formats[format].title, formats[format].content);
+    }
+}
+
+function downloadResource(resource) {
+    // Update document language before download
+    updateDocumentLanguage();
+    
+    const templates = {
+        'emargement': 'emargementTemplate',
+        'image': 'imageTemplate', 
+        'reporting': 'reportingTemplate'
+    };
+    
+    const templateId = templates[resource];
+    if (templateId) {
+        const template = document.getElementById(templateId);
+        const printWindow = window.open('', '_blank');
+        printWindow.document.write(`
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>Document LS4YOU</title>
+                <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+                <style>
+                    @media print {
+                        body { margin: 0; }
+                        .document-page { box-shadow: none !important; }
+                    }
+                </style>
+            </head>
+            <body>
+                ${template.innerHTML}
+            </body>
+            </html>
+        `);
+        printWindow.document.close();
+        printWindow.focus();
+        
+        // Auto-print after a short delay
+        setTimeout(() => {
+            printWindow.print();
+        }, 500);
+    }
+    
+    const messages = {
+        fr: {
+            'emargement': 'Fiche d\'émargement LS4YOU téléchargée !',
+            'image': 'Formulaire droit à l\'image téléchargé !',
+            'reporting': 'Fiche reporting atelier téléchargée !'
+        },
+        en: {
+            'emargement': 'LS4YOU attendance sheet downloaded!',
+            'image': 'Image rights form downloaded!',
+            'reporting': 'Workshop reporting sheet downloaded!'
+        },
+        de: {
+            'emargement': 'LS4YOU Anwesenheitsliste heruntergeladen!',
+            'image': 'Bildrechte-Formular heruntergeladen!',
+            'reporting': 'Workshop-Berichtsbogen heruntergeladen!'
+        },
+        es: {
+            'emargement': '¡Hoja de asistencia LS4YOU descargada!',
+            'image': '¡Formulario de derechos de imagen descargado!',
+            'reporting': '¡Hoja de reporte de taller descargada!'
+        }
+    };
+    
+    const message = messages[currentLanguage]?.[resource] || 'Document downloaded!';
+    alert(message);
+}
+
+function accessPlatform() {
+    alert('Redirection vers la plateforme LS4YOU...');
+}
+
+function contactCoordinator() {
+    alert('Ouverture de votre client email pour contacter le coordinateur...');
+}
+
+function showIndicatorPopup(indicator) {
+    const indicators = {
+        'engagement': {
+            title: '🎯 Indicateurs d\'engagement',
+            content: '<p><strong>Mesures quantitatives :</strong></p><ul class="list-disc ml-6 mt-2"><li>Taux de présence (>85%)</li><li>Ponctualité (retards <5min)</li><li>Participation aux activités (>80%)</li></ul><p class="mt-3"><strong>Mesures qualitatives :</strong></p><ul class="list-disc ml-6 mt-2"><li>Qualité des échanges</li><li>Initiative personnelle</li><li>Collaboration avec les pairs</li></ul>'
+        },
+        'progression': {
+            title: '📈 Indicateurs de progression',
+            content: '<p><strong>Compétences techniques :</strong></p><ul class="list-disc ml-6 mt-2"><li>Maîtrise des outils LS4YOU</li><li>Capacité d\'animation</li><li>Adaptation pédagogique</li></ul><p class="mt-3"><strong>Compétences transversales :</strong></p><ul class="list-disc ml-6 mt-2"><li>Confiance en soi</li><li>Communication</li><li>Résolution de problèmes</li></ul>'
+        },
+        'satisfaction': {
+            title: '😊 Indicateurs de satisfaction',
+            content: '<p><strong>Satisfaction globale :</strong></p><ul class="list-disc ml-6 mt-2"><li>Note générale (/10)</li><li>Recommandation (NPS)</li><li>Intention d\'utilisation</li></ul><p class="mt-3"><strong>Satisfaction détaillée :</strong></p><ul class="list-disc ml-6 mt-2"><li>Contenu pédagogique</li><li>Méthodes d\'animation</li><li>Accompagnement formateur</li></ul>'
+        }
+    };
+    
+    if (indicators[indicator]) {
+        showGenericPopup(indicators[indicator].title, indicators[indicator].content);
+    }
+}
+
+function showRetourPopup(tool) {
+    const tools = {
+        'quiz': {
+            title: '📝 Quiz pré/post formation',
+            content: '<p><strong>Objectif :</strong> Mesurer l\'évolution des connaissances</p><p><strong>Format :</strong> 20 questions QCM + 5 questions ouvertes</p><p><strong>Timing :</strong> J-1 et J+1 de la formation</p><p><strong>Indicateurs :</strong> Taux de progression, points d\'amélioration</p><p><strong>Exploitation :</strong> Rapport individuel et collectif</p>'
+        },
+        'journal': {
+            title: '📖 Journal réflexif',
+            content: '<p><strong>Objectif :</strong> Documenter la mise en pratique</p><p><strong>Format :</strong> Carnet structuré avec questions guides</p><p><strong>Fréquence :</strong> Hebdomadaire pendant 3 mois</p><p><strong>Contenu :</strong> Activités menées, difficultés, réussites, adaptations</p><p><strong>Suivi :</strong> Entretien mensuel avec le formateur</p>'
+        },
+        'entretien': {
+            title: '🎤 Entretiens individuels',
+            content: '<p><strong>Objectif :</strong> Recueil approfondi des retours</p><p><strong>Durée :</strong> 45 minutes par participant</p><p><strong>Timing :</strong> 1 mois et 3 mois post-formation</p><p><strong>Méthode :</strong> Entretien semi-directif</p><p><strong>Thèmes :</strong> Impact, difficultés, besoins, suggestions</p>'
+        },
+        'focus': {
+            title: '👥 Focus groups',
+            content: '<p><strong>Objectif :</strong> Échanges collectifs sur l\'expérience</p><p><strong>Composition :</strong> 6-8 participants par groupe</p><p><strong>Durée :</strong> 90 minutes</p><p><strong>Animation :</strong> Facilitateur externe neutre</p><p><strong>Thèmes :</strong> Bénéfices, obstacles, améliorations, pérennisation</p>'
+        },
+        'observation': {
+            title: '👁️ Grilles d\'observation',
+            content: '<p><strong>Objectif :</strong> Évaluer les pratiques en situation réelle</p><p><strong>Méthode :</strong> Observation directe des animations</p><p><strong>Critères :</strong> Posture, techniques, gestion du groupe</p><p><strong>Fréquence :</strong> 2 observations par professionnel</p><p><strong>Restitution :</strong> Débriefing constructif immédiat</p>'
+        }
+    };
+    
+    if (tools[tool]) {
+        showGenericPopup(tools[tool].title, tools[tool].content);
+    }
+}
+
+function showStepPopup(step) {
+    const steps = {
+        'step1': {
+            title: '📋 Étape Préparation',
+            content: '<p><strong>Objectifs :</strong></p><ul class="list-disc ml-6 mt-2"><li>Analyser les besoins du partenaire</li><li>Identifier le public cible</li><li>Adapter le contenu au contexte local</li></ul><p class="mt-4"><strong>Actions :</strong></p><ul class="list-disc ml-6 mt-2"><li>Entretien diagnostic avec le partenaire</li><li>Questionnaire pré-formation</li><li>Planification logistique</li></ul><p class="mt-4"><strong>Livrables :</strong> Plan de formation personnalisé</p>'
+        },
+        'step2': {
+            title: '💻 Étape E-learning',
+            content: '<p><strong>Objectifs :</strong></p><ul class="list-disc ml-6 mt-2"><li>Découvrir les bases théoriques LS4YOU</li><li>S\'auto-évaluer sur ses pratiques actuelles</li><li>Prendre en main les outils digitaux</li></ul><p class="mt-4"><strong>Contenu :</strong></p><ul class="list-disc ml-6 mt-2"><li>Modules interactifs sur les 4 domaines</li><li>Vidéos de démonstration</li><li>Quiz d\'auto-évaluation</li></ul><p class="mt-4"><strong>Durée :</strong> 3-4 heures en autonomie</p>'
+        },
+        'step3': {
+            title: '👥 Étape Présentiel',
+            content: '<p><strong>Objectifs :</strong></p><ul class="list-disc ml-6 mt-2"><li>Pratiquer les outils en situation</li><li>Développer les compétences d\'animation</li><li>Échanger avec les pairs</li></ul><p class="mt-4"><strong>Méthodes :</strong></p><ul class="list-disc ml-6 mt-2"><li>Ateliers pratiques par domaine</li><li>Jeux de rôle et mises en situation</li><li>Co-construction d\'activités</li></ul><p class="mt-4"><strong>Format :</strong> Variable selon le format choisi</p>'
+        },
+        'step4': {
+            title: '🚀 Étape Intégration',
+            content: '<p><strong>Objectifs :</strong></p><ul class="list-disc ml-6 mt-2"><li>Mettre en pratique dans son contexte</li><li>Adapter les outils aux spécificités locales</li><li>Mesurer l\'impact sur les bénéficiaires</li></ul><p class="mt-4"><strong>Accompagnement :</strong></p><ul class="list-disc ml-6 mt-2"><li>Tutorat individuel ou collectif</li><li>Retours d\'expérience réguliers</li><li>Ajustements méthodologiques</li></ul><p class="mt-4"><strong>Durée :</strong> 3 à 6 mois selon les besoins</p>'
+        }
+    };
+    
+    if (steps[step]) {
+        showGenericPopup(steps[step].title, steps[step].content);
+    }
+}
+
+// Keyboard navigation
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight' || e.key === ' ') {
+        nextSlide();
+    } else if (e.key === 'ArrowLeft') {
+        previousSlide();
+    } else if (e.key === 'Escape') {
+        // Close any open popup
+        document.querySelectorAll('.popup.active').forEach(popup => {
+            popup.classList.remove('active');
+        });
+    }
+});
+
+// Close popup when clicking outside
+document.querySelectorAll('.popup').forEach(popup => {
+    popup.addEventListener('click', function(e) {
+        if (e.target === this) {
+            this.classList.remove('active');
+        }
+    });
+});
+
+// Initialize
+updateSlideCounter();
+</script>
+
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97dcbbe2e0c0bb30',t:'MTc1NzY1MjEwMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
