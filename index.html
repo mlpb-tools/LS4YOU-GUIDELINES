@@ -1,785 +1,1201 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LS4YOU - Guidelines Formation</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    .section-card{transition:all .3s ease;cursor:pointer}
-    .section-card:hover{transform:translateY(-4px);box-shadow:0 20px 25px -5px rgba(214,59,59,.15),0 10px 10px -5px rgba(214,59,59,.08)}
-    .content-panel{max-height:0;overflow:hidden;transition:max-height .5s ease-in-out}
-    .content-panel.active{max-height:2000px}
-    .icon-rotate{transition:transform .3s ease}
-    .icon-rotate.active{transform:rotate(180deg)}
-    .ls-red{color:#D63B3B}.ls-turquoise{color:#47C2B5}.ls-yellow{color:#F6C342}.ls-gray{color:#4A5568}
-    .bg-ls-red{background-color:#D63B3B}.bg-ls-turquoise{background-color:#47C2B5}.bg-ls-yellow{background-color:#F6C342}.bg-ls-gray{background-color:#F4F4F4}
-    .border-ls-red{border-color:#D63B3B}.border-ls-turquoise{border-color:#47C2B5}.border-ls-yellow{border-color:#F6C342}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LS4YOU Training Guidelines</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Glacial+Indifference:wght@400;700&display=swap');
+        @font-face {
+            font-family: 'Glacial Indifference';
+            src: url('https://fonts.googleapis.com/css2?family=Glacial+Indifference:wght@400;700&display=swap');
+            font-display: swap;
+        }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'ls4you-red': '#E63946',
+                        'ls4you-yellow': '#FFD166',
+                        'ls4you-turquoise': '#06D6A0',
+                        'ls4you-gray': '#F6F6F6',
+                        'ls4you-black': '#000000'
+                    },
+                    fontFamily: {
+                        'glacial': ['Glacial Indifference', 'Arial', 'sans-serif'],
+                        'body': ['Montserrat', 'Nunito', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body class="bg-ls-gray min-h-screen font-sans">
-  <div class="container mx-auto px-4 py-8">
+<body class="font-body bg-ls4you-gray min-h-screen">
     <!-- Header -->
-    <div class="flex items-start justify-between mb-6">
-      <div></div>
-      <!-- Language selector -->
-      <div class="flex items-center gap-2">
-        <span class="text-sm ls-gray" data-i18n="ui.language">Langue</span>
-        <select id="langSelect" class="text-sm border rounded-md px-3 py-1 bg-white">
-          <option value="fr">Français</option>
-          <option value="en">English</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="text-center mb-12">
-      <h1 class="text-4xl font-bold ls-red mb-2" data-i18n="hero.title">LS4YOU</h1>
-      <p class="text-xl ls-gray font-medium" data-i18n="hero.subtitle">Guidelines - Formation des professionnels</p>
-      <div class="w-24 h-1 bg-ls-turquoise mx-auto mt-4 rounded-full"></div>
-    </div>
-
-    <!-- Navigation Cards -->
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-      <div class="section-card bg-white rounded-xl p-6 shadow-lg border-l-4 border-ls-yellow" onclick="toggleSection('section1')">
-        <div class="flex items-center justify-between">
-          <div>
-            <h3 class="text-lg font-semibold ls-red" data-i18n="nav.1.title">1. Objet & Périmètre</h3>
-            <p class="text-sm ls-gray mt-1" data-i18n="nav.1.desc">Objectifs et public cible</p>
-          </div>
-          <svg class="w-6 h-6 ls-turquoise icon-rotate" id="icon1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+    <header class="bg-white shadow-sm px-6 py-4 flex justify-between items-center">
+        <!-- Logo -->
+        <div class="flex items-center space-x-3">
+            <span class="text-2xl font-glacial font-bold text-ls4you-black">LS4YOU</span>
         </div>
-      </div>
 
-      <div class="section-card bg-white rounded-xl p-6 shadow-lg border-l-4 border-ls-yellow" onclick="toggleSection('section2')">
-        <div class="flex items-center justify-between">
-          <div>
-            <h3 class="text-lg font-semibold ls-red" data-i18n="nav.2.title">2. Principes Pédagogiques</h3>
-            <p class="text-sm ls-gray mt-1" data-i18n="nav.2.desc">Méthodes d'apprentissage</p>
-          </div>
-          <svg class="w-6 h-6 ls-turquoise icon-rotate" id="icon2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        <!-- Language Selector -->
+        <div class="relative">
+            <button id="langToggle" class="flex items-center space-x-2 bg-ls4you-turquoise text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition-all">
+                <span>🌐</span>
+                <span id="currentLang">English</span>
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                </svg>
+            </button>
+            <div id="langMenu" class="absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg border hidden z-50">
+                <button onclick="setLanguage('en')" class="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-t-lg">🇬🇧 English</button>
+                <button onclick="setLanguage('fr')" class="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-b-lg">🇫🇷 Français</button>
+            </div>
         </div>
-      </div>
+    </header>
 
-      <div class="section-card bg-white rounded-xl p-6 shadow-lg border-l-4 border-ls-yellow" onclick="toggleSection('section3')">
-        <div class="flex items-center justify-between">
-          <div>
-            <h3 class="text-lg font-semibold ls-red" data-i18n="nav.3.title">3. Déploiement</h3>
-            <p class="text-sm ls-gray mt-1" data-i18n="nav.3.desc">Étapes et formats</p>
-          </div>
-          <svg class="w-6 h-6 ls-turquoise icon-rotate" id="icon3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-        </div>
-      </div>
-
-      <div class="section-card bg-white rounded-xl p-6 shadow-lg border-l-4 border-ls-yellow" onclick="toggleSection('section4')">
-        <div class="flex items-center justify-between">
-          <div>
-            <h3 class="text-lg font-semibold ls-red" data-i18n="nav.4.title">4. Contenus Requis</h3>
-            <p class="text-sm ls-gray mt-1" data-i18n="nav.4.desc">Modules et activités</p>
-          </div>
-          <svg class="w-6 h-6 ls-turquoise icon-rotate" id="icon4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-        </div>
-      </div>
-    </div>
-
-    <!-- Second row -->
-    <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
-      <div class="section-card bg-white rounded-xl p-6 shadow-lg border-l-4 border-ls-yellow" onclick="toggleSection('section5')">
-        <div class="flex items-center justify-between">
-          <div>
-            <h3 class="text-lg font-semibold ls-red" data-i18n="nav.5.title">5. Rôles & Responsabilités</h3>
-            <p class="text-sm ls-gray mt-1" data-i18n="nav.5.desc">Qui fait quoi</p>
-          </div>
-          <svg class="w-6 h-6 ls-turquoise icon-rotate" id="icon5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-        </div>
-      </div>
-
-      <div class="section-card bg-white rounded-xl p-6 shadow-lg border-l-4 border-ls-yellow" onclick="toggleSection('section6')">
-        <div class="flex items-center justify-between">
-          <div>
-            <h3 class="text-lg font-semibold ls-red" data-i18n="nav.6.title">6. Qualité & Évaluation</h3>
-            <p class="text-sm ls-gray mt-1" data-i18n="nav.6.desc">Suivi et indicateurs</p>
-          </div>
-          <svg class="w-6 h-6 ls-turquoise icon-rotate" id="icon6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-        </div>
-      </div>
-
-      <div class="section-card bg-white rounded-xl p-6 shadow-lg border-l-4 border-ls-yellow" onclick="toggleSection('section8')">
-        <div class="flex items-center justify-between">
-          <div>
-            <h3 class="text-lg font-semibold ls-red" data-i18n="nav.8.title">8. Calendrier Type</h3>
-            <p class="text-sm ls-gray mt-1" data-i18n="nav.8.desc">Planning et étapes</p>
-          </div>
-          <svg class="w-6 h-6 ls-turquoise icon-rotate" id="icon8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-        </div>
-      </div>
-
-      <div class="section-card bg-white rounded-xl p-6 shadow-lg border-l-4 border-ls-yellow" onclick="toggleSection('section9')">
-        <div class="flex items-center justify-between">
-          <div>
-            <h3 class="text-lg font-semibold ls-red" data-i18n="nav.9.title">9. Annexes</h3>
-            <p class="text-sm ls-gray mt-1" data-i18n="nav.9.desc">Gabarits fournis</p>
-          </div>
-          <svg class="w-6 h-6 ls-turquoise icon-rotate" id="icon9" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-        </div>
-      </div>
-    </div>
-
-    <!-- SECTION 1 -->
-    <div class="content-panel" id="section1">
-      <div class="bg-white rounded-xl shadow-lg p-8 mb-6 border-l-4 border-ls-turquoise">
-        <h2 class="text-2xl font-bold ls-red mb-6" data-i18n="s1.title">1. Objet & Périmètre</h2>
-        <div class="grid md:grid-cols-3 gap-6">
-          <div class="bg-ls-gray rounded-lg p-6">
-            <h3 class="text-lg font-semibold ls-red mb-3" data-i18n="s1.objet.h">📋 OBJET</h3>
-            <p class="ls-gray" data-i18n="s1.objet.p">
-              Offrir à chaque partenaire une trame pas à pas pour former des éducateurs d'adultes (conseillers, animateurs, formateurs) à la méthodologie et à l'utilisation des outils LS4YOU avec des jeunes.
-            </p>
-          </div>
-          <div class="bg-ls-gray rounded-lg p-6">
-            <h3 class="text-lg font-semibold ls-red mb-3" data-i18n="s1.public.h">👥 PUBLIC CIBLE</h3>
-            <p class="ls-gray" data-i18n="s1.public.p">
-              Professionnels en contact direct avec les jeunes, avec appétence pour le travail collectif.
-            </p>
-          </div>
-          <div class="bg-ls-gray rounded-lg p-6">
-            <h3 class="text-lg font-semibold ls-red mb-3" data-i18n="s1.finalites.h">🎯 FINALITÉS</h3>
-            <ul class="ls-gray space-y-2">
-              <li data-i18n="s1.finalites.l1">• Identifier et former des référents LS4YOU dans chaque structure</li>
-              <li data-i18n="s1.finalites.l2">• Assurer une mise en œuvre homogène en Europe tout en permettant qu'elle soit adaptable selon les contextes</li>
-              <li data-i18n="s1.finalites.l3">• Intégrer durablement LS4YOU dans les pratiques professionnelles</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SECTION 2 -->
-    <div class="content-panel" id="section2">
-      <div class="bg-white rounded-xl shadow-lg p-8 mb-6 border-l-4 border-ls-turquoise">
-        <h2 class="text-2xl font-bold ls-red mb-6" data-i18n="s2.title">2. Principes Pédagogiques</h2>
-        <div class="space-y-6">
-          <div class="bg-ls-gray rounded-lg p-6">
-            <h3 class="text-lg font-semibold ls-red mb-3" data-i18n="s2.exp.h">🎭 Expérientiel & Participatif</h3>
-            <p class="ls-gray" data-i18n="s2.exp.p">Les professionnels testent les outils comme des jeunes (jeux de rôle, ateliers).</p>
-          </div>
-          <div class="bg-ls-gray rounded-lg p-6">
-            <h3 class="text-lg font-semibold ls-red mb-3" data-i18n="s2.coll.h">🤝 Collectif</h3>
-            <p class="ls-gray" data-i18n="s2.coll.p">Co-construction, sous-groupes, retours entre pairs.</p>
-          </div>
-          <div class="bg-ls-gray rounded-lg p-6">
-            <h3 class="text-lg font-semibold ls-red mb-3" data-i18n="s2.hybr.h">💻 Hybride</h3>
-            <p class="ls-gray" data-i18n="s2.hybr.p">E-learning concis (Fondamentaux / Méthode / Activités / Domaines de compétences) + présentiel actif (expérimentation, jeux de rôle, co-construction).</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SECTION 3 -->
-    <div class="content-panel" id="section3">
-      <div class="bg-white rounded-xl shadow-lg p-8 mb-6 border-l-4 border-ls-turquoise">
-        <h2 class="text-2xl font-bold ls-red mb-6" data-i18n="s3.title">3. Déploiement</h2>
-
-        <div class="mb-8">
-          <h3 class="text-xl font-semibold ls-red mb-4" data-i18n="s3.steps.title">Étapes du déploiement</h3>
-
-          <div class="space-y-6">
-            <div class="bg-ls-gray rounded-lg p-6">
-              <h4 class="text-lg font-semibold ls-red mb-3" data-i18n="s3.step0.h">Étape 0 — Préparation (J-10 à J-5)</h4>
-              <ul class="ls-gray space-y-1">
-                <li data-i18n="s3.step0.l1">• Sélectionner les participants</li>
-                <li data-i18n="s3.step0.l2">• Envoyer kit d'amorçage (2–3 pages : e-learning préparatoire, guidebook)</li>
-                <li data-i18n="s3.step0.l3">• Créer un canal d'échanges (Teams/Slack/WhatsApp)</li>
-                <li data-i18n="s3.step0.l4">• Logistique : salle modulable, paperboard, post-its, accès plateforme</li>
-                <li data-i18n="s3.step0.l5">• Livrables : liste participants, feuille d'émargement prête, formulaires droit à l'image</li>
-              </ul>
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-8">
+        <!-- Home Page -->
+        <div id="home" class="page">
+            <div class="text-center mb-12">
+                <h1 class="text-5xl font-glacial font-bold text-ls4you-black mb-4">
+                    <span class="en">LS4YOU Training Guidelines</span>
+                    <span class="fr hidden">Guide de Formation LS4YOU</span>
+                </h1>
+                <p class="text-xl text-gray-600">
+                    <span class="en">Life Skills for Youth – European Training Framework</span>
+                    <span class="fr hidden">Compétences de Vie pour les Jeunes – Cadre de Formation Européen</span>
+                </p>
             </div>
 
-            <div class="bg-ls-gray rounded-lg p-6">
-              <h4 class="text-lg font-semibold ls-red mb-3" data-i18n="s3.step1.h">Étape 1 — E-learning (1 semaine avant, si format choisi)</h4>
-              <ul class="ls-gray space-y-1">
-                <li data-i18n="s3.step1.l1">• Définir la compétence</li>
-                <li data-i18n="s3.step1.l2">• Référentiel LS4YOU (4 domaines)</li>
-                <li data-i18n="s3.step1.l3">• Auto-positionnement du pro avec la grille LS4YOU</li>
-                <li data-i18n="s3.step1.l4">• Preuves : quiz court, capture d'achèvement</li>
-              </ul>
-            </div>
-
-            <div class="bg-ls-gray rounded-lg p-6">
-              <h4 class="text-lg font-semibold ls-red mb-3" data-i18n="s3.step2.h">Étape 2 — Présentiel intensif</h4>
-
-              <div class="grid md:grid-cols-2 gap-4 mt-4">
-                <div class="bg-white rounded-lg p-4">
-                  <h5 class="font-semibold ls-turquoise mb-2" data-i18n="s3.step2.d1.h">Jour 1 – S'approprier</h5>
-                  <ul class="ls-gray text-sm space-y-1">
-                    <li data-i18n="s3.step2.d1.l1">• Icebreaker « ligne de compétences »</li>
-                    <li data-i18n="s3.step2.d1.l2">• Parcours des outils (activités, grilles, plateforme) en ateliers tournants</li>
-                    <li data-i18n="s3.step2.d1.l3">• Jeux de rôle conseiller ↔ jeune</li>
-                    <li data-i18n="s3.step2.d1.l4">• Co-conception d'une séance-type LS4YOU</li>
-                  </ul>
+            <div class="max-w-6xl mx-auto">
+                <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="en">
+                            <h2 class="text-2xl font-glacial font-bold text-ls4you-red mb-4">Welcome to LS4YOU</h2>
+                            <p class="text-gray-700 leading-relaxed">
+                                The Life Skills for Youth (LS4YOU) project was designed to address a major challenge: supporting the social and professional integration of young people by providing them with the means to develop personal, social, and practical resources that go beyond educational achievements and professional skills.
+                            </p>
+                        </div>
+                        <div class="fr hidden">
+                            <h2 class="text-2xl font-glacial font-bold text-ls4you-red mb-4">Bienvenue dans LS4YOU</h2>
+                            <p class="text-gray-700 leading-relaxed">
+                                Le projet Life Skills for Youth (LS4YOU) a été conçu pour répondre à un défi majeur : soutenir l'intégration sociale et professionnelle des jeunes en leur donnant les moyens de développer des ressources personnelles, sociales et pratiques qui vont au-delà des acquis scolaires et des compétences professionnelles.
+                            </p>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="bg-white rounded-lg p-4">
-                  <h5 class="font-semibold ls-turquoise mb-2" data-i18n="s3.step2.d2.h">Jour 2 – Mettre en pratique</h5>
-                  <ul class="ls-gray text-sm space-y-1">
-                    <li data-i18n="s3.step2.d2.l1">• Travaux en 4 sous-groupes (un par domaine)</li>
-                    <li data-i18n="s3.step2.d2.l2">• Tester ≥ 2 activités par domaine</li>
-                    <li data-i18n="s3.step2.d2.l3">• Restitution croisée (poster 5'/groupe)</li>
-                    <li data-i18n="s3.step2.d2.l4">• Plan d'action individuel & d'équipe</li>
-                    <li data-i18n="s3.step2.d2.l5">• Preuves : photos (si accord), supports produits, émargement signé</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <!-- Menu Items -->
+                    <div onclick="showPage('objectives')" class="menu-card bg-gradient-to-br from-ls4you-red to-red-600 text-white p-6 rounded-2xl cursor-pointer transform hover:scale-105 transition-all shadow-lg">
+                        <div class="text-4xl mb-4">🎯</div>
+                        <h3 class="font-glacial font-bold text-lg mb-2">
+                            <span class="en">Objectives & Scope</span>
+                            <span class="fr hidden">Objectifs et Périmètre</span>
+                        </h3>
+                    </div>
 
-            <div class="bg-ls-gray rounded-lg p-6">
-              <h4 class="text-lg font-semibold ls-red mb-3" data-i18n="s3.step3.h">Étape 3 — Intégration terrain</h4>
-              <ul class="ls-gray space-y-1">
-                <li data-i18n="s3.step3.l1">• Chaque pro teste ≥ 1 activité / domaine avec ses jeunes</li>
-                <li data-i18n="s3.step3.l2">• Sessions de feedbacks</li>
-                <li data-i18n="s3.step3.l3">• Tutorat visio de suivi à 4–6 semaines : partages & ajustements</li>
-                <li data-i18n="s3.step3.l4">• Restitution finale (1h) : ce qu'on garde / ce qu'on adapte</li>
-                <li data-i18n="s3.step3.l5">• Preuves : reporting</li>
-              </ul>
+                    <div onclick="showPage('pedagogical')" class="menu-card bg-gradient-to-br from-ls4you-yellow to-yellow-500 text-gray-800 p-6 rounded-2xl cursor-pointer transform hover:scale-105 transition-all shadow-lg">
+                        <div class="text-4xl mb-4">📚</div>
+                        <h3 class="font-glacial font-bold text-lg mb-2">
+                            <span class="en">Pedagogical Principles</span>
+                            <span class="fr hidden">Principes Pédagogiques</span>
+                        </h3>
+                    </div>
+
+                    <div onclick="showPage('implementation')" class="menu-card bg-gradient-to-br from-ls4you-turquoise to-cyan-500 text-white p-6 rounded-2xl cursor-pointer transform hover:scale-105 transition-all shadow-lg">
+                        <div class="text-4xl mb-4">🛠️</div>
+                        <h3 class="font-glacial font-bold text-lg mb-2">
+                            <span class="en">Implementation</span>
+                            <span class="fr hidden">Mise en œuvre</span>
+                        </h3>
+                    </div>
+
+                    <div onclick="showPage('contents')" class="menu-card bg-gradient-to-br from-purple-500 to-purple-600 text-white p-6 rounded-2xl cursor-pointer transform hover:scale-105 transition-all shadow-lg">
+                        <div class="text-4xl mb-4">📦</div>
+                        <h3 class="font-glacial font-bold text-lg mb-2">
+                            <span class="en">Minimum Contents</span>
+                            <span class="fr hidden">Contenus Minimums</span>
+                        </h3>
+                    </div>
+
+                    <div onclick="showPage('roles')" class="menu-card bg-gradient-to-br from-blue-500 to-blue-600 text-white p-6 rounded-2xl cursor-pointer transform hover:scale-105 transition-all shadow-lg">
+                        <div class="text-4xl mb-4">👥</div>
+                        <h3 class="font-glacial font-bold text-lg mb-2">
+                            <span class="en">Roles & Responsibilities</span>
+                            <span class="fr hidden">Rôles et Responsabilités</span>
+                        </h3>
+                    </div>
+
+                    <div onclick="showPage('monitoring')" class="menu-card bg-gradient-to-br from-indigo-500 to-indigo-600 text-white p-6 rounded-2xl cursor-pointer transform hover:scale-105 transition-all shadow-lg">
+                        <div class="text-4xl mb-4">📊</div>
+                        <h3 class="font-glacial font-bold text-lg mb-2">
+                            <span class="en">Monitoring & Evaluation</span>
+                            <span class="fr hidden">Suivi et Évaluation</span>
+                        </h3>
+                    </div>
+
+                    <div onclick="showPage('timeline')" class="menu-card bg-gradient-to-br from-orange-500 to-orange-600 text-white p-6 rounded-2xl cursor-pointer transform hover:scale-105 transition-all shadow-lg">
+                        <div class="text-4xl mb-4">⏳</div>
+                        <h3 class="font-glacial font-bold text-lg mb-2">
+                            <span class="en">Timeline</span>
+                            <span class="fr hidden">Calendrier Exemple</span>
+                        </h3>
+                    </div>
+
+                    <div onclick="showPage('annexes')" class="menu-card bg-gradient-to-br from-gray-600 to-gray-700 text-white p-6 rounded-2xl cursor-pointer transform hover:scale-105 transition-all shadow-lg">
+                        <div class="text-4xl mb-4">📎</div>
+                        <h3 class="font-glacial font-bold text-lg mb-2">
+                            <span class="en">Annexes</span>
+                            <span class="fr hidden">Annexes</span>
+                        </h3>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button onclick="showPage('menu')" class="bg-ls4you-yellow text-gray-800 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-opacity-90 transition-all transform hover:scale-105">
+                        <span class="en">View Full Menu →</span>
+                        <span class="fr hidden">Voir le Menu Complet →</span>
+                    </button>
+                </div>
             </div>
-          </div>
         </div>
 
-        <div>
-          <h3 class="text-xl font-semibold ls-red mb-4" data-i18n="s3.formats.title">Formats possibles</h3>
-          <div class="grid md:grid-cols-3 gap-4">
-            <div class="bg-ls-gray rounded-lg p-4 border-2 border-ls-turquoise">
-              <h4 class="font-semibold ls-red mb-2" data-i18n="s3.formats.f1.h">Format 1 – Intensif</h4>
-              <p class="ls-gray text-sm" data-i18n="s3.formats.f1.p">Présentiel condensé en 2 jours. Tutorat optionnel.</p>
+        <!-- Menu Page -->
+        <div id="menu" class="page hidden">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl font-glacial font-bold text-ls4you-black mb-4">
+                    <span class="en">Training Guidelines Menu</span>
+                    <span class="fr hidden">Menu du Guide de Formation</span>
+                </h1>
             </div>
-            <div class="bg-ls-gray rounded-lg p-4 border-2 border-ls-turquoise">
-              <h4 class="font-semibold ls-red mb-2" data-i18n="s3.formats.f2.h">Format 2 – Hybride</h4>
-              <p class="ls-gray text-sm" data-i18n="s3.formats.f2.p">E-learning + présentiel + restitution. Tutorat optionnel.</p>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                <!-- Menu Items -->
+                <div onclick="showPage('objectives')" class="menu-card bg-gradient-to-br from-ls4you-red to-red-700 text-white p-6 rounded-2xl cursor-pointer transform hover:scale-105 transition-all shadow-lg">
+                    <div class="text-4xl mb-4">🎯</div>
+                    <h3 class="font-glacial font-bold text-lg mb-2">
+                        <span class="en">Objectives & Scope</span>
+                        <span class="fr hidden">Objectifs et Périmètre</span>
+                    </h3>
+                </div>
+
+                <div onclick="showPage('pedagogical')" class="menu-card bg-gradient-to-br from-ls4you-yellow to-yellow-400 text-ls4you-black p-6 rounded-2xl cursor-pointer transform hover:scale-105 transition-all shadow-lg">
+                    <div class="text-4xl mb-4">📚</div>
+                    <h3 class="font-glacial font-bold text-lg mb-2">
+                        <span class="en">Pedagogical Principles</span>
+                        <span class="fr hidden">Principes Pédagogiques</span>
+                    </h3>
+                </div>
+
+                <div onclick="showPage('implementation')" class="menu-card bg-gradient-to-br from-ls4you-turquoise to-cyan-600 text-white p-6 rounded-2xl cursor-pointer transform hover:scale-105 transition-all shadow-lg">
+                    <div class="text-4xl mb-4">🛠️</div>
+                    <h3 class="font-glacial font-bold text-lg mb-2">
+                        <span class="en">Implementation</span>
+                        <span class="fr hidden">Mise en œuvre</span>
+                    </h3>
+                </div>
+
+                <div onclick="showPage('contents')" class="menu-card bg-gradient-to-br from-ls4you-red to-red-700 text-white p-6 rounded-2xl cursor-pointer transform hover:scale-105 transition-all shadow-lg">
+                    <div class="text-4xl mb-4">📦</div>
+                    <h3 class="font-glacial font-bold text-lg mb-2">
+                        <span class="en">Minimum Contents</span>
+                        <span class="fr hidden">Contenus Minimums</span>
+                    </h3>
+                </div>
+
+                <div onclick="showPage('roles')" class="menu-card bg-gradient-to-br from-ls4you-turquoise to-cyan-600 text-white p-6 rounded-2xl cursor-pointer transform hover:scale-105 transition-all shadow-lg">
+                    <div class="text-4xl mb-4">👥</div>
+                    <h3 class="font-glacial font-bold text-lg mb-2">
+                        <span class="en">Roles & Responsibilities</span>
+                        <span class="fr hidden">Rôles et Responsabilités</span>
+                    </h3>
+                </div>
+
+                <div onclick="showPage('monitoring')" class="menu-card bg-gradient-to-br from-ls4you-yellow to-yellow-400 text-ls4you-black p-6 rounded-2xl cursor-pointer transform hover:scale-105 transition-all shadow-lg">
+                    <div class="text-4xl mb-4">📊</div>
+                    <h3 class="font-glacial font-bold text-lg mb-2">
+                        <span class="en">Monitoring & Evaluation</span>
+                        <span class="fr hidden">Suivi et Évaluation</span>
+                    </h3>
+                </div>
+
+                <div onclick="showPage('timeline')" class="menu-card bg-gradient-to-br from-ls4you-red to-red-700 text-white p-6 rounded-2xl cursor-pointer transform hover:scale-105 transition-all shadow-lg">
+                    <div class="text-4xl mb-4">⏳</div>
+                    <h3 class="font-glacial font-bold text-lg mb-2">
+                        <span class="en">Timeline</span>
+                        <span class="fr hidden">Calendrier Exemple</span>
+                    </h3>
+                </div>
+
+                <div onclick="showPage('annexes')" class="menu-card bg-gradient-to-br from-ls4you-turquoise to-cyan-600 text-white p-6 rounded-2xl cursor-pointer transform hover:scale-105 transition-all shadow-lg">
+                    <div class="text-4xl mb-4">📎</div>
+                    <h3 class="font-glacial font-bold text-lg mb-2">
+                        <span class="en">Annexes</span>
+                        <span class="fr hidden">Annexes</span>
+                    </h3>
+                </div>
             </div>
-            <div class="bg-ls-gray rounded-lg p-4 border-2 border-ls-turquoise">
-              <h4 class="font-semibold ls-red mb-2" data-i18n="s3.formats.f3.h">Format 3 – Progressif tutoré</h4>
-              <p class="ls-gray text-sm" data-i18n="s3.formats.f3.p">2 demi-journées collectives + tutorat intégré par pros formés / WP3.</p>
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
 
-    <!-- SECTION 4 -->
-    <div class="content-panel" id="section4">
-      <div class="bg-white rounded-xl shadow-lg p-8 mb-6 border-l-4 border-ls-turquoise">
-        <h2 class="text-2xl font-bold ls-red mb-6" data-i18n="s4.title">4. Contenus Minimum Requis</h2>
+        <!-- Content Pages -->
+        <!-- Objectives Page -->
+        <div id="objectives" class="page hidden">
+            <div class="max-w-6xl mx-auto">
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <div class="flex items-center mb-8">
+                        <div class="w-16 h-16 bg-gradient-to-br from-ls4you-red to-red-600 rounded-2xl flex items-center justify-center text-white text-2xl mr-6">🎯</div>
+                        <h1 class="text-3xl font-glacial font-bold text-ls4you-black">
+                            <span class="en">Objectives & Scope</span>
+                            <span class="fr hidden">Objectifs et Périmètre</span>
+                        </h1>
+                    </div>
 
-        <div class="mb-8">
-          <h3 class="text-xl font-semibold ls-red mb-4" data-i18n="s4.m1.title">4.1 Modules communs</h3>
-          <div class="grid md:grid-cols-2 gap-4">
-            <div class="bg-ls-gray rounded-lg p-4">
-              <ul class="ls-gray space-y-2">
-                <li data-i18n="s4.m1.l1">• Découverte LS4YOU & référentiel</li>
-                <li data-i18n="s4.m1.l2">• Outils & usages : quiz, grilles, plateforme</li>
-              </ul>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="en">
+                            <h2 class="text-xl font-bold text-ls4you-red mb-4">Overall Objective</h2>
+                            <p class="text-gray-700 mb-6 leading-relaxed">
+                                The overall objective of the LS4YOU training is to build the capacities of adult educators and youth professionals to work on Life Skills with young people.
+                            </p>
+
+                            <h2 class="text-xl font-bold text-ls4you-red mb-4">Specific Objectives</h2>
+                            <ul class="space-y-3 text-gray-700">
+                                <li class="flex items-start"><span class="text-ls4you-red mr-2">•</span>Provide professionals with the means to effectively use LS4YOU tools and methods.</li>
+                                <li class="flex items-start"><span class="text-ls4you-red mr-2">•</span>Create a network of youth workers and counsellors around LS4YOU, fostering a shared language and practice.</li>
+                                <li class="flex items-start"><span class="text-ls4you-red mr-2">•</span>Encourage exchange of practices and strengthen cooperation across borders.</li>
+                                <li class="flex items-start"><span class="text-ls4you-red mr-2">•</span>Ensure coherent implementation across Europe while allowing flexibility for local adaptation.</li>
+                                <li class="flex items-start"><span class="text-ls4you-red mr-2">•</span>Anchor LS4YOU sustainably into everyday practices.</li>
+                            </ul>
+                        </div>
+
+                        <div class="fr hidden">
+                            <h2 class="text-xl font-bold text-ls4you-red mb-4">Objectif Global</h2>
+                            <p class="text-gray-700 mb-6 leading-relaxed">
+                                L'objectif global de la formation LS4YOU est de renforcer les capacités des éducateurs d'adultes et des professionnels jeunesse à travailler les Life Skills avec les jeunes.
+                            </p>
+
+                            <h2 class="text-xl font-bold text-ls4you-red mb-4">Objectifs Spécifiques</h2>
+                            <ul class="space-y-3 text-gray-700">
+                                <li class="flex items-start"><span class="text-ls4you-red mr-2">•</span>Donner aux professionnels les moyens d'utiliser efficacement les outils et méthodes LS4YOU.</li>
+                                <li class="flex items-start"><span class="text-ls4you-red mr-2">•</span>Créer un réseau de conseillers et d'animateurs autour de LS4YOU, favorisant un langage et une pratique partagés.</li>
+                                <li class="flex items-start"><span class="text-ls4you-red mr-2">•</span>Encourager les échanges de pratiques et renforcer la coopération transfrontalière.</li>
+                                <li class="flex items-start"><span class="text-ls4you-red mr-2">•</span>Garantir une mise en œuvre cohérente en Europe tout en permettant une adaptation locale.</li>
+                                <li class="flex items-start"><span class="text-ls4you-red mr-2">•</span>Ancrer LS4YOU durablement dans les pratiques quotidiennes.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="bg-ls-gray rounded-lg p-4">
-              <ul class="ls-gray space-y-2">
-                <li data-i18n="s4.m1.l3">• Méthode d'accompagnement : Identifier → Mesurer → Mettre en œuvre</li>
-                <li data-i18n="s4.m1.l4">• Intégration locale : articulation avec dispositifs nationaux/locaux</li>
-              </ul>
-            </div>
-          </div>
         </div>
 
-        <div>
-          <h3 class="text-xl font-semibold ls-red mb-4" data-i18n="s4.m2.title">4.2 Activités à tester (minimum 2/domaine)</h3>
+        <!-- Pedagogical Principles Page -->
+        <div id="pedagogical" class="page hidden">
+            <div class="max-w-6xl mx-auto">
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <div class="flex items-center mb-8">
+                        <div class="w-16 h-16 bg-gradient-to-br from-ls4you-yellow to-yellow-500 rounded-2xl flex items-center justify-center text-gray-800 text-2xl mr-6">📚</div>
+                        <h1 class="text-3xl font-bold text-gray-800">
+                            <span class="en">Pedagogical Principles</span>
+                            <span class="fr hidden">Principes Pédagogiques</span>
+                        </h1>
+                    </div>
 
-          <div class="space-y-6">
-            <div class="bg-ls-gray rounded-lg p-6">
-              <h4 class="text-lg font-semibold ls-red mb-3" data-i18n="s4.dom1.h">🎭 Personnalité</h4>
-              <div class="grid md:grid-cols-2 gap-4">
-                <div>
-                  <p class="text-sm font-medium ls-turquoise mb-2" data-i18n="s4.dom.activities">Activités proposées :</p>
-                  <ul class="ls-gray text-sm space-y-1">
-                    <li data-i18n="s4.dom1.l1">• Test des 16 Personnalités</li>
-                    <li data-i18n="s4.dom1.l2">• Faire valoir un point</li>
-                    <li data-i18n="s4.dom1.l3">• Image de soi vs image publique</li>
-                    <li data-i18n="s4.dom1.l4">• Matching, Recevoir du Feedback</li>
-                    <li data-i18n="s4.dom1.l5">• Objectifs ABC, Liste des valeurs</li>
-                  </ul>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="en">
+                            <h2 class="text-xl font-bold text-ls4you-yellow mb-4">Four Key Pedagogical Principles</h2>
+                            <div class="space-y-4">
+                                <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-ls4you-yellow">
+                                    <h3 class="font-semibold text-gray-800 mb-2">Experiential Pedagogy</h3>
+                                    <p class="text-gray-600">Participants experience the activities as if they were young people themselves, which fosters deeper appropriation and empathy.</p>
+                                </div>
+                                <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-ls4you-yellow">
+                                    <h3 class="font-semibold text-gray-800 mb-2">Co-construction</h3>
+                                    <p class="text-gray-600">Collective work is central, encouraging active participation, peer feedback, and shared ownership of the tools.</p>
+                                </div>
+                                <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-ls4you-yellow">
+                                    <h3 class="font-semibold text-gray-800 mb-2">Hybrid Learning</h3>
+                                    <p class="text-gray-600">Combining preparatory e-learning, face-to-face sessions, and field experimentation ensures both flexibility and continuity.</p>
+                                </div>
+                                <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-ls4you-yellow">
+                                    <h3 class="font-semibold text-gray-800 mb-2">Durability</h3>
+                                    <p class="text-gray-600">Each professional leaves with a concrete action plan and follow-up, enabling long-term integration of LS4YOU into daily practice.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fr hidden">
+                            <h2 class="text-xl font-bold text-ls4you-yellow mb-4">Quatre Principes Pédagogiques Clés</h2>
+                            <div class="space-y-4">
+                                <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-ls4you-yellow">
+                                    <h3 class="font-semibold text-gray-800 mb-2">Pédagogie Expérientielle</h3>
+                                    <p class="text-gray-600">Les participants vivent les activités comme s'ils étaient eux-mêmes des jeunes, ce qui favorise une appropriation plus profonde et l'empathie.</p>
+                                </div>
+                                <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-ls4you-yellow">
+                                    <h3 class="font-semibold text-gray-800 mb-2">Co-construction</h3>
+                                    <p class="text-gray-600">Le travail collectif est central, favorisant la participation active, les retours entre pairs et l'appropriation partagée des outils.</p>
+                                </div>
+                                <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-ls4you-yellow">
+                                    <h3 class="font-semibold text-gray-800 mb-2">Apprentissage Hybride</h3>
+                                    <p class="text-gray-600">Combiner e-learning préparatoire, séances en présentiel et expérimentations de terrain assure à la fois flexibilité et continuité.</p>
+                                </div>
+                                <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-ls4you-yellow">
+                                    <h3 class="font-semibold text-gray-800 mb-2">Durabilité</h3>
+                                    <p class="text-gray-600">Chaque professionnel repart avec un plan d'action concret et un suivi, permettant l'intégration à long terme de LS4YOU dans la pratique quotidienne.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                  <p class="text-sm font-medium ls-turquoise mb-2" data-i18n="s4.dom.choice">Choix du partenaire :</p>
-                  <div class="space-y-2">
-                    <label class="flex items-center"><input type="checkbox" class="mr-2 accent-yellow-400"/><span class="text-sm ls-gray" data-i18n="s4.choice1">Activité 1</span></label>
-                    <label class="flex items-center"><input type="checkbox" class="mr-2 accent-yellow-400"/><span class="text-sm ls-gray" data-i18n="s4.choice2">Activité 2</span></label>
-                  </div>
-                </div>
-              </div>
             </div>
+        </div>
 
-            <div class="bg-ls-gray rounded-lg p-6">
-              <h4 class="text-lg font-semibold ls-red mb-3" data-i18n="s4.dom2.h">🔗 Auto-promotion</h4>
-              <div class="grid md:grid-cols-2 gap-4">
-                <div>
-                  <p class="text-sm font-medium ls-turquoise mb-2" data-i18n="s4.dom.activities">Activités proposées :</p>
-                  <ul class="ls-gray text-sm space-y-1">
-                    <li data-i18n="s4.dom2.l1">• Moi au sommet de mon art</li>
-                    <li data-i18n="s4.dom2.l2">• Pitch vidéo</li>
-                    <li data-i18n="s4.dom2.l3">• Parcours ressources et compétences</li>
-                    <li data-i18n="s4.dom2.l4">• Image de marque personnelle</li>
-                    <li data-i18n="s4.dom2.l5">• Concevez votre zine, Jeu de simulation</li>
-                  </ul>
+        <!-- Implementation Page -->
+        <div id="implementation" class="page hidden">
+            <div class="max-w-6xl mx-auto">
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <div class="flex items-center mb-8">
+                        <div class="w-16 h-16 bg-gradient-to-br from-ls4you-turquoise to-cyan-500 rounded-2xl flex items-center justify-center text-white text-2xl mr-6">🛠️</div>
+                        <h1 class="text-3xl font-bold text-gray-800">
+                            <span class="en">Implementation</span>
+                            <span class="fr hidden">Mise en œuvre</span>
+                        </h1>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="en">
+                            <p class="text-gray-700 mb-6 leading-relaxed">
+                                The LS4YOU training is deployed through a series of structured steps, from preparation to field integration. This progression can take different forms – intensive, hybrid, or progressive – but always aims to ensure full and consistent appropriation by professionals.
+                            </p>
+
+                            <h2 class="text-xl font-bold text-ls4you-turquoise mb-4">Implementation Steps</h2>
+                            <div class="space-y-6">
+                                <div class="bg-turquoise-50 p-4 rounded-lg border-l-4 border-ls4you-turquoise">
+                                    <h3 class="font-bold text-lg text-ls4you-turquoise mb-2">Step 1 — Preparation (D-10 to D-5)</h3>
+                                    <ul class="text-gray-700 space-y-1">
+                                        <li>• Select participants</li>
+                                        <li>• Send starter kit (2–3 pages: project presentation, guidebook, e-learning if applicable)</li>
+                                        <li>• Create communication channel (Teams, Slack, WhatsApp)</li>
+                                        <li>• Prepare logistics: flexible room, flipchart, post-its, platform access</li>
+                                        <li><strong>Deliverables:</strong> participant list, attendance sheet ready, image rights consent forms</li>
+                                    </ul>
+                                </div>
+
+                                <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-ls4you-yellow">
+                                    <h3 class="font-bold text-lg text-yellow-600 mb-2">Step 2 — E-learning (1 week before, if chosen format)</h3>
+                                    <ul class="text-gray-700 space-y-1">
+                                        <li>• Presentation of the LS4YOU framework (4 domains)</li>
+                                        <li>• Professional self-assessment using the LS4YOU grid</li>
+                                        <li>• Short validation quiz and completion capture</li>
+                                    </ul>
+                                </div>
+
+                                <div class="bg-red-50 p-4 rounded-lg border-l-4 border-ls4you-red">
+                                    <h3 class="font-bold text-lg text-ls4you-red mb-2">Step 4 — Face-to-face training</h3>
+                                    <div class="space-y-3">
+                                        <div>
+                                            <h4 class="font-semibold text-gray-800">Day 1 – Appropriation</h4>
+                                            <ul class="text-gray-700 text-sm space-y-1 ml-4">
+                                                <li>• Icebreaker "skills line"</li>
+                                                <li>• Discovery of tools in rotating workshops</li>
+                                                <li>• Role-playing counsellor ↔ young person</li>
+                                                <li>• Co-design of an LS4YOU-type session</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold text-gray-800">Day 2 – Practice</h4>
+                                            <ul class="text-gray-700 text-sm space-y-1 ml-4">
+                                                <li>• Work in 4 sub-groups (one per domain)</li>
+                                                <li>• Test at least two activities per domain</li>
+                                                <li>• Cross-presentation (poster + 5 min/group)</li>
+                                                <li>• Development of individual and team action plan</li>
+                                            </ul>
+                                        </div>
+                                        <p class="text-sm text-gray-600"><strong>Evidence:</strong> photos (if agreed), produced materials, signed attendance sheet</p>
+                                    </div>
+                                </div>
+
+                                <div class="bg-cyan-50 p-4 rounded-lg border-l-4 border-cyan-500">
+                                    <h3 class="font-bold text-lg text-cyan-600 mb-2">Step 5 — Field integration</h3>
+                                    <ul class="text-gray-700 space-y-1">
+                                        <li>• Each professional tests at least one activity per domain with their young people</li>
+                                        <li>• Internal or collective feedback sessions</li>
+                                        <li>• Online tutoring session 4–6 weeks later: sharing and adjustments</li>
+                                        <li>• Final restitution (1h): what to keep / what to adapt</li>
+                                        <li><strong>Evidence:</strong> mini-reporting, activity traces, feedback from young people</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <h2 class="text-xl font-bold text-ls4you-turquoise mb-4 mt-8">Possible Formats</h2>
+                            <div class="space-y-3">
+                                <div class="bg-blue-50 p-3 rounded-lg">
+                                    <h4 class="font-semibold text-blue-800">Format 1 – Intensive</h4>
+                                    <p class="text-blue-600 text-sm">Face-to-face condensed into 2 consecutive days; tutoring optional</p>
+                                </div>
+                                <div class="bg-purple-50 p-3 rounded-lg">
+                                    <h4 class="font-semibold text-purple-800">Format 2 – Hybrid</h4>
+                                    <p class="text-purple-600 text-sm">Preparatory e-learning + face-to-face (1 day or 2 half-days) + final restitution; tutoring optional</p>
+                                </div>
+                                <div class="bg-indigo-50 p-3 rounded-lg">
+                                    <h4 class="font-semibold text-indigo-800">Format 3 – Progressive with tutoring</h4>
+                                    <p class="text-indigo-600 text-sm">2 collective half-days spread out + systematic tutoring (1 monthly session over 3 months)</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fr hidden">
+                            <p class="text-gray-700 mb-6 leading-relaxed">
+                                La formation LS4YOU se déploie à travers une série d'étapes structurées, de la préparation à l'intégration sur le terrain. Cette progression peut prendre différentes formes – intensive, hybride ou progressive – mais vise toujours à garantir une appropriation complète et cohérente par les professionnels.
+                            </p>
+
+                            <h2 class="text-xl font-bold text-ls4you-turquoise mb-4">Étapes de Mise en œuvre</h2>
+                            <div class="space-y-6">
+                                <div class="bg-turquoise-50 p-4 rounded-lg border-l-4 border-ls4you-turquoise">
+                                    <h3 class="font-bold text-lg text-ls4you-turquoise mb-2">Étape 1 — Préparation (J-10 à J-5)</h3>
+                                    <ul class="text-gray-700 space-y-1">
+                                        <li>• Sélectionner les participants</li>
+                                        <li>• Envoyer un kit de démarrage (2–3 pages : présentation du projet, guidebook, e-learning si applicable)</li>
+                                        <li>• Créer un canal de communication (Teams, Slack, WhatsApp)</li>
+                                        <li>• Préparer la logistique : salle modulable, paperboard, post-its, accès plateforme</li>
+                                        <li><strong>Livrables :</strong> liste des participants, feuille d'émargement prête, formulaires droits à l'image</li>
+                                    </ul>
+                                </div>
+
+                                <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-ls4you-yellow">
+                                    <h3 class="font-bold text-lg text-yellow-600 mb-2">Étape 2 — E-learning (1 semaine avant, si format choisi)</h3>
+                                    <ul class="text-gray-700 space-y-1">
+                                        <li>• Présentation du cadre LS4YOU (4 domaines)</li>
+                                        <li>• Auto-évaluation professionnelle avec la grille LS4YOU</li>
+                                        <li>• Quiz de validation et capture de complétion</li>
+                                    </ul>
+                                </div>
+
+                                <div class="bg-red-50 p-4 rounded-lg border-l-4 border-ls4you-red">
+                                    <h3 class="font-bold text-lg text-ls4you-red mb-2">Étape 4 — Formation présentielle</h3>
+                                    <div class="space-y-3">
+                                        <div>
+                                            <h4 class="font-semibold text-gray-800">Jour 1 – Appropriation</h4>
+                                            <ul class="text-gray-700 text-sm space-y-1 ml-4">
+                                                <li>• Icebreaker « ligne des compétences »</li>
+                                                <li>• Découverte des outils en ateliers tournants</li>
+                                                <li>• Jeux de rôle conseiller ↔ jeune</li>
+                                                <li>• Co-conception d'une séance type LS4YOU</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold text-gray-800">Jour 2 – Mise en pratique</h4>
+                                            <ul class="text-gray-700 text-sm space-y-1 ml-4">
+                                                <li>• Travail en 4 sous-groupes (un par domaine)</li>
+                                                <li>• Tester au moins deux activités par domaine</li>
+                                                <li>• Restitution croisée (poster + 5 min/groupe)</li>
+                                                <li>• Élaboration d'un plan d'action individuel et collectif</li>
+                                            </ul>
+                                        </div>
+                                        <p class="text-sm text-gray-600"><strong>Preuves :</strong> photos (si accord), productions, feuille d'émargement signée</p>
+                                    </div>
+                                </div>
+
+                                <div class="bg-cyan-50 p-4 rounded-lg border-l-4 border-cyan-500">
+                                    <h3 class="font-bold text-lg text-cyan-600 mb-2">Étape 5 — Intégration terrain</h3>
+                                    <ul class="text-gray-700 space-y-1">
+                                        <li>• Chaque professionnel teste au moins une activité par domaine avec ses jeunes</li>
+                                        <li>• Séances de retour interne ou collectif</li>
+                                        <li>• Tutorat en ligne 4–6 semaines après : partage et ajustements</li>
+                                        <li>• Restitution finale (1h) : ce qu'on garde / ce qu'on adapte</li>
+                                        <li><strong>Preuves :</strong> mini-rapport, traces d'activités, retours de jeunes</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <h2 class="text-xl font-bold text-ls4you-turquoise mb-4 mt-8">Formats Possibles</h2>
+                            <div class="space-y-3">
+                                <div class="bg-blue-50 p-3 rounded-lg">
+                                    <h4 class="font-semibold text-blue-800">Format 1 – Intensif</h4>
+                                    <p class="text-blue-600 text-sm">2 jours consécutifs en présentiel ; tutorat optionnel</p>
+                                </div>
+                                <div class="bg-purple-50 p-3 rounded-lg">
+                                    <h4 class="font-semibold text-purple-800">Format 2 – Hybride</h4>
+                                    <p class="text-purple-600 text-sm">E-learning préparatoire + présentiel (1 jour ou 2 demi-journées) + restitution finale ; tutorat optionnel</p>
+                                </div>
+                                <div class="bg-indigo-50 p-3 rounded-lg">
+                                    <h4 class="font-semibold text-indigo-800">Format 3 – Progressif avec tutorat</h4>
+                                    <p class="text-indigo-600 text-sm">2 demi-journées espacées + tutorat systématique (1 séance/mois x3)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                  <p class="text-sm font-medium ls-turquoise mb-2" data-i18n="s4.dom.choice">Choix du partenaire :</p>
-                  <div class="space-y-2">
-                    <label class="flex items-center"><input type="checkbox" class="mr-2 accent-yellow-400"/><span class="text-sm ls-gray" data-i18n="s4.choice1">Activité 1</span></label>
-                    <label class="flex items-center"><input type="checkbox" class="mr-2 accent-yellow-400"/><span class="text-sm ls-gray" data-i18n="s4.choice2">Activité 2</span></label>
-                  </div>
-                </div>
-              </div>
             </div>
+        </div>
 
-            <div class="bg-ls-gray rounded-lg p-6">
-              <h4 class="text-lg font-semibold ls-red mb-3" data-i18n="s4.dom3.h">😌 Bien-être</h4>
-              <div class="grid md:grid-cols-2 gap-4">
-                <div>
-                  <p class="text-sm font-medium ls-turquoise mb-2" data-i18n="s4.dom.activities">Activités proposées :</p>
-                  <ul class="ls-gray text-sm space-y-1">
-                    <li data-i18n="s4.dom3.l1">• Roue des émotions, 3 bonnes choses</li>
-                    <li data-i18n="s4.dom3.l2">• Réseau de soutien social</li>
-                    <li data-i18n="s4.dom3.l3">• Évaluation des besoins, Stressomètre</li>
-                    <li data-i18n="s4.dom3.l4">• Prioriser ses routines</li>
-                    <li data-i18n="s4.dom3.l5">• Arbre de la Résilience, Portfolio poser ses limites</li>
-                  </ul>
+        <!-- Contents Page -->
+        <div id="contents" class="page hidden">
+            <div class="max-w-6xl mx-auto">
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <div class="flex items-center mb-8">
+                        <div class="w-16 h-16 bg-gradient-to-br from-ls4you-red to-red-700 rounded-2xl flex items-center justify-center text-white text-2xl mr-6">📦</div>
+                        <h1 class="text-3xl font-bold text-gray-800">
+                            <span class="en">Minimum Contents</span>
+                            <span class="fr hidden">Contenus Minimums</span>
+                        </h1>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="en">
+                            <p class="text-gray-700 mb-6 leading-relaxed">
+                                The minimum contents define the essential elements that must be covered to ensure the coherence of LS4YOU training. They guarantee that all professionals acquire a shared foundation and experiment with the project's fundamentals.
+                            </p>
+
+                            <h2 class="text-xl font-bold text-ls4you-red mb-4">Common Modules</h2>
+                            <div class="space-y-4">
+                                <div class="bg-red-50 p-4 rounded-lg border-l-4 border-ls4you-red">
+                                    <h3 class="font-semibold text-gray-800 mb-2">Introduction to LS4YOU</h3>
+                                    <p class="text-gray-600">Introduction to the LS4YOU project and its methodology.</p>
+                                </div>
+                                <div class="bg-cyan-50 p-4 rounded-lg border-l-4 border-ls4you-turquoise">
+                                    <h3 class="font-semibold text-gray-800 mb-2">Tools Presentation</h3>
+                                    <p class="text-gray-600">Presentation and use of the tools (quiz, grids, platform).</p>
+                                </div>
+                                <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-ls4you-yellow">
+                                    <h3 class="font-semibold text-gray-800 mb-2">Four-Step Approach</h3>
+                                    <p class="text-gray-600">The four-step approach: Identify → Assess → Experiment → Integrate.</p>
+                                </div>
+                            </div>
+
+                            <h2 class="text-xl font-bold text-ls4you-turquoise mb-4 mt-6">Activities to be Tested</h2>
+                            <div class="bg-cyan-50 p-4 rounded-lg border-l-4 border-ls4you-turquoise">
+                                <ul class="text-gray-700 space-y-2">
+                                    <li>• At least two activities per domain must be experimented with by each participant.</li>
+                                    <li>• These activities should be adapted to the context and specific target group.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="fr hidden">
+                            <p class="text-gray-700 mb-6 leading-relaxed">
+                                Les contenus minimums définissent les éléments essentiels qui doivent être couverts pour assurer la cohérence de la formation LS4YOU. Ils garantissent que tous les professionnels acquièrent une base commune et expérimentent les fondamentaux du projet.
+                            </p>
+
+                            <h2 class="text-xl font-bold text-ls4you-red mb-4">Modules Communs</h2>
+                            <div class="space-y-4">
+                                <div class="bg-red-50 p-4 rounded-lg border-l-4 border-ls4you-red">
+                                    <h3 class="font-semibold text-gray-800 mb-2">Introduction à LS4YOU</h3>
+                                    <p class="text-gray-600">Introduction au projet LS4YOU et à sa méthodologie.</p>
+                                </div>
+                                <div class="bg-cyan-50 p-4 rounded-lg border-l-4 border-ls4you-turquoise">
+                                    <h3 class="font-semibold text-gray-800 mb-2">Présentation des Outils</h3>
+                                    <p class="text-gray-600">Présentation et utilisation des outils (quiz, grilles, plateforme).</p>
+                                </div>
+                                <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-ls4you-yellow">
+                                    <h3 class="font-semibold text-gray-800 mb-2">Démarche en Quatre Étapes</h3>
+                                    <p class="text-gray-600">La démarche en quatre étapes : Identifier → Évaluer → Expérimenter → Intégrer.</p>
+                                </div>
+                            </div>
+
+                            <h2 class="text-xl font-bold text-ls4you-turquoise mb-4 mt-6">Activités à Tester</h2>
+                            <div class="bg-cyan-50 p-4 rounded-lg border-l-4 border-ls4you-turquoise">
+                                <ul class="text-gray-700 space-y-2">
+                                    <li>• Chaque participant doit expérimenter au moins deux activités par domaine.</li>
+                                    <li>• Ces activités doivent être adaptées au contexte et au public cible.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                  <p class="text-sm font-medium ls-turquoise mb-2" data-i18n="s4.dom.choice">Choix du partenaire :</p>
-                  <div class="space-y-2">
-                    <label class="flex items-center"><input type="checkbox" class="mr-2 accent-yellow-400"/><span class="text-sm ls-gray" data-i18n="s4.choice1">Activité 1</span></label>
-                    <label class="flex items-center"><input type="checkbox" class="mr-2 accent-yellow-400"/><span class="text-sm ls-gray" data-i18n="s4.choice2">Activité 2</span></label>
-                  </div>
-                </div>
-              </div>
             </div>
+        </div>
 
-            <div class="bg-ls-gray rounded-lg p-6">
-              <h4 class="text-lg font-semibold ls-red mb-3" data-i18n="s4.dom4.h">💰 Finances & Ressources</h4>
-              <div class="grid md:grid-cols-2 gap-4">
-                <div>
-                  <p class="text-sm font-medium ls-turquoise mb-2" data-i18n="s4.dom.activities">Activités proposées :</p>
-                  <ul class="ls-gray text-sm space-y-1">
-                    <li data-i18n="s4.dom4.l1">• Défis de la vie réelle</li>
-                    <li data-i18n="s4.dom4.l2">• Du salaire à la poche</li>
-                    <li data-i18n="s4.dom4.l3">• SMART, Études de cas</li>
-                    <li data-i18n="s4.dom4.l4">• Ikigai – Concevez-vous</li>
-                  </ul>
+        <!-- Roles Page -->
+        <div id="roles" class="page hidden">
+            <div class="max-w-6xl mx-auto">
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <div class="flex items-center mb-8">
+                        <div class="w-16 h-16 bg-gradient-to-br from-ls4you-turquoise to-cyan-600 rounded-2xl flex items-center justify-center text-white text-2xl mr-6">👥</div>
+                        <h1 class="text-3xl font-bold text-gray-800">
+                            <span class="en">Roles & Responsibilities</span>
+                            <span class="fr hidden">Rôles et Responsabilités</span>
+                        </h1>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="en">
+                            <p class="text-gray-700 mb-6 leading-relaxed">
+                                The successful implementation of LS4YOU depends on the complementarity of actors. Each stakeholder has a specific role to play, ensuring the coherence, quality, and sustainability of the training.
+                            </p>
+
+                            <div class="space-y-6">
+                                <div class="bg-red-50 p-4 rounded-lg border-l-4 border-ls4you-red">
+                                    <h3 class="font-bold text-lg text-ls4you-red mb-2">National Partners</h3>
+                                    <p class="text-gray-600 text-sm mb-2">Ensure local organization and adaptation, provide institutional anchoring, collect evidence, and guarantee reporting.</p>
+                                </div>
+                                <div class="bg-cyan-50 p-4 rounded-lg border-l-4 border-ls4you-turquoise">
+                                    <h3 class="font-bold text-lg text-ls4you-turquoise mb-2">LS4YOU Trainers</h3>
+                                    <p class="text-gray-600 text-sm mb-2">Act as facilitators and method guardians, supporting professionals throughout the training and tutoring.</p>
+                                </div>
+                                <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-ls4you-yellow">
+                                    <h3 class="font-bold text-lg text-ls4you-yellow mb-2">Participants (Professionals)</h3>
+                                    <p class="text-gray-600 text-sm mb-2">Are the central actors, experimenting with activities, adapting them to their context, and sharing feedback.</p>
+                                </div>
+                                <div class="bg-red-50 p-4 rounded-lg border-l-4 border-ls4you-red">
+                                    <h3 class="font-bold text-lg text-ls4you-red mb-2">Project Coordination</h3>
+                                    <p class="text-gray-600 text-sm mb-2">Harmonizes approaches, ensures quality assurance, and capitalizes experiences at the European level.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fr hidden">
+                            <p class="text-gray-700 mb-6 leading-relaxed">
+                                La mise en œuvre réussie de LS4YOU repose sur la complémentarité des acteurs. Chaque partie prenante a un rôle spécifique à jouer, garantissant la cohérence, la qualité et la durabilité de la formation.
+                            </p>
+
+                            <div class="space-y-6">
+                                <div class="bg-red-50 p-4 rounded-lg border-l-4 border-ls4you-red">
+                                    <h3 class="font-bold text-lg text-ls4you-red mb-2">Partenaires Nationaux</h3>
+                                    <p class="text-gray-600 text-sm mb-2">Assurent l'organisation et l'adaptation locale, fournissent l'ancrage institutionnel, collectent les preuves et garantissent le reporting.</p>
+                                </div>
+                                <div class="bg-cyan-50 p-4 rounded-lg border-l-4 border-ls4you-turquoise">
+                                    <h3 class="font-bold text-lg text-ls4you-turquoise mb-2">Formateurs LS4YOU</h3>
+                                    <p class="text-gray-600 text-sm mb-2">Jouent le rôle de facilitateurs et garants de la méthode, accompagnant les professionnels tout au long de la formation et du tutorat.</p>
+                                </div>
+                                <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-ls4you-yellow">
+                                    <h3 class="font-bold text-lg text-ls4you-yellow mb-2">Participants (Professionnels)</h3>
+                                    <p class="text-gray-600 text-sm mb-2">Sont les acteurs centraux, expérimentant les activités, les adaptant à leur contexte et partageant leurs retours.</p>
+                                </div>
+                                <div class="bg-red-50 p-4 rounded-lg border-l-4 border-ls4you-red">
+                                    <h3 class="font-bold text-lg text-ls4you-red mb-2">Coordination du Projet</h3>
+                                    <p class="text-gray-600 text-sm mb-2">Harmonise les approches, assure le suivi qualité et capitalise les expériences à l'échelle européenne.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                  <p class="text-sm font-medium ls-turquoise mb-2" data-i18n="s4.dom.choice">Choix du partenaire :</p>
-                  <div class="space-y-2">
-                    <label class="flex items-center"><input type="checkbox" class="mr-2 accent-yellow-400"/><span class="text-sm ls-gray" data-i18n="s4.choice1">Activité 1</span></label>
-                    <label class="flex items-center"><input type="checkbox" class="mr-2 accent-yellow-400"/><span class="text-sm ls-gray" data-i18n="s4.choice2">Activité 2</span></label>
-                  </div>
-                </div>
-              </div>
             </div>
-
-          </div>
         </div>
-      </div>
-    </div>
 
-    <!-- SECTION 5 -->
-    <div class="content-panel" id="section5">
-      <div class="bg-white rounded-xl shadow-lg p-8 mb-6 border-l-4 border-ls-turquoise">
-        <h2 class="text-2xl font-bold ls-red mb-6" data-i18n="s5.title">5. Rôles & Responsabilités</h2>
-        <div class="grid md:grid-cols-2 gap-6">
-          <div class="bg-ls-gray rounded-lg p-6">
-            <h3 class="text-lg font-semibold ls-red mb-3" data-i18n="s5.nat.h">🏢 Partenaire national</h3>
-            <ul class="ls-gray space-y-2">
-              <li data-i18n="s5.nat.l1">• Planifie</li>
-              <li data-i18n="s5.nat.l2">• Adapte</li>
-              <li data-i18n="s5.nat.l3">• Forme</li>
-              <li data-i18n="s5.nat.l4">• Collecte preuves</li>
-              <li data-i18n="s5.nat.l5">• Reporte</li>
-            </ul>
-          </div>
+        <!-- Monitoring Page -->
+        <div id="monitoring" class="page hidden">
+            <div class="max-w-6xl mx-auto">
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <div class="flex items-center mb-8">
+                        <div class="w-16 h-16 bg-gradient-to-br from-ls4you-yellow to-yellow-400 rounded-2xl flex items-center justify-center text-ls4you-black text-2xl mr-6">📊</div>
+                        <h1 class="text-3xl font-bold text-gray-800">
+                            <span class="en">Monitoring & Evaluation</span>
+                            <span class="fr hidden">Suivi et Évaluation</span>
+                        </h1>
+                    </div>
 
-          <div class="bg-ls-gray rounded-lg p-6">
-            <h3 class="text-lg font-semibold ls-red mb-3" data-i18n="s5.form.h">👨‍🏫 Formateurs LS4YOU</h3>
-            <ul class="ls-gray space-y-2">
-              <li data-i18n="s5.form.l1">• Animent</li>
-              <li data-i18n="s5.form.l2">• Coachent</li>
-              <li data-i18n="s5.form.l3">• Valident plans d'action</li>
-            </ul>
-          </div>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="en">
+                            <p class="text-gray-700 mb-6 leading-relaxed">
+                                Monitoring and evaluation are essential to measure the real impact of LS4YOU. They rely on shared indicators and qualitative feedback to guarantee the quality and continuous improvement of the system.
+                            </p>
 
-          <div class="bg-ls-gray rounded-lg p-6">
-            <h3 class="text-lg font-semibold ls-red mb-3" data-i18n="s5.part.h">👥 Participants (pros)</h3>
-            <ul class="ls-gray space-y-2">
-              <li data-i18n="s5.part.l1">• Suivent e-learning</li>
-              <li data-i18n="s5.part.l2">• Pratiquent</li>
-              <li data-i18n="s5.part.l3">• Reportent</li>
-            </ul>
-          </div>
+                            <h2 class="text-xl font-bold text-ls4you-red mb-4">Quantitative Indicators</h2>
+                            <div class="bg-red-50 p-4 rounded-lg border-l-4 border-ls4you-red mb-6">
+                                <ul class="text-gray-700 space-y-2">
+                                    <li>• Number of professionals trained</li>
+                                    <li>• Participation rate</li>
+                                    <li>• Number of activities carried out</li>
+                                </ul>
+                            </div>
 
-          <div class="bg-ls-gray rounded-lg p-6">
-            <h3 class="text-lg font-semibold ls-red mb-3" data-i18n="s5.coord.h">🎯 Coordination projet</h3>
-            <ul class="ls-gray space-y-2">
-              <li data-i18n="s5.coord.l1">• Fournit gabarits</li>
-              <li data-i18n="s5.coord.l2">• Consolide données</li>
-              <li data-i18n="s5.coord.l3">• Assure qualité</li>
-            </ul>
-          </div>
+                            <h2 class="text-xl font-bold text-ls4you-turquoise mb-4">Qualitative Indicators</h2>
+                            <div class="bg-cyan-50 p-4 rounded-lg border-l-4 border-ls4you-turquoise mb-6">
+                                <ul class="text-gray-700 space-y-2">
+                                    <li>• Participant satisfaction</li>
+                                    <li>• Feedback from young people</li>
+                                    <li>• Evolution of practices</li>
+                                </ul>
+                            </div>
+
+                            <h2 class="text-xl font-bold text-ls4you-yellow mb-4">Evidence to be Kept</h2>
+                            <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-ls4you-yellow">
+                                <ul class="text-gray-700 space-y-2">
+                                    <li>• Attendance sheets</li>
+                                    <li>• Quizzes</li>
+                                    <li>• Participant productions</li>
+                                    <li>• Reporting</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="fr hidden">
+                            <p class="text-gray-700 mb-6 leading-relaxed">
+                                Le suivi et l'évaluation sont essentiels pour mesurer l'impact réel de LS4YOU. Ils reposent sur des indicateurs communs et des retours qualitatifs afin de garantir la qualité et l'amélioration continue du dispositif.
+                            </p>
+
+                            <h2 class="text-xl font-bold text-ls4you-red mb-4">Indicateurs Quantitatifs</h2>
+                            <div class="bg-red-50 p-4 rounded-lg border-l-4 border-ls4you-red mb-6">
+                                <ul class="text-gray-700 space-y-2">
+                                    <li>• Nombre de professionnels formés</li>
+                                    <li>• Taux de participation</li>
+                                    <li>• Nombre d'activités menées</li>
+                                </ul>
+                            </div>
+
+                            <h2 class="text-xl font-bold text-ls4you-turquoise mb-4">Indicateurs Qualitatifs</h2>
+                            <div class="bg-cyan-50 p-4 rounded-lg border-l-4 border-ls4you-turquoise mb-6">
+                                <ul class="text-gray-700 space-y-2">
+                                    <li>• Satisfaction des participants</li>
+                                    <li>• Retours des jeunes</li>
+                                    <li>• Évolution des pratiques</li>
+                                </ul>
+                            </div>
+
+                            <h2 class="text-xl font-bold text-ls4you-yellow mb-4">Preuves à Conserver</h2>
+                            <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-ls4you-yellow">
+                                <ul class="text-gray-700 space-y-2">
+                                    <li>• Feuilles d'émargement</li>
+                                    <li>• Quiz</li>
+                                    <li>• Productions des participants</li>
+                                    <li>• Rapports</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <!-- SECTION 6 -->
-    <div class="content-panel" id="section6">
-      <div class="bg-white rounded-xl shadow-lg p-8 mb-6 border-l-4 border-ls-turquoise">
-        <h2 class="text-2xl font-bold ls-red mb-6" data-i18n="s6.title">6. Qualité, Suivi & Évaluation</h2>
-        <div class="space-y-6">
-          <div class="bg-ls-gray rounded-lg p-6">
-            <h3 class="text-lg font-semibold ls-red mb-3" data-i18n="s6.kpi.h">📊 Indicateurs clés</h3>
-            <ul class="ls-gray space-y-2">
-              <li data-i18n="s6.kpi.l1">• Pros formés</li>
-              <li data-i18n="s6.kpi.l2">• Assiduité</li>
-              <li data-i18n="s6.kpi.l3">• Satisfaction</li>
-              <li data-i18n="s6.kpi.l4">• Mise en œuvre effective (≥4 ateliers/pro, 1/domaine)</li>
-              <li data-i18n="s6.kpi.l5">• Retours jeunes</li>
-            </ul>
-          </div>
-          <div class="bg-ls-gray rounded-lg p-6">
-            <h3 class="text-lg font-semibold ls-red mb-3" data-i18n="s6.evid.h">📁 Évidences à archiver</h3>
-            <ul class="ls-gray space-y-2">
-              <li data-i18n="s6.evid.l1">• Émargements</li>
-              <li data-i18n="s6.evid.l2">• Droits à l'image</li>
-            </ul>
-          </div>
+        <!-- Timeline Page -->
+        <div id="timeline" class="page hidden">
+            <div class="max-w-6xl mx-auto">
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <div class="flex items-center mb-8">
+                        <div class="w-16 h-16 bg-gradient-to-br from-ls4you-red to-red-700 rounded-2xl flex items-center justify-center text-white text-2xl mr-6">⏳</div>
+                        <h1 class="text-3xl font-bold text-gray-800">
+                            <span class="en">Example Timeline</span>
+                            <span class="fr hidden">Calendrier Exemple</span>
+                        </h1>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="en">
+                            <p class="text-gray-700 mb-6 leading-relaxed">
+                                The proposed timeline illustrates the typical course of LS4YOU training, from preparation to final restitution. It allows visualizing the key stages and their sequence.
+                            </p>
+                            
+                            <div class="space-y-4">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 bg-ls4you-red text-white rounded-full flex items-center justify-center font-bold mr-4">1</div>
+                                    <div>
+                                        <h3 class="font-semibold">Dissemination of the Starter Kit</h3>
+                                        <p class="text-gray-600">Distribution of initial materials and resources</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 bg-ls4you-turquoise text-white rounded-full flex items-center justify-center font-bold mr-4">2</div>
+                                    <div>
+                                        <h3 class="font-semibold">Completion of E-learning</h3>
+                                        <p class="text-gray-600">Online preparatory modules (if applicable)</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 bg-ls4you-yellow text-ls4you-black rounded-full flex items-center justify-center font-bold mr-4">3</div>
+                                    <div>
+                                        <h3 class="font-semibold">Face-to-face Training</h3>
+                                        <p class="text-gray-600">2 days, 1 day, or 2 half-days depending on chosen format</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 bg-ls4you-red text-white rounded-full flex items-center justify-center font-bold mr-4">4</div>
+                                    <div>
+                                        <h3 class="font-semibold">Monthly Tutoring</h3>
+                                        <p class="text-gray-600">3 months of ongoing support (if provided)</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 bg-ls4you-turquoise text-white rounded-full flex items-center justify-center font-bold mr-4">5</div>
+                                    <div>
+                                        <h3 class="font-semibold">Final Restitution</h3>
+                                        <p class="text-gray-600">Final evaluation and capitalization</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fr hidden">
+                            <p class="text-gray-700 mb-6 leading-relaxed">
+                                Le calendrier proposé illustre le déroulement type d'une formation LS4YOU, de la préparation à la restitution finale. Il permet de visualiser les étapes clés et leur enchaînement.
+                            </p>
+                            
+                            <div class="space-y-4">
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 bg-ls4you-red text-white rounded-full flex items-center justify-center font-bold mr-4">1</div>
+                                    <div>
+                                        <h3 class="font-semibold">Diffusion du Kit de Démarrage</h3>
+                                        <p class="text-gray-600">Distribution des matériaux et ressources initiaux</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 bg-ls4you-turquoise text-white rounded-full flex items-center justify-center font-bold mr-4">2</div>
+                                    <div>
+                                        <h3 class="font-semibold">Réalisation de l'E-learning</h3>
+                                        <p class="text-gray-600">Modules préparatoires en ligne (si applicable)</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 bg-ls4you-yellow text-ls4you-black rounded-full flex items-center justify-center font-bold mr-4">3</div>
+                                    <div>
+                                        <h3 class="font-semibold">Formation Présentielle</h3>
+                                        <p class="text-gray-600">2 jours, 1 jour ou 2 demi-journées selon le format choisi</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 bg-ls4you-red text-white rounded-full flex items-center justify-center font-bold mr-4">4</div>
+                                    <div>
+                                        <h3 class="font-semibold">Tutorat Mensuel</h3>
+                                        <p class="text-gray-600">3 mois de soutien continu (si prévu)</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-12 h-12 bg-ls4you-turquoise text-white rounded-full flex items-center justify-center font-bold mr-4">5</div>
+                                    <div>
+                                        <h3 class="font-semibold">Restitution Finale</h3>
+                                        <p class="text-gray-600">Évaluation finale et capitalisation</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <!-- SECTION 8 -->
-    <div class="content-panel" id="section8">
-      <div class="bg-white rounded-xl shadow-lg p-8 mb-6 border-l-4 border-ls-turquoise">
-        <h2 class="text-2xl font-bold ls-red mb-6" data-i18n="s8.title">8. Calendrier Type</h2>
-        <div class="space-y-6">
-          <div class="bg-ls-gray rounded-lg p-6">
-            <h3 class="text-lg font-semibold ls-red mb-3" data-i18n="s8.i1.h">1. Diffusion guide & kits</h3>
-            <p class="ls-gray" data-i18n="s8.i1.p">Guide PDF, gabarits (émargement, droit image, reporting)</p>
-          </div>
-          <div class="bg-ls-gray rounded-lg p-6">
-            <h3 class="text-lg font-semibold ls-red mb-3" data-i18n="s8.i2.h">2. E-learning complété</h3>
-            <p class="ls-gray" data-i18n="s8.i2.p">Scores quiz, auto-éval initiale</p>
-          </div>
-          <div class="bg-ls-gray rounded-lg p-6">
-            <h3 class="text-lg font-semibold ls-red mb-3" data-i18n="s8.i3.h">3. Présentiel 2 jours</h3>
-            <p class="ls-gray" data-i18n="s8.i3.p">Émargement, supports produits, plans d'action</p>
-          </div>
-          <div class="bg-ls-gray rounded-lg p-6">
-            <h3 class="text-lg font-semibold ls-red mb-3" data-i18n="s8.i4.h">4. Accompagnement</h3>
-            <p class="ls-gray" data-i18n="s8.i4.p">Tutorat individuel ou groupe</p>
-          </div>
-          <div class="bg-ls-gray rounded-lg p-6">
-            <h3 class="text-lg font-semibold ls-red mb-3" data-i18n="s8.i5.h">5. Restitution</h3>
-            <p class="ls-gray" data-i18n="s8.i5.p">Mini-bilan partenaire</p>
-          </div>
-          <div class="bg-ls-gray rounded-lg p-6">
-            <h3 class="text-lg font-semibold ls-red mb-3" data-i18n="s8.i6.h">6. Capitalisation</h3>
-            <p class="ls-gray" data-i18n="s8.i6.p">Ajustements, partage inter-pays</p>
-          </div>
+        <!-- Annexes Page -->
+        <div id="annexes" class="page hidden">
+            <div class="max-w-6xl mx-auto">
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <div class="flex items-center mb-8">
+                        <div class="w-16 h-16 bg-gradient-to-br from-ls4you-turquoise to-cyan-600 rounded-2xl flex items-center justify-center text-white text-2xl mr-6">📎</div>
+                        <h1 class="text-3xl font-bold text-gray-800">
+                            <span class="en">Annexes</span>
+                            <span class="fr hidden">Annexes</span>
+                        </h1>
+                    </div>
+
+                    <div class="max-w-4xl mx-auto">
+                        <div class="en">
+                            <p class="text-gray-700 mb-8 leading-relaxed text-center">
+                                Download the essential templates for organizing your LS4YOU training sessions.
+                            </p>
+                            
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="bg-gradient-to-br from-ls4you-red to-red-600 text-white p-6 rounded-2xl shadow-lg">
+                                    <div class="text-center">
+                                        <div class="text-5xl mb-4">📋</div>
+                                        <h3 class="text-xl font-glacial font-bold mb-3">Attendance Sheet Template</h3>
+                                        <p class="text-red-100 mb-6 text-sm">Ready-to-use template for tracking participant attendance during training sessions.</p>
+                                        <button onclick="downloadTemplate('attendance')" class="bg-white text-ls4you-red px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-all transform hover:scale-105 flex items-center space-x-2 mx-auto">
+                                            <span>📥</span>
+                                            <span>Download Template</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="bg-gradient-to-br from-ls4you-turquoise to-cyan-500 text-white p-6 rounded-2xl shadow-lg">
+                                    <div class="text-center">
+                                        <div class="text-5xl mb-4">📝</div>
+                                        <h3 class="text-xl font-glacial font-bold mb-3">Image Rights Consent Form</h3>
+                                        <p class="text-cyan-100 mb-6 text-sm">Legal consent form template for capturing photos and videos during training activities.</p>
+                                        <button onclick="downloadTemplate('image-rights')" class="bg-white text-ls4you-turquoise px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-all transform hover:scale-105 flex items-center space-x-2 mx-auto">
+                                            <span>📥</span>
+                                            <span>Download Template</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fr hidden">
+                            <p class="text-gray-700 mb-8 leading-relaxed text-center">
+                                Téléchargez les modèles essentiels pour organiser vos sessions de formation LS4YOU.
+                            </p>
+                            
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="bg-gradient-to-br from-ls4you-red to-red-600 text-white p-6 rounded-2xl shadow-lg">
+                                    <div class="text-center">
+                                        <div class="text-5xl mb-4">📋</div>
+                                        <h3 class="text-xl font-glacial font-bold mb-3">Modèle de Feuille d'Émargement</h3>
+                                        <p class="text-red-100 mb-6 text-sm">Modèle prêt à utiliser pour suivre la présence des participants pendant les sessions de formation.</p>
+                                        <button onclick="downloadTemplate('attendance')" class="bg-white text-ls4you-red px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-all transform hover:scale-105 flex items-center space-x-2 mx-auto">
+                                            <span>📥</span>
+                                            <span>Télécharger le Modèle</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="bg-gradient-to-br from-ls4you-turquoise to-cyan-500 text-white p-6 rounded-2xl shadow-lg">
+                                    <div class="text-center">
+                                        <div class="text-5xl mb-4">📝</div>
+                                        <h3 class="text-xl font-glacial font-bold mb-3">Formulaire de Droit à l'Image</h3>
+                                        <p class="text-cyan-100 mb-6 text-sm">Modèle de formulaire de consentement légal pour la prise de photos et vidéos pendant les activités de formation.</p>
+                                        <button onclick="downloadTemplate('image-rights')" class="bg-white text-ls4you-turquoise px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-all transform hover:scale-105 flex items-center space-x-2 mx-auto">
+                                            <span>📥</span>
+                                            <span>Télécharger le Modèle</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
+    </main>
 
-    <!-- SECTION 9 -->
-    <div class="content-panel" id="section9">
-      <div class="bg-white rounded-xl shadow-lg p-8 mb-6 border-l-4 border-ls-turquoise">
-        <h2 class="text-2xl font-bold ls-red mb-6" data-i18n="s9.title">9. Annexes (gabarits fournis)</h2>
-        <div class="grid md:grid-cols-2 gap-6">
-          <div class="bg-ls-gray rounded-lg p-6">
-            <h3 class="text-lg font-semibold ls-red mb-3" data-i18n="s9.a1.h">📋 Feuille d'émargement</h3>
-            <p class="ls-gray" data-i18n="s9.a1.p">Gabarit standardisé pour le suivi des présences</p>
-          </div>
-          <div class="bg-ls-gray rounded-lg p-6">
-            <h3 class="text-lg font-semibold ls-red mb-3" data-i18n="s9.a2.h">📷 Formulaire droit à l'image</h3>
-            <p class="ls-gray" data-i18n="s9.a2.p">Autorisation pour l'utilisation des photos et vidéos</p>
-          </div>
+    <!-- Footer Navigation -->
+    <footer id="footer" class="bg-white border-t px-6 py-4 hidden">
+        <div class="container mx-auto flex justify-between items-center">
+            <button onclick="showPage('menu')" class="bg-ls4you-turquoise text-white px-6 py-3 rounded-lg hover:bg-opacity-90 transition-all flex items-center space-x-2">
+                <span>⬅</span>
+                <span class="en">Back to Menu</span>
+                <span class="fr hidden">Retour au Menu</span>
+            </button>
+            
+
         </div>
-      </div>
-    </div>
+    </footer>
 
-    <div class="text-center mt-12 ls-gray">
-      <p class="text-sm" data-i18n="footer.hint">Cliquez sur les blocs ci-dessus pour explorer chaque section en détail</p>
-    </div>
-  </div>
+    <script>
+        let currentLanguage = 'en';
 
-  <script>
-    // Simple accordion logic
-    function toggleSection(sectionId){
-      const allSections=document.querySelectorAll('.content-panel');
-      const allIcons=document.querySelectorAll('.icon-rotate');
-      allSections.forEach(s=>{ if(s.id!==sectionId){ s.classList.remove('active'); }});
-      allIcons.forEach(i=>{ if(i.id!=='icon'+sectionId.slice(-1)){ i.classList.remove('active'); }});
-      const section=document.getElementById(sectionId);
-      const icon=document.getElementById('icon'+sectionId.slice(-1));
-      section.classList.toggle('active'); icon.classList.toggle('active');
-      if(section.classList.contains('active')){ setTimeout(()=>section.scrollIntoView({behavior:'smooth',block:'start'}),100); }
-    }
+        // Language Toggle
+        document.getElementById('langToggle').addEventListener('click', function() {
+            const menu = document.getElementById('langMenu');
+            menu.classList.toggle('hidden');
+        });
 
-    // i18n dictionary
-    const i18n={
-      fr:{
-        "ui.language":"Langue",
-        "hero.title":"LS4YOU",
-        "hero.subtitle":"Guidelines - Formation des professionnels",
-        "nav.1.title":"1. Objet & Périmètre","nav.1.desc":"Objectifs et public cible",
-        "nav.2.title":"2. Principes Pédagogiques","nav.2.desc":"Méthodes d'apprentissage",
-        "nav.3.title":"3. Déploiement","nav.3.desc":"Étapes et formats",
-        "nav.4.title":"4. Contenus Requis","nav.4.desc":"Modules et activités",
-        "nav.5.title":"5. Rôles & Responsabilités","nav.5.desc":"Qui fait quoi",
-        "nav.6.title":"6. Qualité & Évaluation","nav.6.desc":"Suivi et indicateurs",
-        "nav.8.title":"8. Calendrier Type","nav.8.desc":"Planning et étapes",
-        "nav.9.title":"9. Annexes","nav.9.desc":"Gabarits fournis",
+        // Close language menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const toggle = document.getElementById('langToggle');
+            const menu = document.getElementById('langMenu');
+            if (!toggle.contains(event.target) && !menu.contains(event.target)) {
+                menu.classList.add('hidden');
+            }
+        });
 
-        "s1.title":"1. Objet & Périmètre",
-        "s1.objet.h":"📋 OBJET",
-        "s1.objet.p":"Offrir à chaque partenaire une trame pas à pas pour former des éducateurs d'adultes (conseillers, animateurs, formateurs) à la méthodologie et à l'utilisation des outils LS4YOU avec des jeunes.",
-        "s1.public.h":"👥 PUBLIC CIBLE",
-        "s1.public.p":"Professionnels en contact direct avec les jeunes, avec appétence pour le travail collectif.",
-        "s1.finalites.h":"🎯 FINALITÉS",
-        "s1.finalites.l1":"• Identifier et former des référents LS4YOU dans chaque structure",
-        "s1.finalites.l2":"• Assurer une mise en œuvre homogène en Europe tout en permettant qu'elle soit adaptable selon les contextes",
-        "s1.finalites.l3":"• Intégrer durablement LS4YOU dans les pratiques professionnelles",
+        function setLanguage(lang) {
+            currentLanguage = lang;
+            document.getElementById('langMenu').classList.add('hidden');
+            
+            // Update language toggle text
+            document.getElementById('currentLang').textContent = lang === 'en' ? 'English' : 'Français';
+            
+            // Show/hide language elements
+            const enElements = document.querySelectorAll('.en');
+            const frElements = document.querySelectorAll('.fr');
+            
+            if (lang === 'en') {
+                enElements.forEach(el => el.classList.remove('hidden'));
+                frElements.forEach(el => el.classList.add('hidden'));
+            } else {
+                enElements.forEach(el => el.classList.add('hidden'));
+                frElements.forEach(el => el.classList.remove('hidden'));
+            }
+        }
 
-        "s2.title":"2. Principes Pédagogiques",
-        "s2.exp.h":"🎭 Expérientiel & Participatif",
-        "s2.exp.p":"Les professionnels testent les outils comme des jeunes (jeux de rôle, ateliers).",
-        "s2.coll.h":"🤝 Collectif",
-        "s2.coll.p":"Co-construction, sous-groupes, retours entre pairs.",
-        "s2.hybr.h":"💻 Hybride",
-        "s2.hybr.p":"E-learning concis (Fondamentaux / Méthode / Activités / Domaines de compétences) + présentiel actif (expérimentation, jeux de rôle, co-construction).",
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.add('hidden'));
+            
+            // Show selected page
+            document.getElementById(pageId).classList.remove('hidden');
+            
+            // Show/hide footer based on page
+            const footer = document.getElementById('footer');
+            if (pageId === 'home' || pageId === 'menu') {
+                footer.classList.add('hidden');
+            } else {
+                footer.classList.remove('hidden');
+            }
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
 
-        "s3.title":"3. Déploiement",
-        "s3.steps.title":"Étapes du déploiement",
-        "s3.step0.h":"Étape 0 — Préparation (J-10 à J-5)",
-        "s3.step0.l1":"• Sélectionner les participants",
-        "s3.step0.l2":"• Envoyer kit d'amorçage (2–3 pages : e-learning préparatoire, guidebook)",
-        "s3.step0.l3":"• Créer un canal d'échanges (Teams/Slack/WhatsApp)",
-        "s3.step0.l4":"• Logistique : salle modulable, paperboard, post-its, accès plateforme",
-        "s3.step0.l5":"• Livrables : liste participants, feuille d'émargement prête, formulaires droit à l'image",
+        // Download template function
+        function downloadTemplate(templateType) {
+            let filename, content;
+            
+            if (templateType === 'attendance') {
+                filename = currentLanguage === 'en' ? 'LS4YOU_Attendance_Sheet_Template.txt' : 'LS4YOU_Modele_Feuille_Emargement.txt';
+                content = currentLanguage === 'en' ? 
+                    `LS4YOU TRAINING - ATTENDANCE SHEET TEMPLATE
 
-        "s3.step1.h":"Étape 1 — E-learning (1 semaine avant, si format choisi)",
-        "s3.step1.l1":"• Définir la compétence",
-        "s3.step1.l2":"• Référentiel LS4YOU (4 domaines)",
-        "s3.step1.l3":"• Auto-positionnement du pro avec la grille LS4YOU",
-        "s3.step1.l4":"• Preuves : quiz court, capture d'achèvement",
+Training Title: ________________________________
+Date: ___________________________________________
+Location: ______________________________________
+Trainer(s): ____________________________________
 
-        "s3.step2.h":"Étape 2 — Présentiel intensif",
-        "s3.step2.d1.h":"Jour 1 – S'approprier",
-        "s3.step2.d1.l1":"• Icebreaker « ligne de compétences »",
-        "s3.step2.d1.l2":"• Parcours des outils (activités, grilles, plateforme) en ateliers tournants",
-        "s3.step2.d1.l3":"• Jeux de rôle conseiller ↔ jeune",
-        "s3.step2.d1.l4":"• Co-conception d'une séance-type LS4YOU",
-        "s3.step2.d2.h":"Jour 2 – Mettre en pratique",
-        "s3.step2.d2.l1":"• Travaux en 4 sous-groupes (un par domaine)",
-        "s3.step2.d2.l2":"• Tester ≥ 2 activités par domaine",
-        "s3.step2.d2.l3":"• Restitution croisée (poster 5'/groupe)",
-        "s3.step2.d2.l4":"• Plan d'action individuel & d'équipe",
-        "s3.step2.d2.l5":"• Preuves : photos (si accord), supports produits, émargement signé",
+PARTICIPANT INFORMATION:
+Name                    | Organization          | Signature | Time In | Time Out
+________________________|______________________|___________|_________|__________
+                        |                      |           |         |
+                        |                      |           |         |
+                        |                      |           |         |
+                        |                      |           |         |
+                        |                      |           |         |
+                        |                      |           |         |
+                        |                      |           |         |
+                        |                      |           |         |
+                        |                      |           |         |
+                        |                      |           |         |
 
-        "s3.step3.h":"Étape 3 — Intégration terrain",
-        "s3.step3.l1":"• Chaque pro teste ≥ 1 activité / domaine avec ses jeunes",
-        "s3.step3.l2":"• Sessions de feedbacks",
-        "s3.step3.l3":"• Tutorat visio de suivi à 4–6 semaines : partages & ajustements",
-        "s3.step3.l4":"• Restitution finale (1h) : ce qu'on garde / ce qu'on adapte",
-        "s3.step3.l5":"• Preuves : reporting",
+Total Participants: ____________________________
+Trainer Signature: _____________________________
+Date: __________________________________________
 
-        "s3.formats.title":"Formats possibles",
-        "s3.formats.f1.h":"Format 1 – Intensif",
-        "s3.formats.f1.p":"Présentiel condensé en 2 jours. Tutorat optionnel.",
-        "s3.formats.f2.h":"Format 2 – Hybride",
-        "s3.formats.f2.p":"E-learning + présentiel + restitution. Tutorat optionnel.",
-        "s3.formats.f3.h":"Format 3 – Progressif tutoré",
-        "s3.formats.f3.p":"2 demi-journées collectives + tutorat intégré par pros formés / WP3.",
+Notes:
+_________________________________________________
+_________________________________________________
+_________________________________________________` :
+                    `LS4YOU FORMATION - MODÈLE FEUILLE D'ÉMARGEMENT
 
-        "s4.title":"4. Contenus Minimum Requis",
-        "s4.m1.title":"4.1 Modules communs",
-        "s4.m1.l1":"• Découverte LS4YOU & référentiel",
-        "s4.m1.l2":"• Outils & usages : quiz, grilles, plateforme",
-        "s4.m1.l3":"• Méthode d'accompagnement : Identifier → Mesurer → Mettre en œuvre",
-        "s4.m1.l4":"• Intégration locale : articulation avec dispositifs nationaux/locaux",
-        "s4.m2.title":"4.2 Activités à tester (minimum 2/domaine)",
-        "s4.dom.activities":"Activités proposées :",
-        "s4.dom.choice":"Choix du partenaire :",
-        "s4.choice1":"Activité 1","s4.choice2":"Activité 2",
-        "s4.dom1.h":"🎭 Personnalité",
-        "s4.dom1.l1":"• Test des 16 Personnalités","s4.dom1.l2":"• Faire valoir un point","s4.dom1.l3":"• Image de soi vs image publique","s4.dom1.l4":"• Matching, Recevoir du Feedback","s4.dom1.l5":"• Objectifs ABC, Liste des valeurs",
-        "s4.dom2.h":"🔗 Auto-promotion",
-        "s4.dom2.l1":"• Moi au sommet de mon art","s4.dom2.l2":"• Pitch vidéo","s4.dom2.l3":"• Parcours ressources et compétences","s4.dom2.l4":"• Image de marque personnelle","s4.dom2.l5":"• Concevez votre zine, Jeu de simulation",
-        "s4.dom3.h":"😌 Bien-être",
-        "s4.dom3.l1":"• Roue des émotions, 3 bonnes choses","s4.dom3.l2":"• Réseau de soutien social","s4.dom3.l3":"• Évaluation des besoins, Stressomètre","s4.dom3.l4":"• Prioriser ses routines","s4.dom3.l5":"• Arbre de la Résilience, Portfolio poser ses limites",
-        "s4.dom4.h":"💰 Finances & Ressources",
-        "s4.dom4.l1":"• Défis de la vie réelle","s4.dom4.l2":"• Du salaire à la poche","s4.dom4.l3":"• SMART, Études de cas","s4.dom4.l4":"• Ikigai – Concevez-vous",
+Titre de la Formation: __________________________
+Date: ___________________________________________
+Lieu: __________________________________________
+Formateur(s): ___________________________________
 
-        "s5.title":"5. Rôles & Responsabilités",
-        "s5.nat.h":"🏢 Partenaire national","s5.nat.l1":"• Planifie","s5.nat.l2":"• Adapte","s5.nat.l3":"• Forme","s5.nat.l4":"• Collecte preuves","s5.nat.l5":"• Reporte",
-        "s5.form.h":"👨‍🏫 Formateurs LS4YOU","s5.form.l1":"• Animent","s5.form.l2":"• Coachent","s5.form.l3":"• Valident plans d'action",
-        "s5.part.h":"👥 Participants (pros)","s5.part.l1":"• Suivent e-learning","s5.part.l2":"• Pratiquent","s5.part.l3":"• Reportent",
-        "s5.coord.h":"🎯 Coordination projet","s5.coord.l1":"• Fournit gabarits","s5.coord.l2":"• Consolide données","s5.coord.l3":"• Assure qualité",
+INFORMATIONS PARTICIPANTS:
+Nom                     | Organisation         | Signature | Arrivée | Départ
+________________________|______________________|___________|_________|________
+                        |                      |           |         |
+                        |                      |           |         |
+                        |                      |           |         |
+                        |                      |           |         |
+                        |                      |           |         |
+                        |                      |           |         |
+                        |                      |           |         |
+                        |                      |           |         |
+                        |                      |           |         |
+                        |                      |           |         |
 
-        "s6.title":"6. Qualité, Suivi & Évaluation",
-        "s6.kpi.h":"📊 Indicateurs clés","s6.kpi.l1":"• Pros formés","s6.kpi.l2":"• Assiduité","s6.kpi.l3":"• Satisfaction","s6.kpi.l4":"• Mise en œuvre effective (≥4 ateliers/pro, 1/domaine)","s6.kpi.l5":"• Retours jeunes",
-        "s6.evid.h":"📁 Évidences à archiver","s6.evid.l1":"• Émargements","s6.evid.l2":"• Droits à l'image",
+Total Participants: ____________________________
+Signature Formateur: ___________________________
+Date: __________________________________________
 
-        "s8.title":"8. Calendrier Type",
-        "s8.i1.h":"1. Diffusion guide & kits","s8.i1.p":"Guide PDF, gabarits (émargement, droit image, reporting)",
-        "s8.i2.h":"2. E-learning complété","s8.i2.p":"Scores quiz, auto-éval initiale",
-        "s8.i3.h":"3. Présentiel 2 jours","s8.i3.p":"Émargement, supports produits, plans d'action",
-        "s8.i4.h":"4. Accompagnement","s8.i4.p":"Tutorat individuel ou groupe",
-        "s8.i5.h":"5. Restitution","s8.i5.p":"Mini-bilan partenaire",
-        "s8.i6.h":"6. Capitalisation","s8.i6.p":"Ajustements, partage inter-pays",
+Notes:
+_________________________________________________
+_________________________________________________
+_________________________________________________`;
+            } else if (templateType === 'image-rights') {
+                filename = currentLanguage === 'en' ? 'LS4YOU_Image_Rights_Consent_Form.txt' : 'LS4YOU_Formulaire_Droit_Image.txt';
+                content = currentLanguage === 'en' ? 
+                    `LS4YOU TRAINING - IMAGE RIGHTS CONSENT FORM
 
-        "s9.title":"9. Annexes (gabarits fournis)",
-        "s9.a1.h":"📋 Feuille d'émargement","s9.a1.p":"Gabarit standardisé pour le suivi des présences",
-        "s9.a2.h":"📷 Formulaire droit à l'image","s9.a2.p":"Autorisation pour l'utilisation des photos et vidéos",
+PARTICIPANT INFORMATION:
+Full Name: ______________________________________
+Organization: ___________________________________
+Email: __________________________________________
+Phone: __________________________________________
 
-        "footer.hint":"Cliquez sur les blocs ci-dessus pour explorer chaque section en détail"
-      },
+CONSENT FOR IMAGE AND VIDEO RECORDING:
 
-      en:{
-        "ui.language":"Language",
-        "hero.title":"LS4YOU",
-        "hero.subtitle":"Guidelines – Training of Professionals",
-        "nav.1.title":"1. Purpose & Scope","nav.1.desc":"Objectives and target audience",
-        "nav.2.title":"2. Pedagogical Principles","nav.2.desc":"Learning methods",
-        "nav.3.title":"3. Deployment","nav.3.desc":"Steps and formats",
-        "nav.4.title":"4. Required Content","nav.4.desc":"Modules and activities",
-        "nav.5.title":"5. Roles & Responsibilities","nav.5.desc":"Who does what",
-        "nav.6.title":"6. Quality & Evaluation","nav.6.desc":"Monitoring & indicators",
-        "nav.8.title":"8. Example Timeline","nav.8.desc":"Planning and steps",
-        "nav.9.title":"9. Annexes","nav.9.desc":"Provided templates",
+I, the undersigned, hereby give my consent for:
 
-        "s1.title":"1. Purpose & Scope",
-        "s1.objet.h":"📋 PURPOSE",
-        "s1.objet.p":"Provide each partner with a step-by-step framework to train adult educators (counsellors, youth workers, trainers) in the methodology and use of LS4YOU tools with young people.",
-        "s1.public.h":"👥 TARGET AUDIENCE",
-        "s1.public.p":"Professionals in direct contact with young people, with an interest in collective work.",
-        "s1.finalites.h":"🎯 GOALS",
-        "s1.finalites.l1":"• Identify and train LS4YOU focal points in each organisation",
-        "s1.finalites.l2":"• Ensure homogeneous implementation across Europe while allowing adaptation to local contexts",
-        "s1.finalites.l3":"• Integrate LS4YOU sustainably into professional practices",
+☐ Photography during LS4YOU training activities
+☐ Video recording during LS4YOU training activities
+☐ Use of images/videos for LS4YOU project promotion
+☐ Use of images/videos for educational purposes
+☐ Publication on LS4YOU project website and social media
 
-        "s2.title":"2. Pedagogical Principles",
-        "s2.exp.h":"🎭 Experiential & Participatory",
-        "s2.exp.p":"Professionals test the tools as if they were young people (role plays, workshops).",
-        "s2.coll.h":"🤝 Collective",
-        "s2.coll.p":"Co-construction, sub-groups, peer feedback.",
-        "s2.hybr.h":"💻 Hybrid",
-        "s2.hybr.p":"Concise e-learning (Fundamentals / Method / Activities / Competence domains) + active face-to-face sessions (experimentation, role plays, co-construction).",
+CONDITIONS:
+- Images will be used solely for LS4YOU project purposes
+- No commercial use without additional consent
+- Right to request removal of images at any time
+- Images may be shared with LS4YOU project partners
 
-        "s3.title":"3. Deployment",
-        "s3.steps.title":"Deployment steps",
-        "s3.step0.h":"Step 0 — Preparation (D-10 to D-5)",
-        "s3.step0.l1":"• Select participants",
-        "s3.step0.l2":"• Send starter kit (2–3 pages: preparatory e-learning, guidebook)",
-        "s3.step0.l3":"• Create an exchange channel (Teams/Slack/WhatsApp)",
-        "s3.step0.l4":"• Logistics: flexible room, flipchart, post-its, platform access",
-        "s3.step0.l5":"• Deliverables: participant list, attendance sheet ready, image rights forms",
+I understand that:
+- Participation in photography/video is voluntary
+- I can withdraw consent at any time
+- Images may be used across LS4YOU partner countries
 
-        "s3.step1.h":"Step 1 — E-learning (1 week before, if chosen format)",
-        "s3.step1.l1":"• Define the competence",
-        "s3.step1.l2":"• LS4YOU framework (4 domains)",
-        "s3.step1.l3":"• Professional self-assessment using the LS4YOU grid",
-        "s3.step1.l4":"• Evidence: short quiz, completion screenshot",
+Participant Signature: __________________________
+Date: __________________________________________
+Location: ______________________________________
 
-        "s3.step2.h":"Step 2 — Intensive face-to-face",
-        "s3.step2.d1.h":"Day 1 – Getting familiar",
-        "s3.step2.d1.l1":"• Icebreaker “skills line”",
-        "s3.step2.d1.l2":"• Tool pathways (activities, grids, platform) in rotating workshops",
-        "s3.step2.d1.l3":"• Role play counsellor ↔ young person",
-        "s3.step2.d1.l4":"• Co-design of a typical LS4YOU session",
-        "s3.step2.d2.h":"Day 2 – Putting into practice",
-        "s3.step2.d2.l1":"• Work in 4 sub-groups (one per domain)",
-        "s3.step2.d2.l2":"• Test at least 2 activities per domain",
-        "s3.step2.d2.l3":"• Cross-restitution (poster format, 5 min/group)",
-        "s3.step2.d2.l4":"• Individual & team action plans",
-        "s3.step2.d2.l5":"• Evidence: photos (with consent), produced materials, signed attendance",
+FOR OFFICE USE:
+Trainer Name: ___________________________________
+Training Date: __________________________________
+Training Location: ______________________________` :
+                    `LS4YOU FORMATION - FORMULAIRE DROIT À L'IMAGE
 
-        "s3.step3.h":"Step 3 — Field integration",
-        "s3.step3.l1":"• Each professional tests ≥ 1 activity per domain with their young people",
-        "s3.step3.l2":"• Feedback sessions",
-        "s3.step3.l3":"• Online tutoring 4–6 weeks later: sharing & adjustments",
-        "s3.step3.l4":"• Final restitution (1h): what is kept / what is adapted",
-        "s3.step3.l5":"• Evidence: reporting",
+INFORMATIONS PARTICIPANT:
+Nom Complet: ____________________________________
+Organisation: ___________________________________
+Email: __________________________________________
+Téléphone: ______________________________________
 
-        "s3.formats.title":"Possible formats",
-        "s3.formats.f1.h":"Format 1 – Intensive",
-        "s3.formats.f1.p":"Condensed 2-day face-to-face training. Optional tutoring.",
-        "s3.formats.f2.h":"Format 2 – Hybrid",
-        "s3.formats.f2.p":"E-learning + face-to-face + restitution. Optional tutoring.",
-        "s3.formats.f3.h":"Format 3 – Progressive with tutoring",
-        "s3.formats.f3.p":"Two half-days + integrated tutoring by trained professionals / WP3.",
+CONSENTEMENT POUR PRISE D'IMAGES ET VIDÉOS:
 
-        "s4.title":"4. Minimum Required Content",
-        "s4.m1.title":"4.1 Common modules",
-        "s4.m1.l1":"• LS4YOU introduction & framework",
-        "s4.m1.l2":"• Tools & usage: quizzes, grids, platform",
-        "s4.m1.l3":"• Support method: Identify → Measure → Implement",
-        "s4.m1.l4":"• Local integration: articulation with national/local schemes",
-        "s4.m2.title":"4.2 Activities to be tested (minimum 2 per domain)",
-        "s4.dom.activities":"Proposed activities:",
-        "s4.dom.choice":"Partner’s choice:",
-        "s4.choice1":"Activity 1","s4.choice2":"Activity 2",
-        "s4.dom1.h":"🎭 Personality",
-        "s4.dom1.l1":"• 16 Personalities Test","s4.dom1.l2":"• Assert a Point","s4.dom1.l3":"• Self-image vs Public Image","s4.dom1.l4":"• Matching, Receiving Feedback","s4.dom1.l5":"• ABC Objectives, List of Values",
-        "s4.dom2.h":"🔗 Self-promotion",
-        "s4.dom2.l1":"• At the Top of My Art","s4.dom2.l2":"• Video Pitch","s4.dom2.l3":"• Resource & Skills Pathway","s4.dom2.l4":"• Personal Branding","s4.dom2.l5":"• Create Your Zine, Simulation Game",
-        "s4.dom3.h":"😌 Well-being",
-        "s4.dom3.l1":"• Wheel of Emotions, 3 Good Things","s4.dom3.l2":"• Social Support Network","s4.dom3.l3":"• Needs Assessment, Stressometer","s4.dom3.l4":"• Prioritising Routines","s4.dom3.l5":"• Resilience Tree, Portfolio (setting boundaries)",
-        "s4.dom4.h":"💰 Finances & Resources",
-        "s4.dom4.l1":"• Real-life Challenges","s4.dom4.l2":"• From Salary to Pocket","s4.dom4.l3":"• SMART, Case Studies","s4.dom4.l4":"• Ikigai – Design Yourself",
+Je soussigné(e), donne mon consentement pour:
 
-        "s5.title":"5. Roles & Responsibilities",
-        "s5.nat.h":"🏢 National partner","s5.nat.l1":"• Plans","s5.nat.l2":"• Adapts","s5.nat.l3":"• Trains","s5.nat.l4":"• Collects evidence","s5.nat.l5":"• Reports",
-        "s5.form.h":"👨‍🏫 LS4YOU trainers","s5.form.l1":"• Deliver","s5.form.l2":"• Coach","s5.form.l3":"• Validate action plans",
-        "s5.part.h":"👥 Participants (professionals)","s5.part.l1":"• Complete e-learning","s5.part.l2":"• Practice","s5.part.l3":"• Report",
-        "s5.coord.h":"🎯 Project coordination","s5.coord.l1":"• Provides templates","s5.coord.l2":"• Consolidates data","s5.coord.l3":"• Ensures quality",
+☐ Photographies pendant les activités de formation LS4YOU
+☐ Enregistrements vidéo pendant les activités de formation LS4YOU
+☐ Utilisation des images/vidéos pour la promotion du projet LS4YOU
+☐ Utilisation des images/vidéos à des fins éducatives
+☐ Publication sur le site web et réseaux sociaux du projet LS4YOU
 
-        "s6.title":"6. Quality, Monitoring & Evaluation",
-        "s6.kpi.h":"📊 Key indicators","s6.kpi.l1":"• Professionals trained","s6.kpi.l2":"• Attendance","s6.kpi.l3":"• Satisfaction","s6.kpi.l4":"• Effective implementation (≥4 workshops/professional, 1 per domain)","s6.kpi.l5":"• Youth feedback",
-        "s6.evid.h":"📁 Evidence to be archived","s6.evid.l1":"• Attendance sheets","s6.evid.l2":"• Image rights forms",
+CONDITIONS:
+- Les images seront utilisées uniquement pour les besoins du projet LS4YOU
+- Aucun usage commercial sans consentement supplémentaire
+- Droit de demander le retrait des images à tout moment
+- Les images peuvent être partagées avec les partenaires du projet LS4YOU
 
-        "s8.title":"8. Example Timeline",
-        "s8.i1.h":"1. Guide & kits distributed","s8.i1.p":"PDF guide, templates (attendance, image rights, reporting)",
-        "s8.i2.h":"2. E-learning completed","s8.i2.p":"Quiz scores, initial self-assessment",
-        "s8.i3.h":"3. 2-day face-to-face training","s8.i3.p":"Attendance, produced materials, action plans",
-        "s8.i4.h":"4. Tutoring / accompaniment","s8.i4.p":"Individual or group tutoring",
-        "s8.i5.h":"5. Restitution","s8.i5.p":"Partner mini-report",
-        "s8.i6.h":"6. Capitalisation","s8.i6.p":"Adjustments, cross-country sharing",
+Je comprends que:
+- La participation aux prises d'images/vidéos est volontaire
+- Je peux retirer mon consentement à tout moment
+- Les images peuvent être utilisées dans tous les pays partenaires LS4YOU
 
-        "s9.title":"9. Annexes (templates provided)",
-        "s9.a1.h":"📋 Attendance sheet","s9.a1.p":"Standardised template for tracking attendance",
-        "s9.a2.h":"📷 Image rights consent form","s9.a2.p":"Authorisation for using photos and videos",
+Signature du Participant: _______________________
+Date: __________________________________________
+Lieu: __________________________________________
 
-        "footer.hint":"Click the blocks above to explore each section in detail"
-      }
-    };
+USAGE INTERNE:
+Nom du Formateur: _______________________________
+Date de Formation: ______________________________
+Lieu de Formation: ______________________________`;
+            }
+            
+            // Create and download file
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+            
+            // Show confirmation message
+            const message = currentLanguage === 'en' ? 
+                'Template downloaded successfully!' : 
+                'Modèle téléchargé avec succès!';
+            
+            // Create temporary notification
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-4 right-4 bg-ls4you-turquoise text-white px-6 py-3 rounded-lg shadow-lg z-50';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                document.body.removeChild(notification);
+            }, 3000);
+        }
 
-    function applyLang(lang){
-      document.documentElement.lang = (lang==='en'?'en':'fr');
-      document.querySelectorAll('[data-i18n]').forEach(el=>{
-        const key=el.getAttribute('data-i18n');
-        const txt=i18n[lang][key];
-        if(typeof txt==='string'){ el.innerText=txt; }
-      });
-    }
-
-    const select=document.getElementById('langSelect');
-    select.addEventListener('change', e=>applyLang(e.target.value));
-
-    // Initialize with current selector value
-    applyLang(select.value);
-  </script>
-</body>
+        // Initialize with home page
+        showPage('home');
+        setLanguage('en');
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9817d75802af7032',t:'MTc1ODI3MTg4Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
